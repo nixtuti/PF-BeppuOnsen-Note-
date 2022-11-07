@@ -59,6 +59,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem "devise"
 #ページネーション用
 #gem 'kaminari','~> 1.2.1'
-#gem 'enum_help'
+gem 'enum_help'
 #gem 'rspec-rails'
 #gem 'rails-i18n'

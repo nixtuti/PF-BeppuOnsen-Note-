@@ -116,7 +116,7 @@ ActiveRecord::Schema.define(version: 2022_11_07_073656) do
     t.string "user_name", null: false
     t.date "birth_date", null: false
     t.integer "sex", null: false
-    t.integer "is_deleted", default: 0, null: false
+    t.integer "status", default: 0, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
