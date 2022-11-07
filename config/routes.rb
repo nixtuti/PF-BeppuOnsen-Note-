@@ -32,9 +32,13 @@ Rails.application.routes.draw do
     #余裕があればクチコミ一覧作成
     #resources :reviews, only: [:index]
     
+    namespace :admin do
+      resources :customers, only: [:index, :show, :edit]
+      resources :reviews, only:[:index, :show]
+      resources :hot_springs, only: [:index, :show, :new, :edit]
+    end
+    
   end
-
-
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
