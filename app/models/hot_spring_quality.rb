@@ -1,0 +1,2 @@
+class HotSpringQuality < ApplicationRecord
+end
