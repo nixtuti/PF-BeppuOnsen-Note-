@@ -1,0 +1,2 @@
+class VisitedMark < ApplicationRecord
+end
