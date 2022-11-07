@@ -8,10 +8,9 @@ Rails.application.routes.draw do
     sessions: 'admin/sessions'
   }
   #ユーザー新規登録、ログイン用
-  devise_for :users, controllers: {
+  devise_for :users, skip: [:passwords], controllers: {
     registrations: "public/registrations",
-    sessions: 'public/sessions',
-    passwords: 'public/passwords'
+    sessions: 'public/sessions'
   }
 
   scope module: :public do  
