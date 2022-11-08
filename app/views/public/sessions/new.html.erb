@@ -10,17 +10,17 @@
       </div>
       
       <div class="m-4 p-2">
-        <h6 class="col-5 bg-light text-center">会員の方はこちらからログイン</h6>
+        <h6 class="col-5 bg-light text-center text-nowrap">会員の方はこちらからログイン</h6>
         <div class="mx-5 my-3">
           <%= form_with model: @user, url: user_session_path, local: true do |f| %>
             
             <table class="table table-borderless text-nowrap">
               <tr>
-                <th class="w-25"><%= f.label :email, "メールアドレス" %></th>
+                <th class="w-25 align-middle"><%= f.label :email, "メールアドレス", class: "m-0" %></th>
                 <td><%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "sample@example.com", class: 'form-control w-100' %></td>
               </tr>
               <tr>
-                <th><%= f.label :password, "パスワード" %></th>
+                <th class="w-25 align-middle"><%= f.label :password, "パスワード", class: "m-0" %></th>
                 <td><%= f.password_field :password, autocomplete: "current-password", class: 'form-control w-100' %></td>
               </tr>
             </table>
