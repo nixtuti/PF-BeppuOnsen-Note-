@@ -2,21 +2,25 @@
   <div class="row">
     <div class="mx-auto col-11 col-sm-10 col-lg-8">
       <div class="my-4">
-        <h4 class="col-3 bg-light text-center text-nowrap">ユーザー情報編集</h4>
+        <h4 class="col-4 bg-light text-center text-nowrap">ユーザー情報編集</h4>
         
       </div>
       <div class="m-5">
-        <%= form_with model: @user, url: edit_user_path, local: true do |f| %>
+        <%= form_with model: @user, local: true do |f| %>
           <table class="table table-borderless text-nowrap">
             <tr class="field">
+              <th class="align-middle"><%= f.label :profile_image, "プロフィール画像", class: "m-0" %></th>
+              <td><%= f.file_field :profile_image, accept: "image/*" %></td>
+            </tr>
+            <tr class="field">
               <th class="align-middle"><%= f.label :username, "ユーザーネーム", class: "m-0" %></th>
-              <td><%= f.text_field :username, autofocus: true, autocomplete: "username", class: 'form-control' %></td>
+              <td><%= f.text_field :username, class: 'form-control' %></td>
             </tr>
             <tr class="field">
               <th><%= f.label :birth_date, "生年月日" %></th>
-              <td><%= raw sprintf( f.date_select( :birth_date, use_month_numbers: true, start_year: 1930, end_year: (Time.now.year - 5), default: Date.new(1989, 1, 1), date_separator: '%s' ), '年 ', '月 ') + '日' %></td>
+              <td><%= raw sprintf( f.date_select( :birth_date, use_month_numbers: true, start_year: 1930, end_year: (Time.now.year - 5), date_separator: '%s' ), '年 ', '月 ') + '日' %></td>
             </tr>
-            <tr class="field align-middle text-nowrap">
+            <tr class="field align-middle">
               <th><%= f.label :sex, "性別" %></th>
               <td>
                 <div class="w-25 d-inline-block">
@@ -31,7 +35,7 @@
             </tr>
             <tr class="field">
               <th class="align-middle"><%= f.label :email, "メールアドレス", class: "m-0" %></th>
-              <td><%= f.email_field :email, autocomplete: "email", placeholder: "sample@example.com", class: 'form-control' %></td>
+              <td><%= f.email_field :email, class: 'form-control' %></td>
             </tr>
           </table>
           <div class="actions m-4 text-center">

@@ -56,6 +56,7 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 #gem 'rspec-rails'
+
 #ログイン機能用
 gem "devise"
 

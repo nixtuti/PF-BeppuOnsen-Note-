@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   
   #deviseのデータ受取カラム追加
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:username, :sex, :birth_date, :status])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:username, :sex, :birth_date, :status, :profile])
   end
   
 end

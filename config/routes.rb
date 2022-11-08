@@ -2,23 +2,29 @@ Rails.application.routes.draw do
 
   root to: 'public/homes#top'
   get '/about' => 'public/homes#about'
-  
-  #管理者ログイン用
-  devise_for :admin, skip: [:registrations, :passwords], controllers: {
-    sessions: 'admin/sessions'
-  }
+
+  #ゲストログイン用
+  devise_scope :user do
+    post 'users/guest_sign_in', to: 'public/sessions#guest_sign_in'
+  end
+
   #ユーザー新規登録、ログイン用
   devise_for :users, skip: [:passwords], controllers: {
     registrations: "public/registrations",
     sessions: 'public/sessions'
   }
 
-  scope module: :public do  
-    
+  #管理者ログイン用
+  devise_for :admin, skip: [:registrations, :passwords], controllers: {
+    sessions: 'admin/sessions'
+  }
+
+  scope module: :public do
+
     resources :users, only: [:show, :edit, :update]
     get 'users/withdrawal_confirm'
     get 'users/withdrawal'
-    
+
     resources :hot_springs, only: [:index, :show] do
       resource :bookmarks, only: [:create, :destroy]
       resource :visited_marks, only: [:create, :destroy]
@@ -27,12 +33,12 @@ Rails.application.routes.draw do
         resources :comments, only: [:create, :destroy]
       end
     end
-    
+
     #余裕があればクチコミ一覧作成
     #resources :reviews, only: [:index]
-    
-  end  
-    
+
+  end
+
   namespace :admin do
     resources :customers, only: [:index, :show, :edit]
     resources :reviews, only:[:index, :show]

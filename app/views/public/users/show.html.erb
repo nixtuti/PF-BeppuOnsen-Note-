@@ -5,6 +5,10 @@
   <div class="m-5">
     <table class="table table-border text-nowrap">
       <tr>
+        <th class="align-middle">プロフィール画像</th>
+        <td><%= image_tag @user.get_profile_image, size: "70x70" %></td>
+      </tr>
+      <tr>
         <th class="align-middle">ユーザーネーム</th>
         <td><%= @user.username %></td>
       </tr>
