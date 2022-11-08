@@ -113,7 +113,7 @@ ActiveRecord::Schema.define(version: 2022_11_07_073656) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "user_name", null: false
+    t.string "username", null: false
     t.date "birth_date", null: false
     t.integer "sex", null: false
     t.integer "status", default: 0, null: false

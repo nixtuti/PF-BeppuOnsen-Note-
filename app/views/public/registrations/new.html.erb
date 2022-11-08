@@ -14,16 +14,20 @@
               <th><%= f.label :username, "ユーザーネーム" %></th>
               <td><%= f.text_field :username, autofocus: true, autocomplete: "username", class: 'form-control' %></td>
             </tr>
+            <tr class="field">
+              <th><%= f.label :birth_date, "生年月日" %></th>
+              <td><%= raw sprintf( f.date_select( :birth_date, use_month_numbers: true, start_year: 1930, end_year: (Time.now.year - 5), default: Date.new(1989, 1, 1), date_separator: '%s' ), '年 ', '月 ') + '日' %></td>
+            </tr>
             <tr class="field align-middle text-nowrap">
               <th><%= f.label :sex, "性別" %></th>
               <td>
                 <div class="w-25 d-inline-block">
-                  <%#= f.radio_button :sex, value: :0  %>
-                  <%#= f.label :sex, "男性", value: :0 %> 
+                  <%= f.radio_button :sex, :male  %>
+                  <%= f.label :sex, "男性"  %> 
                 </div>
                 <div class="d-inline-block">
-                  <%#= f.radio_button :sex, value: :1  %>
-                  <%#= f.label :sex, "女性", value: :1 %>
+                  <%= f.radio_button :sex, :female %>
+                  <%= f.label :sex, "女性" %>
                 </div>
               </td>
             </tr>
