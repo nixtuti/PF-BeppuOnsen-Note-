@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :authenticate_admin!, if: proc{controller_path.start_with?("admin")}
-  before_action :authenticate_customer!, if: proc{controller_path.start_with?("public")}
+  before_action :authenticate_user!, if: proc{controller_path.start_with?("public")}, except: [:top, :about]
 
   protected
   
