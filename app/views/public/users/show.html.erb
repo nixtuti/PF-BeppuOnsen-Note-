@@ -1,1 +1,28 @@
-user#show
+<div class="mx-auto col-11 col-sm-10 col-lg-8">
+  <div class="my-4">
+    <h4 class="col-3 bg-light text-center text-nowrap">ユーザー登録情報</h4>
+  </div>
+  <div class="m-5">
+    <table class="table table-border text-nowrap">
+      <tr>
+        <th class="align-middle">ユーザーネーム</th>
+        <td><%= @user.username %></td>
+      </tr>
+      <tr>
+        <th>生年月日</th>
+        <td><%= @user.birth_date %></td>
+      </tr>
+      <tr class="field align-middle text-nowrap">
+        <th>性別</th>
+        <td><%= @user.sex %></td>
+      </tr>
+      <tr>
+        <th>メールアドレス</th>
+        <td><%= @user.email %></td>
+      </tr>
+    </table>
+    <div class="actions m-4 text-center">
+      <%= link_to '編集する', edit_user_path, class: "btn btn-success" %>
+    </div>
+  </div>
+</div>
