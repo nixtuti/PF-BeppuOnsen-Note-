@@ -5,14 +5,29 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <script src="https://kit.fontawesome.com/13f2c566e6.js" crossorigin="anonymous"></script>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <%= yield %>
+    <%= render 'layouts/header' %>
+    <main>
+      <div class="container">
+        <div class="text-success">
+          <p class="notice m-0"><%= notice %></p>
+        </div>
+        <div class="text-danger">
+          <p class="alert m-0"><%= alert %></p>
+        </div>
+        <div class="row">
+          <div class="max-auto col-12 d-flex">
+            <%= yield %>
+          </div>
+        </div>
+      </div>
+    </main>
+    <%= render 'layouts/footer' %>
   </body>
 </html>

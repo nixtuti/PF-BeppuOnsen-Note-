@@ -13,3 +13,10 @@
  *= require_tree .
  *= require_self
  */
+
+#main_visual{
+  height: 350px;
+  background-image: url("/images/Beppu.png");
+  background-size: cover;
+  background-position: center;
+}
