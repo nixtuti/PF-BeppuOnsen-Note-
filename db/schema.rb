@@ -91,8 +91,8 @@ ActiveRecord::Schema.define(version: 2022_11_08_133752) do
     t.string "name", null: false
     t.text "introduction", null: false
     t.string "address", null: false
-    t.integer "price", null: false
-    t.integer "private_bath_price", null: false
+    t.string "price", null: false
+    t.string "private_bath_price", null: false
     t.string "hours", null: false
     t.string "holiday", null: false
     t.float "latitude"

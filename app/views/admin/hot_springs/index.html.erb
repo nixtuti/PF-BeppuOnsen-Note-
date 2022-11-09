@@ -1,7 +1,7 @@
 <div class="mx-auto col-11 col-sm-10 col-lg-8">
   <div class="my-4 d-flex">
-    <h4 class="col-3 bg-light text-center text-nowrap">温泉一覧</h4>
-    <div class="col-9"></div>
+    <h4 class="col-3 bg-dark text-light text-center text-nowrap">温泉一覧</h4>
+    <div class="col-8"></div>
     <div class="col-1 text-center pt-1">
       <%= link_to new_admin_hot_spring_path, class: "align-middle text-dark" do %>
         <i class="fa-2x fa-solid fa-circle-plus"></i>
@@ -9,22 +9,26 @@
     </div>
   </div>
   <div class="m-5">
-    <table class="table table-border text-nowrap">
+    <table class="table table-secondary table-border text-nowrap">
       <thead>
         <tr>
+          <th>温泉ID</th>
           <th>温泉名</th>
           <th>公開ステータス</th>
         </tr>
       </thead>
       <tbody>
         <% @hot_springs.each do |hot_spring| %>
-          <td>
-            <%= link_to hot_spring.name, admin_hot_spring_path(hot_spring), class: "text-dark" %>
-          </td>
-          <td><%= hot_spring.is_pablished ? '公開' : '非公開'   %></td>
+          <tr>
+            <td><%= hot_spring.id %></td>
+            <td>
+              <%= link_to hot_spring.name, admin_hot_spring_path(hot_spring), class: "text-dark" %>
+            </td>
+            <td><%= hot_spring.is_pablished ? '公開' : '非公開'   %></td>
+          </tr>
         <% end %>
       </tbody>
     </table>
-
+    <%= paginate @hot_springs %>
   </div>
 </div>
