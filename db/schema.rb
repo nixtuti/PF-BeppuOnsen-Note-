@@ -120,6 +120,7 @@ ActiveRecord::Schema.define(version: 2022_11_08_133752) do
 
   create_table "reviews", force: :cascade do |t|
     t.string "title"
+    t.float "rate", default: 2.5, null: false
     t.text "body"
     t.integer "hot_spring_id"
     t.integer "user_id"
