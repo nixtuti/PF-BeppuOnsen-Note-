@@ -7,6 +7,9 @@ class User < ApplicationRecord
   enum sex: { male: 0, female: 1 }
   enum status: { active: 0, invalid: 1, forced_invalid: 2 }, _prefix: true
   
+  
+  
+  
   has_one_attached :profile_image
 
   def get_profile_image

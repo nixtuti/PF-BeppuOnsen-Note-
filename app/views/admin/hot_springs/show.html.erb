@@ -1,2 +1,59 @@
-<h1>Admin::HotSprings#show</h1>
-<p>Find me in app/views/admin/hot_springs/show.html.erb</p>
+<div class="mx-auto col-11 col-sm-10 col-lg-8">
+  <div class="my-4">
+    <h4 class="col-4 mb-5 bg-dark text-light text-center text-nowrap"><%= @hot_spring.name %></h4>
+    <div class="d-flex">
+      <%= image_tag @hot_spring.get_hot_spring_image, size: "320x200" %>
+      <div class="m-4">
+        <%= @hot_spring.introduction %>
+      </div>
+    </div>
+  </div>
+  <div class="m-5">
+    <table class="table table-bordered table-dark">
+      <tr>
+        <th>住所</th>
+        <td><%= @hot_spring.address %></td>
+      </tr>
+      <tr>
+        <th>泉質</th>
+        <td></td>
+      </tr>
+      <tr>
+        <th>料金</th>
+        <td><%= @hot_spring.price %></td>
+      </tr>
+      <tr>
+        <th>貸切風呂料金</th>
+        <td><%= @hot_spring.private_bath_price %></td>
+      </tr>
+      <tr>
+        <th>立寄利用時間</th>
+        <td><%= @hot_spring.hours %></td>
+      </tr>
+      <tr>
+        <th>定休日</th>
+        <td><%= @hot_spring.holiday %></td>
+      </tr>
+      <tr>
+        <th>駐車場</th>
+        <td><%= @hot_spring.parking %></td>
+      </tr>
+      <tr>
+        <th>問い合わせ先</th>
+        <td><%= @hot_spring.contact %></td>
+      </tr>
+      <tr>
+        <th>営業ステータス</th>
+        <td><%= @hot_spring.running_status_i18n %></td>
+      </tr>
+      <tr>
+        <th>公開ステータス</th>
+        <td><%= @hot_spring.is_pablished ? "公開" : "非公開" %></td>
+      </tr>
+      
+    </table>
+    <div class="actions m-4 text-center">
+      <%= link_to '編集する', edit_admin_hot_spring_path(@hot_spring), class: "btn btn-success" %>
+    </div>
+  </div>
+</div>
