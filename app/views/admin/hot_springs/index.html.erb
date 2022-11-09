@@ -1,2 +1,30 @@
-<h1>Admin::HotSprings#index</h1>
-<p>Find me in app/views/admin/hot_springs/index.html.erb</p>
+<div class="mx-auto col-11 col-sm-10 col-lg-8">
+  <div class="my-4 d-flex">
+    <h4 class="col-3 bg-light text-center text-nowrap">温泉一覧</h4>
+    <div class="col-9"></div>
+    <div class="col-1 text-center pt-1">
+      <%= link_to new_admin_hot_spring_path, class: "align-middle text-dark" do %>
+        <i class="fa-2x fa-solid fa-circle-plus"></i>
+      <% end %>
+    </div>
+  </div>
+  <div class="m-5">
+    <table class="table table-border text-nowrap">
+      <thead>
+        <tr>
+          <th>温泉名</th>
+          <th>公開ステータス</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @hot_springs.each do |hot_spring| %>
+          <td>
+            <%= link_to hot_spring.name, admin_hot_spring_path(hot_spring), class: "text-dark" %>
+          </td>
+          <td><%= hot_spring.is_pablished ? '公開' : '非公開'   %></td>
+        <% end %>
+      </tbody>
+    </table>
+
+  </div>
+</div>
