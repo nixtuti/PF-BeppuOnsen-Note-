@@ -4,6 +4,7 @@
         sex:
           male: "男性"
           female: "女性"
+          unknown: "不詳"
         status:
           active: "有効"
           invalid: "退会"

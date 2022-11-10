@@ -4,8 +4,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  enum sex: { male: 0, female: 1 }
+  enum sex: { unknown: 0, male: 1, female: 2 }
   enum status: { active: 0, invalid: 1, forced_invalid: 2 }, _prefix: true
+  
+  has_many :reviews
   
   
   
