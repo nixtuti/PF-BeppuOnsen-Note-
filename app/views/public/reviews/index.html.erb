@@ -5,11 +5,10 @@
     <%= link_to "クチコミ一覧", hot_spring_reviews_path(@hot_spring.id), class: "btn btn-info disabled col-4" %>
   </div>
 
-
   <div class="row row-center">
     <% @reviews.each do |review| %>
     <div class="col-lg-2 col-md-3 col-sm-4 col-xs-5">
-      <%= image_tag review.user_id.get_profile_image, alt: review.user_id.name, class: "img-responsive img-circle reviews" %>
+      <%#= image_tag review.user_id.get_profile_image, class: "img-responsive img-circle reviews" %>
     </div>
     <div class="col-lg-10 col-md-9 col-sm-8 col-xs-7">
       <div class="popover right show" style="position:relative; top=-90px; left=100px; max-width:100%; display:inline;">
@@ -17,7 +16,7 @@
         <% review.images.each do |image| %>
           <%= image_tag image, width: 160, height: 100 %>
         <% end %>
-        <h3 class="popover-title"><%= link_to review.title, hot_spring_review_path(review.id), class: "text-dark" %></h3>
+        <h3 class="popover-title"><%= link_to review.title, hot_spring_review_path(:hot_spring_id, :review_id), class: "text-dark" %></h3>
         <div class="popover-content">
           <p><%= review.body %></p>
         </div>
@@ -45,10 +44,15 @@
         };
         raty(elem,opt);
       </script>
+      <div id="post_raty"></div>
       <%= f.text_field :title, class: "form-control", placeholder: "クチコミタイトルを入力"%>
       <%= f.text_area :body, class: "form-control", placeholder: "クチコミ本文を入力", rows: "5" %>
+      <%= f.radio_button :is_pablished, :true %>
+      <%= f.label :is_pablished, "公開", value: :true %>
+      <%= f.radio_button :is_pablished, :false %>
+      <%= f.label :is_pablished, "非公開", value: :false %>
+      <%= f.hidden_field :user_id, :value => current_user.id %>
       <%= f.submit "投稿", class: "btn btn-success"%>
-
     <% end %>
   </div>
 </div>

@@ -1,43 +1,46 @@
-
-<%= render "public/homes/sidebar" %>
-<div class="col-9">
-  <div id="main_visual">
-    <div class="pt-4">
-      <div class="d-flex">
-        <div id="main_visual_text" class="m-auto border border-dark rounded">
-          <p class="m-3">
-            BeppuOnsen Note とは？
-            <br>
-            <p class="m-3">
-              別府温泉日帰り利用者のための温泉検索・レビューサイトです。
-            <br>
-            訪れる温泉を選ぶ際の参考になる情報を共有しましょう！
-            <br>
-            <% if user_signed_in? %>
-            <% else %>
-            ログインすると、クチコミやコメントの投稿ができるようになります。
-            <% end %>
-            </p>
-            
-          </p>
+<div class="container">
+  <div class="row">
+    <%= render "public/homes/sidebar" %>
+    <div class="col-9">
+      <div id="main_visual">
+        <div class="pt-4">
+          <div class="d-flex">
+            <div id="main_visual_text" class="m-auto border border-dark rounded">
+              <p class="m-3">
+                BeppuOnsen Note とは？
+                <br>
+                <p class="m-3">
+                  別府温泉日帰り利用者のための温泉検索・レビューサイトです。
+                  <br>
+                  訪れる温泉を選ぶ際の参考になる情報を共有しましょう！
+                  <br>
+                  <% if user_signed_in? %>
+                  <% else %>
+                  ログインすると、クチコミやコメントの投稿ができるようになります。
+                  <% end %>
+                </p>
+              </p>
+            </div>
+          </div>
         </div>
+
+        <% if user_signed_in? %>
+        <% else %>
+        <div class='guest-login-box text-center mt-3'>
+          <%= link_to 'ゲストログイン', users_guest_sign_in_path, method: :post, class: 'guest-login-btn btn btn btn-info' %>
+        </div>
+        <% end %>
+        
+      </div>
+
+      <div id="new_items" class="p-3">
+        <h4>新着クチコミ</h4>
+
+        <p class="text-end mt-3">
+          <%= link_to "すべてのクチコミを見る", "#" %>
+        </p>
       </div>
     </div>
-
-    <% if user_signed_in? %>
-    <% else %>
-      <div class='guest-login-box text-center mt-3'>
-        <%= link_to 'ゲストログイン', users_guest_sign_in_path, method: :post, class: 'guest-login-btn btn btn btn-info' %>
-      </div>
-    <% end %>
-  </div>
-
-  <div id="new_items" class="p-3">
-    <h4>新着クチコミ</h4>
-
-    <p class="text-end mt-3">
-      <%= link_to "すべてのクチコミを見る", "#" %>
-    </p>
   </div>
 </div>
 
