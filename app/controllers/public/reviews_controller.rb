@@ -8,6 +8,8 @@ class Public::ReviewsController < ApplicationController
   end
 
   def create
+    @hot_spring = HotSpring.find(params[:hot_spring_id])
+    @reviews = @hot_spring.reviews.page(params[:page])
     @review = Review.new(review_params)
     if @review.save
       redirect_to 'index', notice: "クチコミを投稿しました"

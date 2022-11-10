@@ -13,10 +13,3 @@ environment.plugins.prepend(
   })
 )
 
-//5段階評価
-import Raty from "raty.js"
-window.raty = function(elem,opt) {
-  let raty =  new Raty(elem,opt)
-  raty.init();
-  return raty;
-}

@@ -4,11 +4,8 @@
     <%= link_to "温泉情報", hot_spring_path(@hot_spring), class: "btn btn-info col-4" %>
     <%= link_to "クチコミ一覧", hot_spring_reviews_path(@hot_spring.id), class: "btn btn-info disabled col-4" %>
   </div>
-  <div class="m-5">
-    クチコミ一覧
-  </div>
-  
-  
+
+
   <div class="row row-center">
     <% @reviews.each do |review| %>
     <div class="col-lg-2 col-md-3 col-sm-4 col-xs-5">
@@ -28,32 +25,30 @@
     </div>
     <% end %>
   </div>
- 
-  
-  <div>
-    <h6>新規クチコミ投稿</h6>
+
+  <div class="col-7 mx-auto mt-5 position-static">
+    <h6 class="col-lg-4 col-md-6 bg-dark text-light text-center">新規クチコミ投稿</h6>
     <%= form_with model: @review, url: hot_spring_reviews_path, method: :post do |f| %>
       <%= f.file_field :images, multiple: true %>
-      <div id="post_raty"><%= f.hidden_field :rate, id: :review_star %></div>
-      
+      <div id="post_raty"></div>
+      <script>
+        // scriptファイルをどのidの部分に配置するかを指定
+        let elem = document.querySelector('#post_raty');
+        let opt = {
+        //星画像の指定などのオプションをここに記述
+        size     : 36,
+        starOff:  '<%= asset_path('star-off.png') %>',
+        starOn : '<%= asset_path('star-on.png') %>',
+        starHalf: '<%= asset_path('star-half.png') %>',
+        scoreName: 'review[rate]',
+        half: true,
+        };
+        raty(elem,opt);
+      </script>
       <%= f.text_field :title, class: "form-control", placeholder: "クチコミタイトルを入力"%>
       <%= f.text_area :body, class: "form-control", placeholder: "クチコミ本文を入力", rows: "5" %>
       <%= f.submit "投稿", class: "btn btn-success"%>
+
     <% end %>
   </div>
 </div>
-
-<script>
-  // scriptファイルをどのidの部分に配置するかを指定
-  let elem = document.querySelector('#post_raty');
-  let opt = {  
-  //星画像の指定などのオプションをここに記述
-  size     : 36,
-  starOff:  '<%= asset_path('star-off.png') %>',
-  starOn : '<%= asset_path('star-on.png') %>',
-  starHalf: '<%= asset_path('star-half.png') %>',
-  scoreName: 'review[rate]',
-  half: true,
-  };
-  raty(elem,opt);
-</script>
