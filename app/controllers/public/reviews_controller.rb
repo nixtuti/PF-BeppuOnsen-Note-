@@ -1,7 +1,10 @@
 class Public::ReviewsController < ApplicationController
+  
   def index
-    @review = review.new
-      
+    @hot_spring = HotSpring.find(params[:hot_spring_id])
+    @review = @hot_spring.reviews.new
+    @reviews = @hot_spring.reviews.page(params[:page])
+   
   end
 
   def create
@@ -14,10 +17,20 @@ class Public::ReviewsController < ApplicationController
   end
   
   def show
-    
+    @review = Review.find(params[:id])
   end
 
   def edit
+    @review = Review.find(params[:id])
+    if @review.update(review_params)
+      redirect_to 'index', notice: "クチコミの編集に成功しました"
+    else
+      render 'index'
+    end
+  end
+  
+  def update
+  
   end
   
   private

@@ -70,3 +70,5 @@ gem 'enum_help'
 gem 'rails-i18n'
 gem 'devise-i18n'
 
+#5段階評価用
+#gem 'jquary-rails'

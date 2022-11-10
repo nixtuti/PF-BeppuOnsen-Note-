@@ -5,7 +5,7 @@ class Public::HotSpringsController < ApplicationController
   end
   
   def show
-    @hot_spring = HotSpring.show(params[:id])
+    @hot_spring = HotSpring.find(params[:id])
   end
   
 end

@@ -1,0 +1,13 @@
+<div class="my-4">
+  <h4 class="col-5 col-lg-4 mb-5 bg-dark text-light text-center text-nowrap"><%= hot_spring.name %></h4>
+  <div class="container d-flex">
+    <div class="row">
+      <div class="col-lg-4">
+        <%= image_tag hot_spring.get_hot_spring_image, size: "320x200" %>
+      </div>
+      <div class="col-lg-7 col-md-11 m-4">
+        <%= hot_spring.introduction %>
+      </div>
+    </div>
+  </div>
+</div>

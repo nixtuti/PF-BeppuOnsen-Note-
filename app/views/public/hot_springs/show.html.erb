@@ -1,13 +1,8 @@
-<div class="mx-auto col-11 col-sm-10 col-lg-8">
-  <%#= render "reviews/overview" %>
-  <div class="my-4">
-    <h4 class="col-4 mb-5 bg-dark text-light text-center text-nowrap"><%= @hot_spring.name %></h4>
-    <div class="d-flex">
-      <%= image_tag @hot_spring.get_hot_spring_image, size: "320x200" %>
-      <div class="m-4">
-        <%= @hot_spring.introduction %>
-      </div>
-    </div>
+<div>
+  <%= render "public/reviews/overview", hot_spring: @hot_spring %>
+  <div class="text-center mt-5">
+    <%= link_to "温泉情報", hot_spring_path(@hot_spring), class: "btn btn-info disabled col-4" %>
+    <%= link_to "クチコミ一覧", hot_spring_reviews_path(@hot_spring.id), class: "btn btn-info col-4" %>
   </div>
   <div class="m-5">
     <table class="table table-bordered table-dark">
