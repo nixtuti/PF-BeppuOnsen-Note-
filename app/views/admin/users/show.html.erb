@@ -1,9 +1,9 @@
 <div class="mx-auto col-11 col-sm-10 col-lg-8">
   <div class="mt-4">
-    <h4 class="col-lg-5 col-md-6 bg-light text-center text-nowrap">ユーザー登録情報</h4>
+    <h4 class="col-lg-5 col-md-6 bg-dark text-light text-center text-nowrap">ユーザー登録情報</h4>
   </div>
-  <div class="m-5">
-    <table class="table table-border text-nowrap">
+  <div class="p-5">
+    <table class="table table-border table-secondary">
       <tr>
         <th class="align-middle">プロフィール画像</th>
         <td><%= image_tag @user.get_profile_image, size: "70x70" %></td>
@@ -24,10 +24,14 @@
         <th>メールアドレス</th>
         <td><%= @user.email %></td>
       </tr>
+      <tr>
+        <th>ユーザーステータス</th>
+        <td><%= @user.status_i18n %></td>
+      </tr>
     </table>
     <% if @user.username != "ゲスト" %>
       <div class="actions m-4 text-center">
-        <%= link_to '編集する', edit_user_path, class: "btn btn-success" %>
+        <%= link_to '編集する', edit_admin_user_path(@user), class: "btn btn-success" %>
       </div>
     <% end %>
   </div>
