@@ -1,7 +1,7 @@
 class HotSpring < ApplicationRecord
   enum running_status: {running: 0, interrupt: 1, closed: 2 }
   
-  has_many :reviews
+  has_many :reviews, dependent: :destroy
   
   has_one_attached :hot_spring_image
   

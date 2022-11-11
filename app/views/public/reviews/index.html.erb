@@ -9,7 +9,9 @@
   <div class="row row-center mt-5">
     <% @reviews.each do |review| %>
     <div class="col-lg-2 col-md-3 col-sm-4 col-xs-5">
-      <%= image_tag review.user.get_profile_image, size: '50x50', class: "img-responsive m-3 rounded-circle" %>
+      <%= image_tag review.user.get_profile_image, size: '50x50', class: "img-responsive m-3 rounded-circle" %><br>
+      <%= review.user.username %><br>
+      (<%= review.user.age %>)
     </div>
     <div class="col-lg-10 col-md-9 col-sm-8 col-xs-7">
       <div class="popover left show" style="position:relative; top=-90px; left=100px; max-width:100%; display:inline;">

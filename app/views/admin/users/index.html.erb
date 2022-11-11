@@ -6,7 +6,6 @@
         <tr>
           <th>ユーザーID</th>
           <th>ユーザー名</th>
-          <th>ステータス</th>
         </tr>
       </thead>
       <tbody>
@@ -14,7 +13,6 @@
         <tr>
           <td><%= user.id %></td>
           <td><%=link_to user.username, admin_user_path(user),class: "text-dark" %></td>
-          <td><%= user.status_i18n %></td>
         </tr>
         <% end %>
       </tbody>

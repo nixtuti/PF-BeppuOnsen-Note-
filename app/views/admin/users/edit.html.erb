@@ -37,26 +37,10 @@
               <th class="align-middle"><%= f.label :email, "メールアドレス", class: "m-0" %></th>
               <td><%= f.email_field :email, class: 'form-control' %></td>
             </tr>
-            <tr>
-              <th><%= f.label :status, "ユーザーステータス", class: "m-0" %></th>
-              <td>
-                <div class="w-25 d-inline-block">
-                  <%= f.radio_button :status, :active  %>
-                  <%= f.label :status, "有効"  %> 
-                </div>
-                <div class="w-25d-inline-block">
-                  <%= f.radio_button :status, :invalid %>
-                  <%= f.label :status, "退会" %>
-                </div>
-                <div class="w-25 d-inline-block">
-                  <%= f.radio_button :status, :forced_invalid  %>
-                  <%= f.label :status, "強制退会"  %> 
-                </div>
-              </td>
-            </tr>
           </table>
             <div class="actions m-4 text-center">
               <%= f.submit "編集を保存", class: "btn btn-success" %>
+              
             </div>
         <% end %>
       </div>

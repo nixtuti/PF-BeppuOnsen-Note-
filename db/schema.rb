@@ -146,7 +146,6 @@ ActiveRecord::Schema.define(version: 2022_11_08_133752) do
     t.string "username", null: false
     t.date "birth_date", null: false
     t.integer "sex", null: false
-    t.integer "status", default: 0, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
