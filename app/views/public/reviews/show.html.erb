@@ -1,2 +1,43 @@
-<h1>Public::Reviews#show</h1>
-<p>Find me in app/views/public/reviews/show.html.erb</p>
+<div class="container">
+  <!-- 吹き出し表示にしたい-->
+  <div class="row row-center mt-5">
+    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-5">
+      <%= image_tag @review.user.get_profile_image, size: '50x50', class: "img-responsive m-3 rounded-circle" %>
+    </div>
+    <div class="col-lg-10 col-md-9 col-sm-8 col-xs-7">
+      <div class="popover left show" style="position:relative; top=-90px; left=100px; max-width:100%; display:inline;">
+        <div class="arrow"></div>
+        <% if @review.images.attached? %>
+          <% @review.images.each do |image| %>
+            <%= image_tag image, size: '160x100' %>
+          <% end %>
+        <% end %>
+        <h3 class="popover-title"><%= @review.title %></h3>
+        <p>投稿日：<%= @review.created_at.strftime('%Y年%m月%d日')%></p>
+        <div id="star-rate<%= @review.id%>"></div>
+          <script>
+            $('#star-rate<%= @review.id %>').empty();
+            $('#star-rate<%= @review.id%>').raty({
+              size      : 36,
+              starOff   : '<%= asset_path('star-off.png') %>',
+              starOn    : '<%= asset_path('star-on.png') %>',
+              half      : false,
+              readOnly: true,
+              score: <%= @review.rate %>,
+               });
+          </script>
+        <div class="popover-content">
+          <p><%= @review.body %></p>
+        </div>
+        <% if @review.user_id == current_user.id %>
+          <p>
+            <%= link_to "編集", edit_hot_spring_review_path(@review.id) %>
+            |
+            <%= link_to "削除", hot_spring_review_path(@review.id), method: :delete %>
+          </p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+

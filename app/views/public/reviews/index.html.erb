@@ -1,31 +1,54 @@
-<div>
+<div class="container">
   <%= render "overview", hot_spring: @hot_spring %>
   <div class="text-center mt-5">
     <%= link_to "温泉情報", hot_spring_path(@hot_spring), class: "btn btn-info col-4" %>
     <%= link_to "クチコミ一覧", hot_spring_reviews_path(@hot_spring.id), class: "btn btn-info disabled col-4" %>
   </div>
 
-  <div class="row row-center">
+<!-- 吹き出し表示にしたい-->
+  <div class="row row-center mt-5">
     <% @reviews.each do |review| %>
     <div class="col-lg-2 col-md-3 col-sm-4 col-xs-5">
-      <%#= image_tag review.user_id.get_profile_image, class: "img-responsive img-circle reviews" %>
+      <%= image_tag review.user.get_profile_image, size: '50x50', class: "img-responsive m-3 rounded-circle" %>
     </div>
     <div class="col-lg-10 col-md-9 col-sm-8 col-xs-7">
-      <div class="popover right show" style="position:relative; top=-90px; left=100px; max-width:100%; display:inline;">
+      <div class="popover left show" style="position:relative; top=-90px; left=100px; max-width:100%; display:inline;">
         <div class="arrow"></div>
-        <% review.images.each do |image| %>
-          <%= image_tag image, width: 160, height: 100 %>
+        <% if review.images.attached? %>
+          <% review.images.each do |image| %>
+            <%= image_tag image, size: '160x100' %>
+          <% end %>
         <% end %>
-        <h3 class="popover-title"><%= link_to review.title, hot_spring_review_path(:hot_spring_id, :review_id), class: "text-dark" %></h3>
+        <h3 class="popover-title"><%= link_to review.title, hot_spring_review_path(@hot_spring.id, review.id), class: "text-dark" %></h3>
+        <p>投稿日：<%= review.created_at.strftime('%Y年%m月%d日')%></p>
+        <div id="star-rate<%= review.id%>"></div>
+          <script>
+            $('#star-rate<%= review.id %>').empty();
+            $('#star-rate<%= review.id%>').raty({
+              size      : 36,
+              starOff   : '<%= asset_path('star-off.png') %>',
+              starOn    : '<%= asset_path('star-on.png') %>',
+              half      : false,
+              readOnly: true,
+              score: <%= review.rate %>,
+               });
+          </script>
         <div class="popover-content">
           <p><%= review.body %></p>
         </div>
+        <% if review.user_id == current_user.id %>
+          <p>
+            <%= link_to "編集", edit_hot_spring_review_path(@hot_spring.id, review.id) %>
+            |
+            <%= link_to "削除", hot_spring_review_path(@hot_spring.id, review.id), method: :delete %>
+          </p>
+        <% end %>
       </div>
     </div>
     <% end %>
   </div>
 
-  <div class="col-7 mx-auto mt-5 position-static">
+  <div class="col-7 mx-auto py-5 position-static">
     <h6 class="col-lg-4 col-md-6 bg-dark text-light text-center">新規クチコミ投稿</h6>
     <%= form_with model: @review, url: hot_spring_reviews_path, method: :post do |f| %>
       <%= f.file_field :images, multiple: true %>
@@ -52,7 +75,9 @@
       <%= f.radio_button :is_pablished, :false %>
       <%= f.label :is_pablished, "非公開", value: :false %>
       <%= f.hidden_field :user_id, :value => current_user.id %>
-      <%= f.submit "投稿", class: "btn btn-success"%>
+      <div class="text-right">
+        <%= f.submit " 投稿 ", class: "btn btn-success btn-sm"%>
+      </div>
     <% end %>
   </div>
 </div>
