@@ -24,10 +24,7 @@ Rails.application.routes.draw do
   }
 
   scope module: :public do
-    resources :users, only: [:show, :edit, :update]
-    get 'users/withdrawal_confirm'
-    get 'users/withdrawal'
-
+    resources :users, only: [:show, :edit, :update, :destroy]
     resources :hot_springs, only: [:index, :show] do
       resource :bookmarks, only: [:create, :destroy]
       resource :visited_marks, only: [:create, :destroy]

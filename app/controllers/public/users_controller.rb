@@ -10,19 +10,22 @@ class Public::UsersController < ApplicationController
   end
 
   def update
-    user = current_user
-    if user.update(user_params)
-      redirect_to user_path(user), notice: "変更を保存しました。"
+    @user = current_user
+    if @user.update(user_params)
+      redirect_to user_path(@user), notice: "変更を保存しました。"
     else
-      render :edit
+      render 'edit'
     end
   end
 
-  def withdrawal
-    user = current_user
-    customer.update(status: invalid)
-    reset_session
-    redirect_to root_path
+  def destroy
+    @user = current_user
+    if @user.destroy
+      
+      redirect_to root_path, notice: "ユーザー情報を削除しました"
+    else  
+      render 'show'
+    end
   end
   
   private

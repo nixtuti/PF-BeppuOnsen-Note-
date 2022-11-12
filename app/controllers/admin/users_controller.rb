@@ -1,4 +1,5 @@
 class Admin::UsersController < ApplicationController
+  
   def index
     @users = User.page(params[:page])
   end
@@ -23,7 +24,7 @@ class Admin::UsersController < ApplicationController
   def destroy
     @user = User.find(params[:id])
     if @user.destroy
-      redirect_to root_path, notice: "ユーザー情報を削除しました"
+      redirect_to admin_users_path, notice: "ユーザー情報を削除しました"
     else
       render 'show'
     end
