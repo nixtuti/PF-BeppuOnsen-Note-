@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <%= render "public/homes/sidebar" %>
-    <div class="col-9">
+    <div class="col-md-9 col-sm-12">
       <div id="main_visual">
         <div class="pt-4">
           <div class="d-flex">
@@ -30,15 +30,20 @@
           <%= link_to 'ゲストログイン', users_guest_sign_in_path, method: :post, class: 'guest-login-btn btn btn btn-info' %>
         </div>
         <% end %>
-        
+
       </div>
 
       <div id="new_items" class="p-3">
         <h4>新着クチコミ</h4>
-
-        <p class="text-end mt-3">
-          <%= link_to "すべてのクチコミを見る", "#" %>
-        </p>
+        <div class="row">
+          <% @reviews.each do |review| %>
+          <div class="col-lg-6">
+            <%=link_to review.title, hot_spring_review_path(review.hot_spring.id, review.id), class: "text-dark" %>
+            （<%=link_to review.hot_spring.name, hot_spring_path(review.hot_spring.id), class: "text-dark" %>）<br>
+            <%= review.body %>
+          </div>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>

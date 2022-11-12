@@ -22,6 +22,8 @@ Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 
+window.$ = window.jQuery = require('jquery');
+
 //5段階評価
 import Raty from "raty.js"
 window.raty = function(elem,opt) {
