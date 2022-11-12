@@ -15,14 +15,14 @@
         <% end %>
         <h3 class="popover-title"><%= @review.title %></h3>
         <p>投稿日：<%= @review.created_at.strftime('%Y年%m月%d日')%></p>
-        <div id="star-rate<%= @review.id%>"></div>
+        <div id="star-rate<%= @review.id %>"></div>
           <script>
             $('#star-rate<%= @review.id %>').empty();
-            $('#star-rate<%= @review.id%>').raty({
+            $('#star-rate<%= @review.id %>').raty({
               size      : 36,
               starOff   : '<%= asset_path('star-off.png') %>',
               starOn    : '<%= asset_path('star-on.png') %>',
-              half      : false,
+              half      : true,
               readOnly: true,
               score: <%= @review.rate %>,
                });

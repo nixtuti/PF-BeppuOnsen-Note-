@@ -3,7 +3,7 @@
     <h4 class="col-lg-5 col-md-6 bg-dark text-light text-center text-nowrap">ユーザー登録情報</h4>
   </div>
   <div class="p-5">
-    <table class="table table-border text-nowrap">
+    <table class="table table-border table-secondary text-nowrap">
       <tr>
         <th class="align-middle">プロフィール画像</th>
         <td><%= image_tag @user.get_profile_image, size: "70x70" %></td>
@@ -20,12 +20,14 @@
         <th>性別</th>
         <td><%= @user.sex_i18n %></td>
       </tr>
+      <% if @user == current_user %>
       <tr class="border-bottom">
         <th>メールアドレス</th>
         <td><%= @user.email %></td>
       </tr>
+      <% end %>
     </table>
-    <% if @user.username != "ゲスト" %>
+    <% if @user.username != "ゲスト" && @user == current_user %>
       <div class="actions m-4 text-center">
         <%= link_to '編集する', edit_user_path, class: "btn btn-success" %>
         <%= link_to '退会削除', user_path(@user), method: :delete, class: "btn btn-danger" %>
