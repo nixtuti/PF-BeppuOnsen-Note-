@@ -15,17 +15,20 @@
         <% end %>
         <h3 class="popover-title"><%= @review.title %></h3>
         <p>投稿日：<%= @review.created_at.strftime('%Y年%m月%d日')%></p>
+        <p>コメント件数：<%= @review.comments.count %></p>
+        <!--星5段階評価表示-->
         <div id="star-rate<%= @review.id %>"></div>
           <script>
-            $('#star-rate<%= @review.id %>').empty();
-            $('#star-rate<%= @review.id %>').raty({
+            raty(document.querySelector('#star-rate<%= @review.id %>'),{
+              //星画像の指定などのオプションをここに
               size      : 36,
               starOff   : '<%= asset_path('star-off.png') %>',
               starOn    : '<%= asset_path('star-on.png') %>',
-              half      : true,
+              starHalf: '<%= asset_path('star-half.png') %>',
               readOnly: true,
               score: <%= @review.rate %>,
-               });
+              half: true,
+            });
           </script>
         <div class="popover-content">
           <p><%= @review.body %></p>
@@ -38,6 +41,28 @@
           </p>
         <% end %>
       </div>
+      <% @review.comments.each do |comment| %>
+        <div class="row p-2">
+          <div class="col-2">
+            <%= image_tag comment.user.get_profile_image, size: '50x50', class: "mg-responsive rounded-circle" %><br>
+            <%= comment.user.username %><br>
+            （<%= comment.user.age %>）
+          </div>
+          <div class="col-10 text-left">
+            <%= comment.comment %><br>
+            <%= comment.created_at.strftime('%Y/%m/%d') %>
+            <% if comment.user == current_user %>
+              <%= link_to "削除", hot_spring_review_comment_path(comment.review.hot_spring, comment), method: :delete %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div>
+      <%= form_with model: [@hot_spring, @review, @comment] do |f| %>
+        <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
+        <%= f.submit "送信する" %>
+      <% end %>
     </div>
   </div>
 </div>

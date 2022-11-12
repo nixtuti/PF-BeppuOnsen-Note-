@@ -19,7 +19,9 @@ class Public::ReviewsController < ApplicationController
   end
   
   def show
+    @hot_spring = HotSpring.find(params[:hot_spring_id])
     @review = Review.find(params[:id])
+    @comment = Comment.new
   end
 
   def edit

@@ -1,6 +1,7 @@
 class Review < ApplicationRecord
   belongs_to :user
   belongs_to :hot_spring
+  has_many :comments, dependent: :destroy
   
   has_many_attached :images
   
