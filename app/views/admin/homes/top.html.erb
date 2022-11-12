@@ -1,2 +1,26 @@
-<h1>Admin::Homes#top</h1>
-<p>クチコミ一覧</p>
+<div class="container">
+    <div class="row">
+        <h4 class="col-5 col-lg-3 mb-5 bg-dark text-light text-center text-nowrap">クチコミ一覧</h4>
+        <table class="table table-bordered table-secondary mb-5">
+            <thead>
+                <tr>
+                    <th class="col-2">ユーザー名</th>
+                    <th class="col-2">温泉名</th>
+                    <th class="col-8">クチコミ</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% @reviews.each do |review| %>
+                    <tr>
+                        <td><%= review.user.username %></td>
+                        <td><%= review.hot_spring.name %></td>
+                        <td>
+                            <%=link_to review.title, admin_review_path(review), class: "text-dark" %><br>
+                            <%= review.body %>
+                        </td>
+                    </tr>
+                <% end %>
+            </tbody>
+        </table>
+    </div>
+</div>

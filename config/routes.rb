@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
-
+  
+  root to: 'public/homes#top'
+  get '/about' => 'public/homes#about'
+  
   namespace :admin do
     get 'homes/top'
   end
-  root to: 'public/homes#top'
-  get '/about' => 'public/homes#about'
 
   #ゲストログイン用
   devise_scope :user do
@@ -23,28 +24,20 @@ Rails.application.routes.draw do
   }
 
   scope module: :public do
-
-    resources :users, only: [:show, :edit, :update]
-    get 'users/withdrawal_confirm'
-    get 'users/withdrawal'
-
+    resources :users, only: [:show, :edit, :update, :destroy]
     resources :hot_springs, only: [:index, :show] do
       resource :bookmarks, only: [:create, :destroy]
       resource :visited_marks, only: [:create, :destroy]
-      resources :reviews, only: [:show, :create, :edit, :update, :destroy] do
+      resources :reviews, only: [:index, :show, :create, :edit, :update, :destroy] do
         resource :favorites, only: [:create, :destroy]
         resources :comments, only: [:create, :destroy]
       end
     end
-
-    #余裕があればクチコミ一覧作成
-    #resources :reviews, only: [:index]
-
   end
 
   namespace :admin do
     root to: 'homes#top'
-    resources :customers, only: [:index, :show, :edit, :update]
+    resources :users, only: [:index, :show, :edit, :update, :destroy]
     resources :reviews, only:[:show, :destroy]
     resources :hot_springs, only: [:index, :show, :new, :create, :edit, :update]
   end

@@ -21,11 +21,7 @@
         <div class="text-danger">
           <p class="alert m-0"><%= alert %></p>
         </div>
-        <div class="row">
-          <div class="max-auto col-12 d-flex">
-            <%= yield %>
-          </div>
-        </div>
+        <%= yield %>
       </div>
     </main>
     <%= render 'layouts/footer' %>

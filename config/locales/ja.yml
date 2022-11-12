@@ -4,10 +4,7 @@
         sex:
           male: "男性"
           female: "女性"
-        status:
-          active: "有効"
-          invalid: "退会"
-          forced_invalid: "強制退会"
+          unknown: "不詳"
       hot_spring:
         running_status:
           running: "営業"

@@ -4,11 +4,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  enum sex: { male: 0, female: 1 }
-  enum status: { active: 0, invalid: 1, forced_invalid: 2 }, _prefix: true
+  enum sex: { unknown: 0, male: 1, female: 2 }
   
-  
-  
+  has_many :reviews, dependent: :destroy
   
   has_one_attached :profile_image
 
@@ -24,6 +22,16 @@ class User < ApplicationRecord
     user.birth_date = Date.today
     user.sex = 0
     end
+  end
+  
+  def age
+    today = Time.zone.today
+    this_years_birthday = Time.zone.local(today.year, birth_date.month, birth_date.day)
+    age = today.year - birth_date.year
+    if today < this_years_birthday
+      age -= 1
+    end
+    "#{age} 歳"
   end
   
 end

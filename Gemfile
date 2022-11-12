@@ -70,3 +70,10 @@ gem 'enum_help'
 gem 'rails-i18n'
 gem 'devise-i18n'
 
+group :development, :test do
+  gem 'pry-rails'
+
+  gem 'pry-doc'
+
+  gem 'pry-byebug'
+end

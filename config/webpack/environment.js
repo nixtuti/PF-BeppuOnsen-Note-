@@ -2,7 +2,7 @@ const { environment } = require('@rails/webpacker')
 
 module.exports = environment
 
-//bootstrap導入
+//bootstrap導入 jQueryを管理下に追加?
 const webpack = require('webpack')
 environment.plugins.prepend(
   'Provide',
@@ -12,3 +12,4 @@ environment.plugins.prepend(
     Popper: 'popper.js'
   })
 )
+

@@ -119,11 +119,12 @@ ActiveRecord::Schema.define(version: 2022_11_08_133752) do
   end
 
   create_table "reviews", force: :cascade do |t|
-    t.string "title"
-    t.text "body"
-    t.integer "hot_spring_id"
-    t.integer "user_id"
-    t.boolean "is_pablished"
+    t.string "title", null: false
+    t.float "rate", default: 2.5, null: false
+    t.text "body", null: false
+    t.integer "hot_spring_id", null: false
+    t.integer "user_id", null: false
+    t.boolean "is_pablished", default: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -145,7 +146,6 @@ ActiveRecord::Schema.define(version: 2022_11_08_133752) do
     t.string "username", null: false
     t.date "birth_date", null: false
     t.integer "sex", null: false
-    t.integer "status", default: 0, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
