@@ -1,5 +1,5 @@
 class Public::ReviewsController < ApplicationController
-  
+
   def index
     @hot_spring = HotSpring.find(params[:hot_spring_id])
     @review = @hot_spring.reviews.new
@@ -7,47 +7,49 @@ class Public::ReviewsController < ApplicationController
   end
 
   def create
-    @hot_spring = HotSpring.find(params[:hot_spring_id])
-    @reviews = @hot_spring.reviews.page(params[:page])
-    #binding.pry
-    @review = @hot_spring.reviews.new(review_params)
+    hot_spring = HotSpring.find(params[:hot_spring_id])
+    @review = hot_spring.reviews.new(review_params)
+    @review.user_id = current_user.id
     if @review.save
-      redirect_to hot_spring_reviews_path, notice: "クチコミを投稿しました"
+      redirect_to hot_spring_reviews_path(hot_spring), notice: "クチコミを投稿しました"
     else
       render 'index', alert: "クチコミの投稿に失敗しました"
     end
   end
-  
+
   def show
+    @hot_spring = HotSpring.find(params[:hot_spring_id])
     @review = Review.find(params[:id])
+    @comment = Comment.new
   end
 
   def edit
     @review = Review.find(params[:id])
   end
-  
+
   def update
+    @hot_spring = HotSpring.find(params[:hot_spring_id])
     @review = Review.find(params[:id])
     if @review.update(review_params)
-      redirect_to hot_spring_review_path(@review), notice: "クチコミの編集に成功しました"
+      redirect_to hot_spring_review_path(@hot_spring, @review), notice: "クチコミの編集に成功しました"
     else
       render 'edit'
     end
   end
-  
+
   def destroy
     @review = Review.find(params[:id])
     if @review.destroy
-      redirect_to hot_spring_reviews_path, notice: "クチコミを削除しました"
+      redirect_to hot_spring_reviews_path(@review.hot_spring), notice: "クチコミを削除しました"
     else
       render 'index'
     end
   end
-  
+
   private
-  
+
   def review_params
     params.require(:review).permit(:title,:body, :rate, :user_id, :hot_spring_id, :is_pablished, images: [])
   end
-  
+
 end

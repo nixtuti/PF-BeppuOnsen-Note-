@@ -7,6 +7,8 @@ class User < ApplicationRecord
   enum sex: { unknown: 0, male: 1, female: 2 }
   
   has_many :reviews, dependent: :destroy
+  has_many :comments, dependent: :destroy
+  has_many :favorites, dependent: :destroy
   
   has_one_attached :profile_image
 
