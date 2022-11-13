@@ -28,7 +28,6 @@
         <% end %>
         <!--レビュータイトル-->
         <h3 class="popover-title"><%= link_to review.title, hot_spring_review_path(@hot_spring.id, review.id), class: "text-dark" %></h3>
-        <p>投稿日：<%= review.created_at.strftime('%Y年%m月%d日')%></p>
         <!--星5段階評価表示-->
         <div id="star-rate<%= review.id %>"></div>
           <script>
@@ -43,6 +42,8 @@
               half: true,
             });
           </script>
+        <p><%= review.rate %></p>
+        <p>投稿日：<%= review.created_at.strftime('%Y年%m月%d日')%></p>
         <!--レビュー本文表示-->
         <div class="popover-content">
           <p><%= review.body %></p>
@@ -52,7 +53,7 @@
           <p>
             <%= link_to "編集", edit_hot_spring_review_path(@hot_spring.id, review.id) %>
             |
-            <%= link_to "削除", hot_spring_review_path(@hot_spring.id, review.id), method: :delete %>
+            <%= link_to "削除", hot_spring_review_path(@hot_spring.id, review.id), data: { confirm: '本当に消しますか？' }, method: :delete %>
           </p>
         <% end %>
       </div>
@@ -63,7 +64,7 @@
   <div class="col-7 mx-auto py-5 position-static">
     <h6 class="col-lg-4 col-md-6 bg-dark text-light text-center">新規クチコミ投稿</h6>
     <!--クチコミ新規投稿フォーム表示-->
-    <%= form_with model: @review, url: hot_spring_reviews_path, method: :post do |f| %>
+    <%= form_with model: [@hot_spring, @review], url: hot_spring_reviews_path, method: :post do |f| %>
       <%= f.file_field :images, multiple: true %>
       <div id="post_raty"></div>
       <script>
@@ -80,14 +81,12 @@
         };
         raty(elem,opt);
       </script>
-      <div id="post_raty"></div>
       <%= f.text_field :title, class: "form-control", placeholder: "クチコミタイトルを入力"%>
       <%= f.text_area :body, class: "form-control", placeholder: "クチコミ本文を入力", rows: "5" %>
       <%= f.radio_button :is_pablished, :true %>
       <%= f.label :is_pablished, "公開", value: :true %>
       <%= f.radio_button :is_pablished, :false %>
       <%= f.label :is_pablished, "非公開", value: :false %>
-      <%= f.hidden_field :user_id, :value => current_user.id %>
       <div class="text-right">
         <%= f.submit " 投稿 ", class: "btn btn-success btn-sm"%>
       </div>

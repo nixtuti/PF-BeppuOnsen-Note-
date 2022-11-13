@@ -3,7 +3,7 @@
   <div class="row row-center mt-5">
     <div class="col-lg-2 col-md-3 col-sm-4 col-xs-5">
       <%= image_tag @review.user.get_profile_image, size: '50x50', class: "img-responsive m-3 rounded-circle" %>
-      
+
     </div>
     <div class="col-lg-10 col-md-9 col-sm-8 col-xs-7">
       <div class="popover left show" style="position:relative; top=-90px; left=100px; max-width:100%; display:inline;">
@@ -37,10 +37,11 @@
           <p>
             <%= link_to "編集", edit_hot_spring_review_path(@review.id) %>
             |
-            <%= link_to "削除", hot_spring_review_path(@review.id), method: :delete %>
+            <%= link_to "削除", hot_spring_review_path(@review.id), data: { confirm: '本当に消しますか？' }, method: :delete %>
           </p>
         <% end %>
       </div>
+      <!--コメントを表示-->
       <% @review.comments.each do |comment| %>
         <div class="row p-2">
           <div class="col-2">
@@ -58,6 +59,7 @@
         </div>
       <% end %>
     </div>
+    <!--コメント新規投稿フォーム-->
     <div>
       <%= form_with model: [@hot_spring, @review, @comment] do |f| %>
         <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
