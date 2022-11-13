@@ -49,9 +49,9 @@
             <i class="fa-solid fa-comment-dots"></i>コメント：<%= @review.comments.count %>　
             <!--ログイン中のユーザーであれば、編集、削除のリンクを表示-->
             <% if @review.user_id == current_user.id %>
-                <%= link_to "編集", edit_hot_spring_review_path(@review, @review) %>
+                <%= link_to "編集", edit_hot_spring_review_path(@hot_spring, @review) %>
                 |
-                <%= link_to "削除", hot_spring_review_path(@review, @review), data: { confirm: '本当に消しますか？' }, method: :delete %>
+                <%= link_to "削除", hot_spring_review_path(@hot_spring, @review), data: { confirm: '本当に消しますか？' }, method: :delete %>
             <% end %>
           </div>
         </div>
@@ -72,7 +72,7 @@
             <%= comment.comment %><br>
             <%= comment.created_at.strftime('%Y/%m/%d') %>
             <% if comment.user == current_user %>
-              <%= link_to "削除", hot_spring_review_comment_path(comment.review.hot_spring, comment), method: :delete %>
+              <%= link_to "削除", hot_spring_review_comment_path(@hot_spring, @review, comment), method: :delete %>
             <% end %>
           </div>
         </div>

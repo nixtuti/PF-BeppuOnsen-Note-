@@ -14,7 +14,7 @@ class Public::CommentsController < ApplicationController
 
   def destroy
     Comment.find(params[:id]).destroy
-    redirect_to hot_spring_review_path(params[:review_id]), notice: "コメントを削除しました"
+    redirect_to request.referer, notice: "コメントを削除しました"
   end
 
   private
