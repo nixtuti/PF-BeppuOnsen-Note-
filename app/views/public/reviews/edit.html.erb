@@ -1,31 +1,6 @@
 
  <div class="col-7 mx-auto py-5 position-static">
     <h6 class="col-lg-4 col-md-6 bg-dark text-light text-center">クチコミ編集</h6>
-    <%= form_with model: [@hot_spring, @review], url: hot_spring_review_path, method: :patch do |f| %>
-      <%= f.file_field :images, multiple: true %>
-      <div id="post_raty"></div>
-      <script>
-        raty(document.querySelector('#post_raty'),{
-        //星画像の指定などのオプションをここに記述
-        size     : 36,
-        starOff:  '<%= asset_path('star-off.png') %>',
-        starOn : '<%= asset_path('star-on.png') %>',
-        starHalf: '<%= asset_path('star-half.png') %>',
-        scoreName: 'review[rate]',
-        half: true,
-        });
-      </script>
-      <div id="post_raty"></div>
-      <%= f.text_field :title, class: "form-control", placeholder: "クチコミタイトルを入力"%>
-      <%= f.text_area :body, class: "form-control", placeholder: "クチコミ本文を入力", rows: "5" %>
-      <%= f.radio_button :is_pablished, :true %>
-      <%= f.label :is_pablished, "公開", value: :true %>
-      <%= f.radio_button :is_pablished, :false %>
-      <%= f.label :is_pablished, "非公開", value: :false %>
-      <%= f.hidden_field :user_id, :value => current_user.id %>
-      <div class="text-right">
-        <%= f.submit " 投稿 ", class: "btn btn-success btn-sm"%>
-      </div>
-    <% end %>
+    <%= render 'form', hot_spring: @hot_spring, review: @review, url: hot_spring_review_path, method: :patch, message: "変更を保存" %>
   </div>
 </div>
