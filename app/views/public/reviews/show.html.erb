@@ -15,7 +15,7 @@
         <% end %>
         <h3 class="popover-title"><%= @review.title %></h3>
         <p>投稿日：<%= @review.created_at.strftime('%Y年%m月%d日')%></p>
-        <p>コメント件数：<%= @review.comments.count %></p>
+        <p><i class="fa-solid fa-comment-dots"></i> コメント：<%= @review.comments.count %></p>
         <!--星5段階評価表示-->
         <div id="star-rate<%= @review.id %>"></div>
           <script>
