@@ -13,33 +13,52 @@
             <%= image_tag image, size: '160x100' %>
           <% end %>
         <% end %>
-        <h3 class="popover-title"><%= @review.title %></h3>
-        <p>投稿日：<%= @review.created_at.strftime('%Y年%m月%d日')%></p>
-        <p><i class="fa-solid fa-comment-dots"></i> コメント：<%= @review.comments.count %></p>
-        <!--星5段階評価表示-->
-        <div id="star-rate<%= @review.id %>"></div>
-          <script>
-            raty(document.querySelector('#star-rate<%= @review.id %>'),{
-              //星画像の指定などのオプションをここに
-              size      : 36,
-              starOff   : '<%= asset_path('star-off.png') %>',
-              starOn    : '<%= asset_path('star-on.png') %>',
-              starHalf: '<%= asset_path('star-half.png') %>',
-              readOnly: true,
-              score: <%= @review.rate %>,
-              half: true,
-            });
-          </script>
+        <div class="row">
+          <div class="col-6">
+            <!--レビュータイトル-->
+            <h3 class="popover-title"><%= @review.title %></h3>
+            <!--星5段階評価表示-->
+            <div id="star-rate<%= @review.id %>"></div>
+              <script>
+                raty(document.querySelector('#star-rate<%= @review.id %>'),{
+                  //星画像の指定などのオプションをここに
+                  size      : 36,
+                  starOff   : '<%= asset_path('star-off.png') %>',
+                  starOn    : '<%= asset_path('star-on.png') %>',
+                  starHalf: '<%= asset_path('star-half.png') %>',
+                  readOnly: true,
+                  score: <%= @review.rate %>,
+                  half: true,
+                });
+              </script>
+          </div>
+          <div class="col-6 text-right">
+            投稿日：<%= @review.created_at.strftime('%Y年%m月%d日')%><br>
+            <!--いいね表示-->
+            <% if @review.favorited_by?(current_user) %>
+              <%= link_to hot_spring_review_favorites_path(@hot_spring, @review), class: "text-decoration-none", method: :delete do %>
+                <i class="fa-solid fa-heart"></i>
+              <% end %>
+            <% else %>
+              <%= link_to hot_spring_review_favorites_path(@hot_spring, @review), class: "text-decoration-none", method: :post do %>
+                <i class="fa-regular fa-heart"></i>
+              <% end %>
+            <% end %>
+            いいね：<%= @review.favorites.count %>　
+            <!--コメント数表示-->
+            <i class="fa-solid fa-comment-dots"></i>コメント：<%= @review.comments.count %>　
+            <!--ログイン中のユーザーであれば、編集、削除のリンクを表示-->
+            <% if @review.user_id == current_user.id %>
+                <%= link_to "編集", edit_hot_spring_review_path(@review, @review) %>
+                |
+                <%= link_to "削除", hot_spring_review_path(@review, @review), data: { confirm: '本当に消しますか？' }, method: :delete %>
+            <% end %>
+          </div>
+        </div>
         <div class="popover-content">
           <p><%= @review.body %></p>
         </div>
-        <% if @review.user_id == current_user.id %>
-          <p>
-            <%= link_to "編集", edit_hot_spring_review_path(@review.id) %>
-            |
-            <%= link_to "削除", hot_spring_review_path(@review.id), data: { confirm: '本当に消しますか？' }, method: :delete %>
-          </p>
-        <% end %>
+        
       </div>
       <!--コメントを表示-->
       <% @review.comments.each do |comment| %>
