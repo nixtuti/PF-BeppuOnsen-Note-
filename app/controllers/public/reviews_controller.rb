@@ -28,9 +28,10 @@ class Public::ReviewsController < ApplicationController
   end
 
   def update
+    @hot_spring = HotSpring.find(params[:hot_spring_id])
     @review = Review.find(params[:id])
     if @review.update(review_params)
-      redirect_to hot_spring_review_path(@review), notice: "クチコミの編集に成功しました"
+      redirect_to hot_spring_review_path(@hot_spring, @review), notice: "クチコミの編集に成功しました"
     else
       render 'edit'
     end
@@ -39,7 +40,7 @@ class Public::ReviewsController < ApplicationController
   def destroy
     @review = Review.find(params[:id])
     if @review.destroy
-      redirect_to hot_spring_reviews_path, notice: "クチコミを削除しました"
+      redirect_to hot_spring_reviews_path(@review.hot_spring), notice: "クチコミを削除しました"
     else
       render 'index'
     end

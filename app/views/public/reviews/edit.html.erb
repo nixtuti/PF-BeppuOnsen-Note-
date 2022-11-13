@@ -1,13 +1,11 @@
 
  <div class="col-7 mx-auto py-5 position-static">
-    <h6 class="col-lg-4 col-md-6 bg-dark text-light text-center">新規クチコミ投稿</h6>
-    <%= form_with model: @review, url: hot_spring_review_path, method: :patch do |f| %>
+    <h6 class="col-lg-4 col-md-6 bg-dark text-light text-center">クチコミ編集</h6>
+    <%= form_with model: [@hot_spring, @review], url: hot_spring_review_path, method: :patch do |f| %>
       <%= f.file_field :images, multiple: true %>
       <div id="post_raty"></div>
       <script>
-        // scriptファイルをどのidの部分に配置するかを指定
-        let elem = document.querySelector('#post_raty');
-        let opt = {
+        raty(document.querySelector('#post_raty'),{
         //星画像の指定などのオプションをここに記述
         size     : 36,
         starOff:  '<%= asset_path('star-off.png') %>',
@@ -15,8 +13,7 @@
         starHalf: '<%= asset_path('star-half.png') %>',
         scoreName: 'review[rate]',
         half: true,
-        };
-        raty(elem,opt);
+        });
       </script>
       <div id="post_raty"></div>
       <%= f.text_field :title, class: "form-control", placeholder: "クチコミタイトルを入力"%>

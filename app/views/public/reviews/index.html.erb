@@ -51,9 +51,9 @@
         <!--ログイン中のユーザーであれば、ユーザー情報編集、削除のリンクを表示-->
         <% if review.user_id == current_user.id %>
           <p>
-            <%= link_to "編集", edit_hot_spring_review_path(@hot_spring.id, review.id) %>
+            <%= link_to "編集", edit_hot_spring_review_path(review.hot_spring_id, review.id) %>
             |
-            <%= link_to "削除", hot_spring_review_path(@hot_spring.id, review.id), data: { confirm: '本当に消しますか？' }, method: :delete %>
+            <%= link_to "削除", hot_spring_review_path(review.hot_spring_id, review.id), data: { confirm: '本当に消しますか？' }, method: :delete %>
           </p>
         <% end %>
       </div>
