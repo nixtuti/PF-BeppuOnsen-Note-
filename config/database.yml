@@ -22,7 +22,6 @@ test:
 
 
 #.envファイルに記述した環境変数を使用。DB情報を環境変数化。
-
 production:
   <<: *default
   database: <%= ENV['DB_DATABASE'] %>
