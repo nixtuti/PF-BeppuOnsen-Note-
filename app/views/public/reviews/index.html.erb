@@ -1,0 +1,89 @@
+<div class="container">
+  <%= render "overview", hot_spring: @hot_spring %>
+  <div class="text-center mt-5">
+    <%= link_to "温泉情報", hot_spring_path(@hot_spring), class: "btn btn-info col-4" %>
+    <%= link_to "クチコミ一覧", hot_spring_reviews_path(@hot_spring.id), class: "btn btn-info disabled col-4" %>
+  </div>
+
+<!-- 吹き出し表示にしたい-->
+  <div class="row row-center mt-5">
+    <!--温泉に紐付くレビューを１つずつ取り出して表示-->
+    <% @reviews.each do |review| %>
+    <!--レビューを投稿したユーザーの情報-->
+    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-5">
+      <%= image_tag review.user.get_profile_image, size: '50x50', class: "img-responsive m-3 rounded-circle" %><br>
+      <%= review.user.username %><br>
+      (<%= review.user.age %>)
+    </div>
+    <!--レビュー内容-->
+    <div class="col-lg-10 col-md-9 col-sm-8 col-xs-7">
+      <div class="popover left show" style="position:relative; top=-90px; left=100px; max-width:100%; display:inline;">
+        <div class="arrow"></div>
+        <!--写真があれば表示-->
+        <% if review.images.attached? %>
+          <!--画像を1つずつ取り出して表示-->
+          <% review.images.each do |image| %>
+            <%= image_tag image, size: '160x100' %>
+          <% end %>
+        <% end %>
+        <div class="row">
+          <div class="col-6">
+            <!--レビュータイトル-->
+            <h5 class="popover-title"><%= link_to review.title, hot_spring_review_path(@hot_spring, review), class: "text-dark" %></h5>
+            <!--星5段階評価表示-->
+            <div id="star-rate<%= review.id %>"></div>
+              <script>
+                raty(document.querySelector('#star-rate<%= review.id %>'),{
+                  //星画像の指定などのオプションをここに
+                  size      : 36,
+                  starOff   : '<%= asset_path('star-off.png') %>',
+                  starOn    : '<%= asset_path('star-on.png') %>',
+                  starHalf: '<%= asset_path('star-half.png') %>',
+                  readOnly: true,
+                  score: <%= review.rate %>,
+                  half: true,
+                });
+              </script>
+          </div>
+          <div class="col-6 text-right">
+            投稿日：<%= review.created_at.strftime('%Y年%m月%d日')%><br>
+            <!--いいね表示-->
+            <% if review.favorited_by?(current_user) %>
+              <%= link_to hot_spring_review_favorites_path(@hot_spring, review), class: "text-decoration-none", method: :delete do %>
+                <i class="fa-solid fa-heart"></i>
+              <% end %>
+            <% else %>
+              <%= link_to hot_spring_review_favorites_path(@hot_spring, review), class: "text-decoration-none", method: :post do %>
+                <i class="fa-regular fa-heart"></i>
+              <% end %>
+            <% end %>
+            いいね：<%= review.favorites.count %>　
+            <!--コメント数表示-->
+            <%= link_to hot_spring_review_path(@hot_spring, review), class: "text-decoration-none" do %>
+              <i class="fa-solid fa-comment-dots"></i>
+            <% end %>
+            コメント：<%= review.comments.count %>　
+            <!--ログイン中のユーザーであれば、編集、削除のリンクを表示-->
+            <% if review.user_id == current_user.id %>
+                <%= link_to "編集", edit_hot_spring_review_path(review.hot_spring_id, review.id) %>
+                |
+                <%= link_to "削除", hot_spring_review_path(review.hot_spring_id, review.id), data: { confirm: '本当に消しますか？' }, method: :delete %>
+            <% end %>
+          </div>
+        </div>
+        <!--レビュー本文表示-->
+        <div class="popover-content">
+          <p><%= review.body %></p>
+        </div>
+        
+      </div>
+    </div>
+    <% end %>
+  </div>
+
+  <div class="col-7 mx-auto py-5 position-static">
+    <h6 class="col-lg-4 col-md-6 bg-dark text-light text-center">新規クチコミ投稿</h6>
+    <!--クチコミフォーム表示-->
+    <%= render 'form', hot_spring: @hot_spring, review: @review, url: hot_spring_reviews_path, method: :post, message: "投稿" %>
+  </div>
+</div>

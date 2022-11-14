@@ -1,0 +1,26 @@
+<div class="mx-auto col-11 col-sm-10 col-lg-8">
+  <div class="my-4 d-flex">
+    <h4 class="col-3 bg-dark text-light text-center text-nowrap">温泉一覧</h4>
+    <p class="col-3 text-center">（全<%= @hot_springs.count %>件）</p>
+    <div class="col-6"></div>
+    <div class="col-1 text-center pt-1">
+      <%#= link_to "新規登録を申請する", class: "align-middle text-dark" %>
+    </div>
+  </div>
+  <div class="p-5">
+    <table class="table table-secondary table-border text-nowrap">
+      <% @hot_springs.each do |hot_spring| %>
+        <tbody>
+          <tr>
+            <td><%=image_tag hot_spring.get_hot_spring_image, size: "160x100" %></td>
+            <td>
+              <%= link_to hot_spring.name, hot_spring_path(hot_spring), class: "text-dark" %><br>
+              総合評価
+            </td>
+          </tr>
+        </tbody>
+      <% end %>
+    </table>
+    <%= paginate @hot_springs %>
+  </div>
+</div>

@@ -1,0 +1,50 @@
+<div>
+  <%= render "public/reviews/overview", hot_spring: @hot_spring %>
+  <div class="text-center mt-5">
+    <%= link_to "温泉情報", hot_spring_path(@hot_spring), class: "btn btn-info disabled col-4" %>
+    <%= link_to "クチコミ一覧", hot_spring_reviews_path(@hot_spring.id), class: "btn btn-info col-4" %>
+  </div>
+  <div class="m-5">
+    <table class="table table-bordered table-dark">
+      <tr>
+        <th>住所</th>
+        <td><%= @hot_spring.address %></td>
+      </tr>
+      <tr>
+        <th>泉質</th>
+        <td></td>
+      </tr>
+      <tr>
+        <th>料金</th>
+        <td><%= @hot_spring.price %></td>
+      </tr>
+      <tr>
+        <th>貸切風呂料金</th>
+        <td><%= @hot_spring.private_bath_price %></td>
+      </tr>
+      <tr>
+        <th>立寄利用時間</th>
+        <td><%= @hot_spring.hours %></td>
+      </tr>
+      <tr>
+        <th>定休日</th>
+        <td><%= @hot_spring.holiday %></td>
+      </tr>
+      <tr>
+        <th>駐車場</th>
+        <td><%= @hot_spring.parking %></td>
+      </tr>
+      <tr>
+        <th>問い合わせ先</th>
+        <td><%= @hot_spring.contact %></td>
+      </tr>
+      <tr>
+        <th>営業ステータス</th>
+        <td><%= @hot_spring.running_status_i18n %></td>
+      </tr>
+    </table>
+    <div class="actions m-4 text-center">
+      <%#= link_to '編集を申請する', class: "btn btn-success" %>
+    </div>
+  </div>
+</div>

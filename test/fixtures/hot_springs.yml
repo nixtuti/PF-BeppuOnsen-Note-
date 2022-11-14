@@ -1,0 +1,29 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  introduction: MyText
+  price: 1
+  private_bath_price: 1
+  hours: MyString
+  holiday: MyString
+  latitude: 1.5
+  longtude: 1.5
+  parking: MyString
+  contact: MyString
+  running_status: 1
+  is_pablished: false
+
+two:
+  name: MyString
+  introduction: MyText
+  price: 1
+  private_bath_price: 1
+  hours: MyString
+  holiday: MyString
+  latitude: 1.5
+  longtude: 1.5
+  parking: MyString
+  contact: MyString
+  running_status: 1
+  is_pablished: false

@@ -1,0 +1,90 @@
+<div class="container">
+  <!-- 吹き出し表示にしたい-->
+  <div class="row row-center mt-5">
+    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-5">
+      <%= image_tag @review.user.get_profile_image, size: '50x50', class: "img-responsive m-3 rounded-circle" %>
+
+    </div>
+    <div class="col-lg-10 col-md-9 col-sm-8 col-xs-7">
+      <div class="popover left show" style="position:relative; top=-90px; left=100px; max-width:100%; display:inline;">
+        <div class="arrow"></div>
+        <% if @review.images.attached? %>
+          <% @review.images.each do |image| %>
+            <%= image_tag image, size: '160x100' %>
+          <% end %>
+        <% end %>
+        <div class="row">
+          <div class="col-6">
+            <!--レビュータイトル-->
+            <h3 class="popover-title"><%= @review.title %></h3>
+            <!--星5段階評価表示-->
+            <div id="star-rate<%= @review.id %>"></div>
+              <script>
+                raty(document.querySelector('#star-rate<%= @review.id %>'),{
+                  //星画像の指定などのオプションをここに
+                  size      : 36,
+                  starOff   : '<%= asset_path('star-off.png') %>',
+                  starOn    : '<%= asset_path('star-on.png') %>',
+                  starHalf: '<%= asset_path('star-half.png') %>',
+                  readOnly: true,
+                  score: <%= @review.rate %>,
+                  half: true,
+                });
+              </script>
+          </div>
+          <div class="col-6 text-right">
+            投稿日：<%= @review.created_at.strftime('%Y年%m月%d日')%><br>
+            <!--いいね表示-->
+            <% if @review.favorited_by?(current_user) %>
+              <%= link_to hot_spring_review_favorites_path(@hot_spring, @review), class: "text-decoration-none", method: :delete do %>
+                <i class="fa-solid fa-heart"></i>
+              <% end %>
+            <% else %>
+              <%= link_to hot_spring_review_favorites_path(@hot_spring, @review), class: "text-decoration-none", method: :post do %>
+                <i class="fa-regular fa-heart"></i>
+              <% end %>
+            <% end %>
+            いいね：<%= @review.favorites.count %>　
+            <!--コメント数表示-->
+            <i class="fa-solid fa-comment-dots"></i>コメント：<%= @review.comments.count %>　
+            <!--ログイン中のユーザーであれば、編集、削除のリンクを表示-->
+            <% if @review.user_id == current_user.id %>
+                <%= link_to "編集", edit_hot_spring_review_path(@hot_spring, @review) %>
+                |
+                <%= link_to "削除", hot_spring_review_path(@hot_spring, @review), data: { confirm: '本当に消しますか？' }, method: :delete %>
+            <% end %>
+          </div>
+        </div>
+        <div class="popover-content">
+          <p><%= @review.body %></p>
+        </div>
+        
+      </div>
+      <!--コメントを表示-->
+      <% @review.comments.each do |comment| %>
+        <div class="row p-2">
+          <div class="col-2">
+            <%= image_tag comment.user.get_profile_image, size: '50x50', class: "mg-responsive rounded-circle" %><br>
+            <%= comment.user.username %><br>
+            （<%= comment.user.age %>）
+          </div>
+          <div class="col-10 text-left">
+            <%= comment.comment %><br>
+            <%= comment.created_at.strftime('%Y/%m/%d') %>
+            <% if comment.user == current_user %>
+              <%= link_to "削除", hot_spring_review_comment_path(@hot_spring, @review, comment), method: :delete %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <!--コメント新規投稿フォーム-->
+    <div>
+      <%= form_with model: [@hot_spring, @review, @comment] do |f| %>
+        <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
+        <%= f.submit "送信する" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+

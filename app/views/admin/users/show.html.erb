@@ -1,0 +1,35 @@
+<div class="mx-auto col-11 col-sm-10 col-lg-8">
+  <div class="mt-4">
+    <h4 class="col-lg-5 col-md-6 bg-dark text-light text-center text-nowrap">ユーザー登録情報</h4>
+  </div>
+  <div class="p-5">
+    <table class="table table-border table-secondary">
+      <tr>
+        <th class="align-middle">プロフィール画像</th>
+        <td><%= image_tag @user.get_profile_image, size: "70x70" %></td>
+      </tr>
+      <tr>
+        <th class="align-middle">ユーザーネーム</th>
+        <td><%= @user.username %></td>
+      </tr>
+      <tr>
+        <th>生年月日</th>
+        <td><%= @user.birth_date %></td>
+      </tr>
+      <tr class="field align-middle text-nowrap">
+        <th>性別</th>
+        <td><%= @user.sex %></td>
+      </tr>
+      <tr class="border-bottom">
+        <th>メールアドレス</th>
+        <td><%= @user.email %></td>
+      </tr>
+    </table>
+    <% if @user.username != "ゲスト" %>
+      <div class="actions m-4 text-center">
+        <%= link_to '編集する', edit_admin_user_path(@user), class: "btn btn-success" %>
+        <%= link_to '削除する', admin_user_path, method: :delete, class: "btn btn-danger" %>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,34 @@
+<div class="container">
+    <div class="row py-4">
+      <h4 class="col-lg-3 col-sm-5 col-8 bg-dark text-light text-center">温泉一覧</h4>
+      <div class="col-lg-8 col-sm-5 col-2"></div>
+      <div class="col-lg-1 col-sm-2 col-1 text-center pt-1">
+        <%= link_to new_admin_hot_spring_path, class: "align-middle text-dark" do %>
+          <i class="fa-2x fa-solid fa-circle-plus"></i>
+        <% end %>
+      </div>
+    </div>
+    <div class="row">
+      <table class="table table-secondary table-border mb-5">
+        <thead>
+          <tr>
+            <th>温泉ID</th>
+            <th>温泉名</th>
+            <th>公開ステータス</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @hot_springs.each do |hot_spring| %>
+            <tr>
+              <td><%= hot_spring.id %></td>
+              <td>
+                <%= link_to hot_spring.name, admin_hot_spring_path(hot_spring), class: "text-dark" %>
+              </td>
+              <td><%= hot_spring.is_pablished ? '公開' : '非公開'   %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <%= paginate @hot_springs %>
+    </div>
+</div>

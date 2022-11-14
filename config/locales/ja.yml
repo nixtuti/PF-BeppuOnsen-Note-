@@ -1,0 +1,12 @@
+  ja:
+    enums:
+      user:
+        sex:
+          male: "男性"
+          female: "女性"
+          unknown: "不詳"
+      hot_spring:
+        running_status:
+          running: "営業"
+          interrupt: "休業中"
+          closed: "閉業" 

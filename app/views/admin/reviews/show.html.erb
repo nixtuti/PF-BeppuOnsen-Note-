@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="row row-center mt-5">
+    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-5">
+      <%= image_tag @review.user.get_profile_image, size: '50x50', class: "img-responsive m-3 rounded-circle" %>
+    </div>
+    <div class="col-lg-10 col-md-9 col-sm-8 col-xs-7">
+      <div class="popover left show" style="position:relative; top=-90px; left=100px; max-width:100%; display:inline;">
+        <div class="arrow"></div>
+        <% if @review.images.attached? %>
+          <% @review.images.each do |image| %>
+            <%= image_tag image, size: '160x100' %>
+          <% end %>
+        <% end %>
+        <h3 class="popover-title"><%= @review.title %></h3>
+        <p>投稿日：<%= @review.created_at.strftime('%Y年%m月%d日')%></p>
+        <!--星5段階評価表示-->
+        <div id="star-rate<%= @review.id %>"></div>
+          <script>
+            raty(document.querySelector('#star-rate<%= @review.id %>'),{
+              //星画像の指定などのオプションをここに
+              size      : 36,
+              starOff   : '<%= asset_path('star-off.png') %>',
+              starOn    : '<%= asset_path('star-on.png') %>',
+              starHalf: '<%= asset_path('star-half.png') %>',
+              readOnly: true,
+              score: <%= @review.rate %>,
+              half: true,
+            });
+          </script>
+        <div class="popover-content">
+          <p><%= @review.body %></p>
+        </div>
+          <p>
+            <%= link_to "削除", admin_review_path(@review), method: :delete, data: { confirm: '本当に消しますか？' } %>
+          </p>
+      </div>
+    </div>
+  </div>
+</div>
