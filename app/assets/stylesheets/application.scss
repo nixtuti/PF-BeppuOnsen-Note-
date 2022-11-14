@@ -15,14 +15,14 @@
  */
 
 #main{
-  background-image: image-url("/images/background_image.png");
+  background-image: image-url("background_image.png");
   background-size: cover;
   background-position: center;
 }
 
 #main_visual{
   height: 350px;
-  background-image: image-url("/images/Beppu.png");
+  background-image: image-url("Beppu.png");
   background-size: cover;
   background-position: center;
 }
