@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 Admin.create!(email: "0@0", password: "password")
-User.create!(username: "テストユーザー", email: "x@x", password: "password", sex: 0, birth_date: "1987-09-01")
+User.create!(username: "test", email: "x@x", password: "password", sex: 0, birth_date: "1987-09-01")
 
 HotSpring.create!(name: "別府海浜砂湯", introduction: "海沿いにある砂湯です。1度に10名以上が入浴できグループの方もいっしょに楽しむことができます。可動式屋根があるので雨天時でも入浴できます。休憩所あり。源泉かけ流しです。", address: "〒874-0023　別府市上人", price: "1500円", private_bath_price: "-", hours: "【3月～11月】8時30分～18時（最終受付17時）【12月～2月】9時～17時（最終受付16時）", holiday: "毎月第4水曜日（祝日の場合は翌日）", parking: "10台", contact: "電話：0977-66-5737",running_status: 0, is_pablished: 1)
 HotSpring.create!(name: "柴石温泉", introduction: "療養効果の高い温 泉地として国民保養温泉地、国民保健温泉地として指定されています。温度の違う2つの温泉や露天風呂・ 蒸し湯があり、家天風呂・ 蒸し湯があり、家族湯も利用可能。源泉掛け流しです。", address: "〒874-0016　別府市野田4組", price: "大人300円、小人100円", private_bath_price: "2000円（1時間4人まで）", hours: "【普通浴】7：00～20：00 【家族湯】9：00～20：00 （最終受付19：00）※14：00～15：00までの1時間は清掃時間のため、入館・入浴はできません", holiday: "毎月第2水曜日（祝日の場合は翌日）", parking: "35台", contact: "電話：0977-67-4100",running_status: 0, is_pablished: 1)
