@@ -24,7 +24,12 @@ Rails.application.routes.draw do
   }
 
   scope module: :public do
-    resources :users, only: [:show, :edit, :update, :destroy]
+    resources :users, only: [:show, :edit, :update, :destroy] do
+      member do
+        get :bookmarks
+        get :visited_marks
+      end
+    end
     resources :hot_springs, only: [:index, :show] do
       resource :bookmarks, only: [:create, :destroy]
       resource :visited_marks, only: [:create, :destroy]

@@ -5,7 +5,7 @@
       <div id="main_visual">
         <div class="pt-4">
           <div class="d-flex">
-            <div id="main_visual_text" class="m-auto border border-dark rounded">
+            <div id="main_visual_text" class="m-auto">
               <p class="m-3">
                 BeppuOnsen Note とは？
                 <br>
@@ -34,16 +34,36 @@
       </div>
 
       <div id="new_items" class="p-3">
-        <h4>新着クチコミ</h4>
-        <div class="row">
+        <div class="row mt-3">
+          <h4 class="col-lg-4 col-md-5 col-sm-6 bg-dark text-center text-light">新着クチコミ</h4>
+        </div>
+        <div class="row mx-auto">
+          <div class="row">
           <% @reviews.each do |review| %>
-          <div class="col-lg-6">
-            <%=link_to review.title, hot_spring_review_path(review.hot_spring.id, review.id), class: "text-dark" %>
-            （<%=link_to review.hot_spring.name, hot_spring_path(review.hot_spring.id), class: "text-dark" %>）<br>
-            <%= review.body %>
+          <div class="col-lg-5 py-2 my-2 mx-auto border border-dark rounded">
+            <h5>
+              <%=link_to review.title, hot_spring_review_path(review.hot_spring.id, review.id), class: "text-dark" %>
+              （<%=link_to review.hot_spring.name, hot_spring_path(review.hot_spring.id), class: "text-dark" %>）
+            </h5>
+            <div id="star-rate<%= review.id %>"></div>
+              <script>
+                raty(document.querySelector('#star-rate<%= review.id %>'),{
+                  //星画像の指定などのオプションをここに
+                  size      : 36,
+                  starOff   : '<%= asset_path('star-off.png') %>',
+                  starOn    : '<%= asset_path('star-on.png') %>',
+                  starHalf: '<%= asset_path('star-half.png') %>',
+                  readOnly: true,
+                  score: <%= review.rate %>,
+                  half: true,
+                });
+              </script>
+            <div class="p-2"><%= review.body %></div>
           </div>
           <% end %>
         </div>
+        </div>
+        
       </div>
     </div>
   </div>

@@ -2,36 +2,42 @@
   <div class="mt-4">
     <h4 class="col-lg-5 col-md-6 bg-dark text-light text-center text-nowrap">ユーザー登録情報</h4>
   </div>
-  <div class="p-5">
-    <table class="table table-border table-secondary text-nowrap">
-      <tr>
-        <th class="align-middle">プロフィール画像</th>
-        <td><%= image_tag @user.get_profile_image, size: "70x70" %></td>
-      </tr>
-      <tr>
-        <th class="align-middle">ユーザーネーム</th>
-        <td><%= @user.username %></td>
-      </tr>
-      <tr>
-        <th>生年月日</th>
-        <td><%= @user.birth_date %></td>
-      </tr>
-      <tr class="field align-middle text-nowrap">
-        <th>性別</th>
-        <td><%= @user.sex_i18n %></td>
-      </tr>
-      <% if @user == current_user %>
-      <tr class="border-bottom">
-        <th>メールアドレス</th>
-        <td><%= @user.email %></td>
-      </tr>
+  <div class="row">
+    <div class="col-6 p-5">
+      <table class="table table-border table-secondary text-nowrap">
+        <tr>
+          <th class="align-middle">プロフィール画像</th>
+          <td><%= image_tag @user.get_profile_image, size: "70x70" %></td>
+        </tr>
+        <tr>
+          <th class="align-middle">ユーザーネーム</th>
+          <td><%= @user.username %></td>
+        </tr>
+        <tr>
+          <th>生年月日</th>
+          <td><%= @user.birth_date %></td>
+        </tr>
+        <tr class="field align-middle text-nowrap">
+          <th>性別</th>
+          <td><%= @user.sex_i18n %></td>
+        </tr>
+        <% if @user == current_user %>
+        <tr class="border-bottom">
+          <th>メールアドレス</th>
+          <td><%= @user.email %></td>
+        </tr>
+        <% end %>
+      </table>
+      <% if @user.username != "ゲスト" && @user == current_user %>
+        <div class="actions m-4 text-center">
+          <%= link_to '編集する', edit_user_path, class: "btn btn-success" %>
+          <%= link_to '退会削除', user_path(@user), method: :delete, class: "btn btn-danger" %>
+        </div>
       <% end %>
-    </table>
-    <% if @user.username != "ゲスト" && @user == current_user %>
-      <div class="actions m-4 text-center">
-        <%= link_to '編集する', edit_user_path, class: "btn btn-success" %>
-        <%= link_to '退会削除', user_path(@user), method: :delete, class: "btn btn-danger" %>
-      </div>
-    <% end %>
+    </div>
+    <div class="col-6 p-5">
+      <div class="m-2"><%= link_to "行きたい温泉", bookmarks_user_path(@user), class: "btn btn-info" %></div>
+      <div class="m-2"><%= link_to "行った温泉", visited_marks_user_path(@user), class: "btn btn-info" %></div>
+    </div>
   </div>
 </div>
