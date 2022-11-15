@@ -1,0 +1,63 @@
+<div class="mx-auto col-md-12 col-lg-10 col-xl-9">
+  <div class="row my-4">
+    <h4 class="col-lg-7 col-md-8 col-sm-12 bg-dark text-light text-center"><%= @user.username %> さんの行きたい温泉一覧</h4>
+    <p class="col-md-3 col-sm-12 text-center">（全<%= @bookmarks.count %>件）</p>
+  </div>
+  <div class="row mx-auto py-5">
+    <table class="table table-secondary table-border">
+      <% @bookmarks.each do |bookmark| %>
+        <tbody>
+          <tr>
+            <td><%=image_tag bookmark.hot_spring.get_hot_spring_image, size: "160x100" %></td>
+            <td>
+              <div class="row">
+                <div class="col-lg-3 col-md-4 col-sm-5 m-1">
+                  <% if bookmark.hot_spring.bookmarked_by?(@user) %>
+                    <%= link_to  hot_spring_bookmarks_path(bookmark.hot_spring), class: "btn btn-secondary btn-sm text-decoration-none", method: :delete do %>
+                      <i class="fa-solid fa-bookmark"></i> 行きたい
+                    <% end %>
+                  <% else %>
+                    <%= link_to  hot_spring_bookmarks_path(bookmark.hot_spring), class: "btn btn btn-outline-secondary btn-sm text-decoration-none", method: :post do %>
+                      <i class="fa-regular fa-bookmark"></i> 行きたい
+                    <% end %>
+                  <% end %>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-5 m-1">
+                  <% if bookmark.hot_spring.visited_by?(@user) %>
+                    <%= link_to  hot_spring_visited_marks_path(bookmark.hot_spring), class: "btn btn-secondary btn-sm text-decoration-none", method: :delete do %>
+                      <i class="fa-solid fa-square-check"></i> 行った
+                    <% end %>
+                  <% else %>
+                    <%= link_to  hot_spring_visited_marks_path(bookmark.hot_spring), class: "btn btn btn-outline-secondary btn-sm text-decoration-none", method: :post do %>
+                      <i class="fa-regular fa-square-check"></i> 行った
+                    <% end %>
+                  <% end %>
+                </div>
+                <div class="col-lg-5 col-sm-8 col-12 m-1">
+                  <%= link_to "クチコミを投稿する", hot_spring_reviews_path(bookmark.hot_spring), class: "btn btn-outline-success btn-sm" %>
+                </div>
+              </div>
+              <h5 class="my-2"><%= link_to bookmark.hot_spring.name, hot_spring_path(bookmark.hot_spring), class: "text-dark" %></h5>
+              <div class="row">
+                <div id="average-star-rate<%= bookmark.hot_spring.id %>" class="col-md-8">　総合評価　　</div>
+                <script>
+                  raty(document.querySelector('#average-star-rate<%= bookmark.hot_spring.id %>'),{
+                    //星画像の指定などのオプションをここに
+                    size      : 36,
+                    starOff   : '<%= asset_path('star-off.png') %>',
+                    starOn    : '<%= asset_path('star-on.png') %>',
+                    starHalf: '<%= asset_path('star-half.png') %>',
+                    readOnly: true,
+                    score: <%= bookmark.hot_spring.reviews.average(:rate).to_f.round(1) %>,
+                    half: true,
+                  });
+                </script>
+                <div class="col-md-3 text-right"><%= bookmark.hot_spring.reviews.count %> 件の評価</div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      <% end %>
+    </table>
+  </div>
+</div>

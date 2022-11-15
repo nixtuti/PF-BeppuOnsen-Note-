@@ -28,6 +28,16 @@ class Public::UsersController < ApplicationController
     end
   end
   
+  def bookmarks
+    @user = User.find(params[:id])
+    @bookmarks = Bookmark.where(user_id: @user.id)
+  end
+  
+  def visited_marks
+    @user = User.find(params[:id])
+    @visited_marks = VisitedMark.where(user_id: @user.id)
+  end
+  
   private
   
   def user_params
