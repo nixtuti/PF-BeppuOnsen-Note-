@@ -25,3 +25,15 @@ Review.create!(
     ]
 )
     
+Quality.create!([
+    { name: '単純温泉' },
+    { name: '塩化物泉' },
+    { name: '炭酸水素塩泉'},
+    { name: '硫酸塩泉'},
+    { name: '二酸化炭素泉'},
+    { name: '含鉄泉'},
+    { name: '酸性泉'},
+    { name: '含ヨウ素泉'},
+    { name: '硫黄泉'},
+    { name: '放射能泉'}
+    ])

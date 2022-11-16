@@ -4,6 +4,8 @@ class HotSpring < ApplicationRecord
   has_many :reviews, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
   has_many :visited_marks, dependent: :destroy
+  has_many :hot_spring_qualities, dependent: :destroy
+  has_many :qua, through: :hot_spring_qualities
 
 
   has_one_attached :hot_spring_image

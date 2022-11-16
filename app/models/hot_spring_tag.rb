@@ -1,3 +1,4 @@
 class HotSpringTag < ApplicationRecord
 
+
 end
