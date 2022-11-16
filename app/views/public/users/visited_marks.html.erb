@@ -1,9 +1,9 @@
 <div class="mx-auto col-md-12 col-lg-10 col-xl-9">
   <div class="row my-4">
-    <h4 class="col-lg-7 col-md-8 col-sm-12 bg-dark text-light text-center"><%= @user.username %> さんの行った温泉一覧</h4>
+    <h4 class="col-lg-7 col-md-8 col-sm-12 bg-dark text-light text-center align-middle"><%= @user.username %> さんの行った温泉一覧</h4>
     <p class="col-md-3 col-sm-12 text-center">（全<%= @visited_marks.count %>件）</p>
   </div>
-  <div class="row mx-auto py-5">
+  <div class="row mx-auto pt-3">
     <table class="table table-secondary table-border">
       <% @visited_marks.each do |visited| %>
         <tbody>
