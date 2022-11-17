@@ -12,7 +12,11 @@
       </tr>
       <tr>
         <th>泉質</th>
-        <td></td>
+        <td>
+          <% @hot_spring.qualitys.each do |quality| %>
+            <%= quality.name %>　
+          <% end %>
+        </td>
       </tr>
       <tr>
         <th>料金</th>

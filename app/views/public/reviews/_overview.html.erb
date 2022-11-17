@@ -1,23 +1,26 @@
-<div class="my-4">
-  <div class="row mx-auto">
-    <h4 class="col-lg-3 col-md-5 col-12 mb-5 bg-dark text-light text-center text-nowrap"><%= hot_spring.name %></h4>
-    <div class="col-lg-8 col-md-6 col-11">
-      <ul class="list-unstyled mb-5 d-flex">
+<div>
+  <div class="row mx-auto my-4">
+    <h4 class="col-lg-4 my-auto bg-dark text-light text-center"><%= hot_spring.name %></h4>
+    <div class="col-xl-8">
+      <ul class="list-unstyled d-flex mt-3">
         <% hot_spring.qualitys.each do |quality| %>
-          <li class="border border-dark rounded p-1 bg-light"><%= quality.name %></li>　
+          <li class="border border-danger text-danger rounded p-1"><%= quality.name %></li>　
+        <% end %>
+        <% @hot_spring.tags.each do |tag| %>
+          <li class="border border-info text-info rounded p-1"><%= tag.name %></li>　
         <% end %>
       </ul>
     </div>
   </div>
-  <div class="container d-flex">
+  <div>
     <div class="row">
-      <div class="col-xl-4 col-lg-5">
+      <div class="col-lg-4 col-md-6 text-center">
         <%= image_tag hot_spring.get_hot_spring_image, size: "320x200" %>
       </div>
-      <div class="col-xl-8 col-lg-7 col-md-12 my-3">
+      <div class="col-xl-8 col-lg-7 col-md-6 p-4 mx-auto">
         <div class="row">
           <!--星5段階評価表示-->
-          <div id="average-star-rate" class="col-9"><h5>ユーザー総合評価</h5>　　</div>
+          <div id="average-star-rate" class="col-8"><h5>ユーザー総合評価</h5>　　</div>
             <script>
               raty(document.querySelector('#average-star-rate'),{
                 //星画像の指定などのオプションをここに
@@ -30,7 +33,7 @@
                 half: true,
               });
             </script>
-          <div class="col-3 m-auto"><%= hot_spring.reviews.count %> 件の評価</div>
+          <div class="col-4 m-auto"><%= hot_spring.reviews.count %> 件の評価</div>
           <div class="m-3"><%= hot_spring.introduction %></div>
         </div>
         

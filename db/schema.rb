@@ -53,43 +53,44 @@ ActiveRecord::Schema.define(version: 2022_11_13_064752) do
   end
 
   create_table "bookmarks", force: :cascade do |t|
-    t.integer "hot_spring_id"
-    t.integer "user_id"
+    t.integer "hot_spring_id", null: false
+    t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "comments", force: :cascade do |t|
-    t.integer "review_id"
-    t.integer "user_id"
-    t.text "comment"
+    t.integer "review_id", null: false
+    t.integer "user_id", null: false
+    t.text "comment", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "effects", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "favorites", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "review_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "hot_spring_qualities", force: :cascade do |t|
-    t.integer "hot_spring_id"
+    t.string "name", null: false
     t.integer "quality_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "favorites", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "review_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "hot_spring_qualities", force: :cascade do |t|
+    t.integer "hot_spring_id", null: false
+    t.integer "quality_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "hot_spring_tags", force: :cascade do |t|
-    t.integer "hot_spring_id"
-    t.integer "tag_id"
+    t.integer "hot_spring_id", null: false
+    t.integer "tag_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -113,7 +114,7 @@ ActiveRecord::Schema.define(version: 2022_11_13_064752) do
   end
 
   create_table "qualities", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -130,7 +131,7 @@ ActiveRecord::Schema.define(version: 2022_11_13_064752) do
   end
 
   create_table "tags", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -151,7 +152,7 @@ ActiveRecord::Schema.define(version: 2022_11_13_064752) do
   end
 
   create_table "visited_marks", force: :cascade do |t|
-    t.integer "hot_spring_id"
+    t.integer "hot_spring_id", null: false
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

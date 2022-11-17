@@ -1,21 +1,26 @@
-<div class="mx-auto col-11 col-sm-10 col-lg-8">
-  <div class="row my-4">
-    <h4 class="col-4 mb-5 bg-dark text-light text-center"><%= @hot_spring.name %></h4>
-    <div class="col-8">
-      <ul class="list-unstyled d-flex">
-      <% @hot_spring.qualitys.each do |quality| %>
-        <li class="border border-dark rounded p-1"><%= quality.name %></li>　
-      <% end %>
-    </ul>
+<div>
+  <div class="row mx-auto my-4">
+    <h4 class="col-lg-4 my-auto bg-dark text-light text-center"><%= @hot_spring.name %></h4>
+    <div class="col-xl-8">
+      <ul class="list-unstyled d-flex mt-3">
+        <% @hot_spring.qualitys.each do |quality| %>
+          <li class="border border-danger text-danger rounded p-1"><%= quality.name %></li>　
+        <% end %>
+        <% @hot_spring.tags.each do |tag| %>
+          <li class="border border-info text-info rounded p-1"><%= tag.name %></li>　
+        <% end %>
+      </ul>
     </div>
-    <div class="d-flex">
-      <%= image_tag @hot_spring.get_hot_spring_image, size: "320x200" %>
-      <div class="m-4">
+    <div class="row">
+      <div class="col-lg-4 col-md-6 text-center">
+        <%= image_tag @hot_spring.get_hot_spring_image, size: "320x200" %>
+      </div>
+      <div class="col-xl-8 col-lg-7 col-md-6 p-4 mx-auto">
         <%= @hot_spring.introduction %>
       </div>
     </div>
   </div>
-  <div class="p-5">
+  <div class="p-4">
     <table class="table table-bordered table-dark">
       <tr>
         <th>住所</th>
@@ -28,6 +33,10 @@
             <%= quality.name %>　
           <% end %>
         </td>
+      </tr>
+      <tr>
+        <th>適応症</th>
+        <td></td>
       </tr>
       <tr>
         <th>料金</th>
