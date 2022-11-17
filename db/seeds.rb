@@ -21,6 +21,29 @@ Quality.create!([
     { name: '硫黄泉' },
     { name: '放射能泉' }
     ])
+    
+Tag.create!([
+    { name: '複数泉質' },
+    { name: '貸切風呂' },
+    { name: '露天' },
+    { name: '絶景' },
+    { name: 'サウナ' },
+    { name: 'むし湯' },
+    { name: '砂湯' },
+    { name: '泥湯' },
+    { name: '酵素風呂' },
+    { name: 'シャワー有' },
+    { name: 'ドライヤー有' },
+    { name: '休憩所有' },
+    { name: 'タトゥー可' },
+    { name: '混浴' },
+    { name: '駐車場有' },
+    { name: 'にごり湯' },
+    { name: '源泉掛け流し' },
+    { name: '21時以降営業' },
+    { name: '水着着用' },
+    { name: 'アメニティ充実' }
+    ])
 
 HotSpring.create!([
     {name: "別府海浜砂湯", introduction: "海沿いにある砂湯です。1度に10名以上が入浴できグループの方もいっしょに楽しむことができます。可動式屋根があるので雨天時でも入浴できます。休憩所あり。源泉かけ流しです。", address: "〒874-0023　別府市上人", price: "1500円", private_bath_price: "-", hours: "【3月～11月】8時30分～18時（最終受付17時）【12月～2月】9時～17時（最終受付16時）", holiday: "毎月第4水曜日（祝日の場合は翌日）", parking: "10台", contact: "電話：0977-66-5737",running_status: 0, is_pablished: 1, quality_ids: 2},

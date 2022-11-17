@@ -6,6 +6,8 @@ class HotSpring < ApplicationRecord
   has_many :visited_marks, dependent: :destroy
   has_many :hot_spring_qualities, dependent: :destroy
   has_many :qualitys, through: :hot_spring_qualities
+  has_many :hot_spring_tags, dependent: :destroy
+  has_many :tags, through: :hot_spring_tags
 
 
   has_one_attached :hot_spring_image

@@ -1,10 +1,9 @@
 class Public::HotSpringsController < ApplicationController
 
   def index
-    #@hot_springs = HotSpring.page(params[:page])
     if params[:search].present?
       hot_springs = HotSpring.looks(params[:search])
-    elsif params[:quality_ids].compact_blank.present?
+    elsif params[:quality_ids].present?
       hot_spring_ids = HotSpringQuality.where(quality_id: params[:quality_ids].compact_blank).pluck(:hot_spring_id).uniq
       hot_springs = HotSpring.where(id: hot_spring_ids)
     #リンクの時のコード。チェックボックスに変更済

@@ -10,7 +10,7 @@ class Admin::HotSpringsController < ApplicationController
   def new
     @hot_spring = HotSpring.new
   end
-  
+
   def create
     @hot_spring = HotSpring.new(hot_spring_params)
     if @hot_spring.save
@@ -23,7 +23,7 @@ class Admin::HotSpringsController < ApplicationController
   def edit
     @hot_spring = HotSpring.find(params[:id])
   end
-  
+
   def update
     @hot_spring = HotSpring.find(params[:id])
     if @hot_spring.update(hot_spring_params)
@@ -36,6 +36,6 @@ class Admin::HotSpringsController < ApplicationController
   private
 
   def hot_spring_params
-    params.require(:hot_spring).permit(:name, :introduction, :price, :private_bath_price, :hours, :holiday, :address, :latitude, :longitude, :parking, :contact, :running_status, :is_pablished, :hot_spring_image, quality_ids: [])
+    params.require(:hot_spring).permit(:name, :introduction, :price, :private_bath_price, :hours, :holiday, :address, :latitude, :longitude, :parking, :contact, :running_status, :is_pablished, :hot_spring_image, quality_ids: [], tag_ids: [] )
   end
 end

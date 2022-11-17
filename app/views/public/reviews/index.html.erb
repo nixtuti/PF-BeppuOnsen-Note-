@@ -5,7 +5,13 @@
     <%= link_to "クチコミ一覧", hot_spring_reviews_path(@hot_spring.id), class: "btn btn-info disabled col-4" %>
   </div>
 
-<!-- 吹き出し表示にしたい-->
+  <div class="col-7 mx-auto py-5 position-static">
+    <h6 class="col-lg-4 col-md-6 bg-dark text-light text-center">新規クチコミ投稿</h6>
+    <!--クチコミフォーム表示-->
+    <%= render 'form', hot_spring: @hot_spring, review: @review, url: hot_spring_reviews_path, method: :post, message: "投稿" %>
+  </div>
+
+  <!-- 吹き出し表示にしたい-->
   <div class="row row-center mt-5">
     <!--温泉に紐付くレビューを１つずつ取り出して表示-->
     <% @reviews.each do |review| %>
@@ -81,9 +87,4 @@
     <% end %>
   </div>
 
-  <div class="col-7 mx-auto py-5 position-static">
-    <h6 class="col-lg-4 col-md-6 bg-dark text-light text-center">新規クチコミ投稿</h6>
-    <!--クチコミフォーム表示-->
-    <%= render 'form', hot_spring: @hot_spring, review: @review, url: hot_spring_reviews_path, method: :post, message: "投稿" %>
-  </div>
 </div>

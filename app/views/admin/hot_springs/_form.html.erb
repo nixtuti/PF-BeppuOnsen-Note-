@@ -13,7 +13,7 @@
         <th><%= f.label :introduction, "紹介文", class: "m-0" %></th>
         <td><%= f.text_area :introduction, class: "form-control", rows: 5 %></td>
       </tr>
-      <tr>
+      <tr class="field">
         <th><%= f.label :quality_id, "泉質" %></th>
         <td class="check_box">
           <%= f.collection_check_boxes(:quality_ids, Quality.all, :id, :name) do |quality| %>
@@ -83,8 +83,15 @@
         </td>
       </tr>
       <tr class="field">
-        <th>タグ</th>
-        <td>チェックボックス</td>
+        <th><%= f.label :tag_id, "タグ" %></th>
+        <td class="check_box">
+          <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>
+            <%= tag.label do %>
+              <%= tag.check_box %>
+              <%= tag.text %>
+            <% end %>
+          <% end %>
+        </td>
       </tr>
     </table>
   </div>
