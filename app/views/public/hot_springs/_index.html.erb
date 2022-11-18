@@ -36,10 +36,10 @@
           <h5 class="col-2 m-auto"><%= link_to hot_spring.name, hot_spring_path(hot_spring), class: "text-dark" %></h5>
           <ul class="col-10 small list-unstyled d-flex mt-3">
             <% hot_spring.qualities.each do |quality| %>
-              <li class="border border-danger text-danger rounded p-1"><%= quality.name %></li>　
+              <li class="border border-danger text-danger rounded p-1"><%= quality.name %></li>
             <% end %>
             <% hot_spring.tags.each do |tag| %>
-              <li class="border border-info text-info rounded p-1"><%= tag.name %></li>　
+              <li class="border border-info text-info rounded p-1"><%= tag.name %></li>
             <% end %>
           </ul>
         </div>

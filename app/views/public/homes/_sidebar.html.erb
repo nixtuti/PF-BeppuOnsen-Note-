@@ -1,6 +1,6 @@
 <div class="sidebar col-lg-3 col-md-6 pb-3 mb-3">
   <h4 class="text-center bg-dark text-light">温泉検索</h4>
-  <div>
+  <div class="bg-light">
     <!--検索窓での検索用-->
     <div class="search_area p-2 mb-3">
       <h5>温泉名で検索</h5>
@@ -13,7 +13,7 @@
         </div>
       <% end %>
     </div>
-    
+
     <!--泉質選択での検索用-->
     <div class="search_area p-2 mb-3">
       <h5>泉質で検索</h5>
@@ -23,21 +23,27 @@
       <%# end %>
       <!--br-->
       <!--チェックボックス-->
-      <%= form_with url: hot_springs_path, class: "input-group", method: :get do |f| %>
+      <%= form_with url: hot_springs_path, class: "check_boxes", method: :get do |f| %>
         <ul class="" style="list-style: none;">
           <%= f.collection_check_boxes :quality_ids, Quality.all, :id, :name do |b| %>
           <li><%= b.label { b.check_box + " #{b.text}" } %></li>
           <% end %>
-        </ul>　　
-        <%= f.button "検索", type: "submit", name: nil, class: "mx-auto btn btn-outline-dark rounded-0 rounded-end" %>
+        </ul>
+        <div class="text-center">
+          <%= f.button "検索", type: "submit", name: nil, class: "mx-auto btn btn-outline-dark rounded-0 rounded-end" %>
+        </div>
       <% end %>
     </div>
-    
+
     <!--タグ検索-->
     <div class="search_area p-2">
       <h5>特徴で検索</h5>
-      
+      <div>
+        <% @tags.each do |tag| %>
+          <%= link_to tag.name, hot_springs_path(tag_id: tag.id), class: "text-dark" %>
+        <% end %>
+      </div>
     </div>
-    
+
   </div>
 </div>

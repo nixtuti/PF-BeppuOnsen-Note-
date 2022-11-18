@@ -18,7 +18,11 @@ class HotSpring < ApplicationRecord
 
   validates :name, presence: true
   validates :is_pablished, inclusion: { in: [true, false] }
-
+  
+  scope :latest, -> {order(created_at: :desc)}
+  scope :oldest, -> {order(created_at: :asc)}
+  #scope :rate_count, -> {order(average_rate: :desc)}
+  
   def bookmarked_by?(user)
     bookmarks.exists?(user_id: user.id)
   end

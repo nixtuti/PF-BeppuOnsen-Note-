@@ -2,7 +2,7 @@ class Public::HomesController < ApplicationController
   def top
     @reviews = get_latest_reviews(2)
     @qualities = Quality.all
-    @tags = Tag
+    @tags = Tag.all
   end
 
   def about
