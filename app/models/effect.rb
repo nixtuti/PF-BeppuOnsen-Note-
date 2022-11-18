@@ -1,4 +1,5 @@
 class Effect < ApplicationRecord
-  belongs_to :quality
+  has_many :quality_effectes, dependent: :destroy
+  has_many :qualities, through: :quality_effectes
 
 end

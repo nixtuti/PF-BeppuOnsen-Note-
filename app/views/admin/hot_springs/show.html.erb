@@ -3,7 +3,7 @@
     <h4 class="col-lg-4 my-auto bg-dark text-light text-center"><%= @hot_spring.name %></h4>
     <div class="col-xl-8">
       <ul class="list-unstyled d-flex mt-3">
-        <% @hot_spring.qualitys.each do |quality| %>
+        <% @hot_spring.qualities.each do |quality| %>
           <li class="border border-danger text-danger rounded p-1"><%= quality.name %></li>　
         <% end %>
         <% @hot_spring.tags.each do |tag| %>
@@ -29,7 +29,7 @@
       <tr>
         <th>泉質</th>
         <td>
-          <% @hot_spring.qualitys.each do |quality| %>
+          <% @hot_spring.qualities.each do |quality| %>
             <%= quality.name %>　
           <% end %>
         </td>

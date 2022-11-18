@@ -22,6 +22,56 @@ Quality.create!([
     { name: '放射能泉' }
     ])
 
+Effect.create!([
+    { name: '自律神経不安定症' },
+    { name: '不眠症' },
+    { name: 'うつ状態' },
+    { name: '切傷' },
+    { name: '抹消循環障害' },
+    { name: '冷え性' },
+    { name: '皮膚乾燥症' },
+    { name: 'アトピー性皮膚炎' },
+    { name: '尋常性乾癬' },
+    { name: '表皮化膿症' },
+    { name: '糖尿病' },
+    { name: '慢性湿疹' },
+    { name: '痛風' },
+    { name: '関節リウマチ' },
+    { name: '強直性脊椎炎' }
+    ])
+
+QualityEffect.create!([
+    { quality_id: 1, effect_id: 1},
+    { quality_id: 1, effect_id: 2},
+    { quality_id: 1, effect_id: 3},
+    { quality_id: 2, effect_id: 3},
+    { quality_id: 2, effect_id: 4},
+    { quality_id: 2, effect_id: 5},
+    { quality_id: 2, effect_id: 6},
+    { quality_id: 3, effect_id: 4},
+    { quality_id: 3, effect_id: 5},
+    { quality_id: 3, effect_id: 6},
+    { quality_id: 3, effect_id: 7},
+    { quality_id: 4, effect_id: 3},
+    { quality_id: 4, effect_id: 4},
+    { quality_id: 4, effect_id: 5},
+    { quality_id: 4, effect_id: 6},
+    { quality_id: 5, effect_id: 1},
+    { quality_id: 5, effect_id: 4},
+    { quality_id: 5, effect_id: 5},
+    { quality_id: 5, effect_id: 6},
+    { quality_id: 7, effect_id: 8},
+    { quality_id: 7, effect_id: 9},
+    { quality_id: 7, effect_id: 10},
+    { quality_id: 7, effect_id: 11},
+    { quality_id: 9, effect_id: 8},
+    { quality_id: 9, effect_id: 9},
+    { quality_id: 9, effect_id: 10},
+    { quality_id: 9, effect_id: 12},
+    { quality_id: 10, effect_id: 13},
+    { quality_id: 10, effect_id: 14},
+    { quality_id: 10, effect_id: 15}
+    ])
 
 Tag.create!([
     { name: '複数泉質' },

@@ -13,8 +13,16 @@
       <tr>
         <th>泉質</th>
         <td>
-          <% @hot_spring.qualitys.each do |quality| %>
+          <% @hot_spring.qualities.each do |quality| %>
             <%= quality.name %>　
+          <% end %>
+        </td>
+      </tr>
+      <tr>
+        <th>適応症</th>
+        <td>
+          <% @hot_spring.qualities.effects.each do |effect| %>
+            <%= effect.name %>　
           <% end %>
         </td>
       </tr>
