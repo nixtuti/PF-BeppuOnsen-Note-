@@ -12,6 +12,8 @@ class Admin::HotSpringsController < ApplicationController
 
   def new
     @hot_spring = HotSpring.new
+    #タグの追加を行えるようにしたい
+    #@tag = Tag.new(tag_params).save
   end
 
   def create
@@ -41,4 +43,8 @@ class Admin::HotSpringsController < ApplicationController
   def hot_spring_params
     params.require(:hot_spring).permit(:name, :introduction, :price, :private_bath_price, :hours, :holiday, :address, :latitude, :longitude, :parking, :contact, :running_status, :is_pablished, :hot_spring_image, quality_ids: [], tag_ids: [] )
   end
+
+  #def tag_params
+  #  params.require(:tag).permit(:name)
+  #end
 end
