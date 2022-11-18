@@ -35,8 +35,12 @@
         </td>
       </tr>
       <tr>
-        <th>適応症</th>
-        <td></td>
+        <th>泉質別浴用適応症</th>
+        <td>
+          <% @effects.each do |effect| %>
+            <%= effect.name %>　
+          <% end %>
+        </td>
       </tr>
       <tr>
         <th>料金</th>

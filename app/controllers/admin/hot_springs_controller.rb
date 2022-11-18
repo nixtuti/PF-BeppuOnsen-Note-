@@ -5,6 +5,9 @@ class Admin::HotSpringsController < ApplicationController
 
   def show
     @hot_spring = HotSpring.find(params[:id])
+    quality_ids = @hot_spring.qualities.pluck(:id)
+    effects = QualityEffect.where(quality_id: quality_ids).pluck(:effect_id).uniq
+    @effects = Effect.where(id: effects)
   end
 
   def new

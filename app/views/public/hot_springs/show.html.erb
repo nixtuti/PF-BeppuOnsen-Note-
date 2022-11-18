@@ -19,9 +19,9 @@
         </td>
       </tr>
       <tr>
-        <th>適応症</th>
+        <th>泉質別浴用適応症</th>
         <td>
-          <% @hot_spring.qualities.effects.each do |effect| %>
+          <% @effects.each do |effect| %>
             <%= effect.name %>　
           <% end %>
         </td>
