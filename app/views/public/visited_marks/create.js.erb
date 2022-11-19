@@ -1,0 +1,1 @@
+$("#hot_spring_<%= @hot_spring.id %> .visited_mark-btn").html("<%= j(render 'public/visited_marks/visited_mark-btn', hot_spring: @hot_spring, user: current_user) %>");

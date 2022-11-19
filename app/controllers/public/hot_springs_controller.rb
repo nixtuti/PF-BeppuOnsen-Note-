@@ -19,7 +19,7 @@ class Public::HotSpringsController < ApplicationController
     end
   
     #並び替えの選択があった場合の条件分岐
-    if params[:latest]==""
+    if params[:latest]=="true"
       hot_springs_array = hot_springs.latest
     elsif params[:oldest]=="true"
       hot_springs_array = hot_springs.oldest

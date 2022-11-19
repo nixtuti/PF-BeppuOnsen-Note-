@@ -1,0 +1,9 @@
+<% if hot_spring.visited_by?(user) %>
+  <%= link_to  hot_spring_visited_marks_path(hot_spring), class: "btn btn-secondary btn-sm text-decoration-none", method: :delete, remote: true do %>
+    <i class="fa-solid fa-square-check"></i> 行った
+  <% end %>
+<% else %>
+  <%= link_to  hot_spring_visited_marks_path(hot_spring), class: "btn btn btn-outline-secondary btn-sm text-decoration-none", method: :post, remote: true do %>
+    <i class="fa-regular fa-square-check"></i> 行った
+  <% end %>
+<% end %>

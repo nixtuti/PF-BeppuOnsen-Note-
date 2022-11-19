@@ -1,31 +1,15 @@
 <% hot_springs.each do |hot_spring| %>
   <tbody>
-    <tr>
+    <tr id="hot_spring_<%= hot_spring.id %>">
       <td class="text-center align-middle"><%=image_tag hot_spring.get_hot_spring_image, size: "160x100" %></td>
       <td>
         <div class="row">
           <ul class="col-11 list-unstyled d-flex mb-0">
-            <li class="m-1">
-              <% if hot_spring.bookmarked_by?(user) %>
-                <%= link_to  hot_spring_bookmarks_path(hot_spring), class: "btn btn-secondary btn-sm text-decoration-none", method: :delete do %>
-                  <i class="fa-solid fa-bookmark"></i> 行きたい
-                <% end %>
-              <% else %>
-                <%= link_to  hot_spring_bookmarks_path(hot_spring), class: "btn btn btn-outline-secondary btn-sm text-decoration-none", method: :post do %>
-                  <i class="fa-regular fa-bookmark"></i> 行きたい
-                <% end %>
-              <% end %>
+            <li class="bookmark-btn m-1">
+              <%= render 'public/bookmarks/bookmark-btn', hot_spring: hot_spring, user: user %>
             </li>
-            <li class="m-1">
-              <% if hot_spring.visited_by?(user) %>
-                <%= link_to  hot_spring_visited_marks_path(hot_spring), class: "btn btn-secondary btn-sm text-decoration-none", method: :delete do %>
-                  <i class="fa-solid fa-square-check"></i> 行った
-                <% end %>
-              <% else %>
-                <%= link_to  hot_spring_visited_marks_path(hot_spring), class: "btn btn btn-outline-secondary btn-sm text-decoration-none", method: :post do %>
-                  <i class="fa-regular fa-square-check"></i> 行った
-                <% end %>
-              <% end %>
+            <li class="visited_mark-btn m-1">
+              <%= render 'public/visited_marks/visited_mark-btn', hot_spring: hot_spring, user: user %>
             </li>
             <li class="m-1">
               <%= link_to "クチコミを投稿する", hot_spring_reviews_path(hot_spring), class: "btn btn-outline-success btn-sm" %>
@@ -33,8 +17,8 @@
           </ul>
         </div>
         <div class="row">
-          <h5 class="col-2 m-auto"><%= link_to hot_spring.name, hot_spring_path(hot_spring), class: "text-dark" %></h5>
-          <ul class="col-10 small list-unstyled d-flex mt-3">
+          <h5 class="col-3 m-auto"><%= link_to hot_spring.name, hot_spring_path(hot_spring), class: "text-dark" %></h5>
+          <ul class="col-9 small list-unstyled d-flex mt-3">
             <% hot_spring.qualities.each do |quality| %>
               <li class="border border-danger text-danger rounded p-1 mr-1"><%= quality.name %></li>
             <% end %>

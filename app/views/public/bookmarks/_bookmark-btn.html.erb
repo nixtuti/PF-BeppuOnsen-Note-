@@ -1,0 +1,9 @@
+<% if hot_spring.bookmarked_by?(user) %>
+  <%= link_to  hot_spring_bookmarks_path(hot_spring), class: "btn btn-secondary btn-sm text-decoration-none", method: :delete, remote: true do %>
+    <i class="fa-solid fa-bookmark"></i> 行きたい
+  <% end %>
+<% else %>
+  <%= link_to  hot_spring_bookmarks_path(hot_spring), class: "btn btn btn-outline-secondary btn-sm text-decoration-none", method: :post, remote: true do %>
+    <i class="fa-regular fa-bookmark"></i> 行きたい
+  <% end %>
+<% end %>
