@@ -6,7 +6,7 @@
         <% hot_spring.qualities.each do |quality| %>
           <li class="border border-danger text-danger rounded p-1"><%= quality.name %></li>　
         <% end %>
-        <% @hot_spring.tags.each do |tag| %>
+        <% hot_spring.tags.each do |tag| %>
           <li class="border border-info text-info rounded p-1"><%= tag.name %></li>　
         <% end %>
       </ul>

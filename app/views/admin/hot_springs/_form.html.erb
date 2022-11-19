@@ -57,7 +57,7 @@
         <td>
           <div class="w-25 d-inline-block">
             <%= f.radio_button :running_status, :running  %>
-            <%= f.label :running_status, "営業" %> 
+            <%= f.label :running_status, "営業" %>
           </div>
           <div class="w-25 d-inline-block">
             <%= f.radio_button :running_status, :interrupt %>
@@ -90,6 +90,12 @@
               <%= tag.check_box %>
               <%= tag.text %>
             <% end %>
+          <% end %>
+          <!-- タグの追加が行えるようにしたい-->
+          <%= form_with model: @tag, local: true do |f| %>
+            <%= f.label :name, "新規タグ追加", class: "m-0" %>
+            <%= f.text_field :name %>
+            <%= f.submit "追加"%>
           <% end %>
         </td>
       </tr>

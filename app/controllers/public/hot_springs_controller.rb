@@ -19,13 +19,12 @@ class Public::HotSpringsController < ApplicationController
     end
   
     #並び替えの選択があった場合の条件分岐
-    if params[:latest]
+    if params[:latest]==""
       hot_springs_array = hot_springs.latest
-    elsif params[:oldest]
+    elsif params[:oldest]=="true"
       hot_springs_array = hot_springs.oldest
-    elsif params[:rate_count]
-      #average_rate = hot_spring.reviews.average(:rate).to_f.round(1)
-      hot_springs_array = hot_springs.rate_count
+    elsif params[:rate_count]=="true"
+      hot_springs_array = hot_springs.rate_avg
     else
       hot_springs_array = hot_springs
     end

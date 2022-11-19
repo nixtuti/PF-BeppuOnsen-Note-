@@ -1,4 +1,6 @@
 class Admin::HotSpringsController < ApplicationController
+  protect_from_forgery
+
   def index
     @hot_springs = HotSpring.page(params[:page])
   end
@@ -13,7 +15,7 @@ class Admin::HotSpringsController < ApplicationController
   def new
     @hot_spring = HotSpring.new
     #タグの追加を行えるようにしたい
-    #@tag = Tag.new(tag_params).save
+    @tag = Tag.new
   end
 
   def create
@@ -27,6 +29,8 @@ class Admin::HotSpringsController < ApplicationController
 
   def edit
     @hot_spring = HotSpring.find(params[:id])
+    #タグの追加を行えるようにしたい
+    @tag = Tag.new
   end
 
   def update
@@ -44,7 +48,4 @@ class Admin::HotSpringsController < ApplicationController
     params.require(:hot_spring).permit(:name, :introduction, :price, :private_bath_price, :hours, :holiday, :address, :latitude, :longitude, :parking, :contact, :running_status, :is_pablished, :hot_spring_image, quality_ids: [], tag_ids: [] )
   end
 
-  #def tag_params
-  #  params.require(:tag).permit(:name)
-  #end
 end
