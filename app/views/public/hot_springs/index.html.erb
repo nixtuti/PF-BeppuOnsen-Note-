@@ -10,7 +10,7 @@
     <%#= link_to "新規登録を申請する", class: "align-middle text-dark" %>
   </div>
   <div class="row mx-auto pt-3">
-    <table class="table table-secondary table-border">
+    <table class="table table-secondary table-border table-responsive">
       <%= render 'index', hot_springs: @hot_springs , user: current_user %>
     </table>
     <%= paginate @hot_springs %>

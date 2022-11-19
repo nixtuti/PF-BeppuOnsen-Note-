@@ -91,12 +91,6 @@
               <%= tag.text %>
             <% end %>
           <% end %>
-          <!-- タグの追加が行えるようにしたい-->
-          <%= form_with model: @tag, local: true do |f| %>
-            <%= f.label :name, "新規タグ追加", class: "m-0" %>
-            <%= f.text_field :name %>
-            <%= f.submit "追加"%>
-          <% end %>
         </td>
       </tr>
     </table>
@@ -105,3 +99,10 @@
     <%= f.submit message, class: "btn btn-success" %>
   </div>
 <% end %>
+
+<!-- タグの追加が行えるようにしたい-->
+<%#= form_with model: @tag, local: true do |f| %>
+  <%#= f.label :name, "新規タグ追加", class: "m-0" %>
+  <%#= f.text_field :name %>
+  <%#= f.submit "追加"%>
+<%# end %>
