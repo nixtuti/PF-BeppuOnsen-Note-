@@ -5,7 +5,7 @@
     <%= link_to "クチコミ一覧", hot_spring_reviews_path(@hot_spring.id), class: "btn btn-info disabled col-4" %>
   </div>
 
-  <div class="col-7 mx-auto py-5 position-static">
+  <div class="col-md-7 mx-auto py-5 position-static">
     <h6 class="col-lg-4 col-md-6 bg-dark text-light text-center">新規クチコミ投稿</h6>
     <!--クチコミフォーム表示-->
     <%= render 'form', hot_spring: @hot_spring, review: @review, url: hot_spring_reviews_path, method: :post, message: "投稿" %>
@@ -63,12 +63,12 @@
                 <i class="fa-regular fa-heart"></i>
               <% end %>
             <% end %>
-            いいね：<%= review.favorites.count %>　
+            いいね：<%= review.favorites.count %>
             <!--コメント数表示-->
             <%= link_to hot_spring_review_path(@hot_spring, review), class: "text-decoration-none" do %>
               <i class="fa-solid fa-comment-dots"></i>
             <% end %>
-            コメント：<%= review.comments.count %>　
+            コメント：<%= review.comments.count %>
             <!--ログイン中のユーザーであれば、編集、削除のリンクを表示-->
             <% if review.user_id == current_user.id %>
                 <%= link_to "編集", edit_hot_spring_review_path(review.hot_spring_id, review.id) %>
@@ -81,7 +81,7 @@
         <div class="popover-content">
           <p><%= review.body %></p>
         </div>
-        
+
       </div>
     </div>
     <% end %>

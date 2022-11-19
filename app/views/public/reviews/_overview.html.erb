@@ -1,4 +1,4 @@
-<div>
+<div id="hot_spring_<%= hot_spring.id %>">
   <div class="row mx-auto my-4">
     <h4 class="col-lg-4 my-auto bg-dark text-light text-center"><%= hot_spring.name %></h4>
     <div class="col-xl-8">
@@ -17,7 +17,16 @@
       <div class="col-lg-4 col-md-6 text-center">
         <%= image_tag hot_spring.get_hot_spring_image, size: "320x200" %>
       </div>
-      <div class="col-xl-8 col-lg-7 col-md-6 p-4 mx-auto">
+      <div class="col-xl-8 col-lg-7 col-md-6 p-2 mx-auto">
+        <div class="row">
+          <ul class="col-11 list-unstyled d-flex mb-2">
+            <li class="bookmark-btn m-1">
+              <%= render 'public/bookmarks/bookmark-btn', hot_spring: hot_spring, user: current_user %>
+            </li>
+            <li class="visited_mark-btn m-1">
+              <%= render 'public/visited_marks/visited_mark-btn', hot_spring: hot_spring, user: current_user %>
+            </li>
+        </div>
         <div class="row">
           <!--星5段階評価表示-->
           <div id="average-star-rate" class="col-8"><h5>ユーザー総合評価</h5>　　</div>
