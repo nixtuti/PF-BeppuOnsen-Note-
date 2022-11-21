@@ -1,0 +1,16 @@
+<% review.comments.each do |comment| %>
+  <div class="row p-2">
+    <div class="col-2">
+      <%= image_tag comment.user.get_profile_image, size: '50x50', class: "mg-responsive rounded-circle" %><br>
+      <%= comment.user.username %><br>
+      （<%= comment.user.age %>）
+    </div>
+    <div class="col-10 text-left">
+      <%= comment.comment %><br>
+      <%= comment.created_at.strftime('%Y/%m/%d') %>
+      <% if comment.user == current_user %>
+        <%= link_to "削除", hot_spring_review_comment_path(hot_spring, review, comment), method: :delete, remote: true %>
+      <% end %>
+    </div>
+  </div>
+<% end %>

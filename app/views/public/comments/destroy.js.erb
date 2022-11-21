@@ -1,0 +1,2 @@
+$("#review_<%= @review.id %> .comments-count").html("コメント：<%= @review.comments.count %>");
+$(".review_comments").html("<%= j(render 'public/comments/index', review: @review, hot_spring: @hot_spring) %>");

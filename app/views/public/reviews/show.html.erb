@@ -39,7 +39,10 @@
                 <%= render 'public/favorites/favorite-btn', hot_spring: @hot_spring, review: @review %>
               </div>
               <!--コメント数表示-->
-              <i class="fa-solid fa-comment-dots"></i>コメント：<%= @review.comments.count %>　
+              <i class="fa-solid fa-comment-dots"></i>
+              <div class="comments-count d-inline">
+                コメント：<%= @review.comments.count %>　
+              </div>
               <!--ログイン中のユーザーであれば、編集、削除のリンクを表示-->
               <% if @review.user_id == current_user.id %>
                   <%= link_to "編集", edit_hot_spring_review_path(@hot_spring, @review) %>
@@ -54,29 +57,17 @@
           
         </div>
         <!--コメントを表示-->
-        <% @review.comments.each do |comment| %>
-          <div class="row p-2">
-            <div class="col-2">
-              <%= image_tag comment.user.get_profile_image, size: '50x50', class: "mg-responsive rounded-circle" %><br>
-              <%= comment.user.username %><br>
-              （<%= comment.user.age %>）
-            </div>
-            <div class="col-10 text-left">
-              <%= comment.comment %><br>
-              <%= comment.created_at.strftime('%Y/%m/%d') %>
-              <% if comment.user == current_user %>
-                <%= link_to "削除", hot_spring_review_comment_path(@hot_spring, @review, comment), method: :delete %>
-              <% end %>
-            </div>
-          </div>
-        <% end %>
+        <div class="review_comments">
+          <%= render 'public/comments/index', review: @review, hot_spring: @hot_spring %>
+        </div>
+        
       </div>
     </div>
     
     <!--コメント新規投稿フォーム-->
     <div class="row mx-auto">
       <div class="col-7">
-      <%= form_with model: [@hot_spring, @review, @comment] do |f| %>
+      <%= form_with model: [@hot_spring, @review, @comment], local: false do |f| %>
         <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに", class: "form-control" %>
         <%= f.submit "送信する" %>
       <% end %>

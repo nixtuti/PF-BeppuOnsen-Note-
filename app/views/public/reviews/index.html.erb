@@ -62,7 +62,9 @@
                 <%= link_to hot_spring_review_path(@hot_spring, review), class: "text-decoration-none" do %>
                   <i class="fa-solid fa-comment-dots"></i>
                 <% end %>
-                コメント：<%= review.comments.count %>
+                <div class="comments-count d-inline">
+                  コメント：<%= review.comments.count %>
+                </div>
                 <!--ログイン中のユーザーであれば、編集、削除のリンクを表示-->
                 <% if review.user_id == current_user.id %>
                     <%= link_to "編集", edit_hot_spring_review_path(review.hot_spring_id, review.id) %>
