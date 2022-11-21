@@ -79,7 +79,7 @@
         </div>
         <!--レビュー本文表示-->
         <div class="popover-content">
-          <p><%= review.body %></p>
+          <p><%=safe_join(review.body.split("\n"),tag(:br))%></p>
         </div>
 
       </div>

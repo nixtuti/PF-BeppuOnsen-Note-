@@ -1,10 +1,10 @@
-<div class="mx-auto col-11 col-sm-10 col-lg-8">
+<div class="mx-auto col-11">
   <div class="mt-4">
-    <h4 class="col-lg-5 col-md-6 bg-dark text-light text-center text-nowrap">ユーザー登録情報</h4>
+    <h4 class="col-lg-5 col-md-6 bg-dark text-light text-center">ユーザー登録情報</h4>
   </div>
   <div class="row">
-    <div class="col-8 p-5">
-      <table class="table table-border table-secondary text-nowrap">
+    <div class="col-md-8 pt-5 table-responsive">
+      <table class="table table-border table-secondary">
         <tr>
           <th class="align-middle">プロフィール画像</th>
           <td><%= image_tag @user.get_profile_image, size: "70x70" %></td>
@@ -17,7 +17,7 @@
           <th>生年月日</th>
           <td><%= @user.birth_date %></td>
         </tr>
-        <tr class="field align-middle text-nowrap">
+        <tr class="field align-middle">
           <th>性別</th>
           <td><%= @user.sex_i18n %></td>
         </tr>
@@ -35,12 +35,16 @@
         </div>
       <% end %>
     </div>
-    <div class="col-4 py-5">
+    <div class="col-xl-4 py-5">
       <div class="m-2">
-        <%= link_to "行きたい温泉", bookmarks_user_path(@user), class: "btn btn-info" %><%= @bookmarks.count %>
+        <%= link_to bookmarks_user_path(@user), class: "btn btn-info" do %>
+          行きたい温泉　（<%= @bookmarks.count %>）
+        <% end %>
       </div>
       <div class="m-2">
-        <%= link_to "行った温泉", visited_marks_user_path(@user), class: "btn btn-info" %><%= @visited_marks.count %>
+        <%= link_to visited_marks_user_path(@user), class: "btn btn-info" do %>
+          行った温泉　　（<%= @visited_marks.count %>）
+        <% end %>
       </div>
     </div>
   </div>

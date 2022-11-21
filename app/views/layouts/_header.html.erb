@@ -11,24 +11,26 @@
           <% if !admin_signed_in? %>
             <li>
               <%=  link_to about_path, class: 'nav-link text-light' do %>
-                <i class="fas fa-solid fa-magnifying-glass"></i> 別府温泉について
+                <i class="fa-regular fa-circle-question"></i> 別府温泉について
               <% end %>
             </li>
             <li>
               <%=  link_to hot_springs_path, class: 'nav-link text-light' do %>
-                <i class="fa-solid fa-hot-tub-person"></i> 温泉一覧
+                <i class="fa-solid fa-list"></i> 温泉一覧
               <% end %>
             </li>
             
             <% if user_signed_in? %>
-              <li class="small p-2">
+              <li class="small px-2 py-0 ">
                 <div class="text-light">ユーザーネーム：<%= current_user.username %></div>
-                <%= link_to user_path(current_user), class: 'nav-link text-light pt-0 pb-0' do %>
-                  <i class="fas fa-solid fa-user"></i> マイページ
-                <% end %>
-                <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link text-light pt-0 pb-0' do %>
-                  <i class="fas fa-sign-out-alt"></i> ログアウト
-                <% end %>
+                <div class="d-flex">
+                  <%= link_to user_path(current_user), class: 'nav-link text-light pr-2 p-0' do %>
+                    <i class="fas fa-solid fa-user"></i> マイページ
+                  <% end %>
+                  <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link text-light p-0' do %>
+                    <i class="fas fa-sign-out-alt"></i> ログアウト
+                  <% end %>
+                </div>
               </li>
               
             <% else %>

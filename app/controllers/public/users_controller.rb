@@ -32,12 +32,12 @@ class Public::UsersController < ApplicationController
   
   def bookmarks
     @user = User.find(params[:id])
-    @bookmarks = Bookmark.where(user_id: @user.id)
+    @hot_springs = HotSpring.where(id: @user.bookmarks.pluck(:hot_spring_id))
   end
   
   def visited_marks
     @user = User.find(params[:id])
-    @visited_marks = VisitedMark.where(user_id: @user.id)
+    @hot_springs = HotSpring.where(id: @user.visited_marks.pluck(:hot_spring_id))
   end
   
   private

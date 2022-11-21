@@ -56,7 +56,7 @@
           </div>
         </div>
         <div class="popover-content">
-          <p><%= @review.body %></p>
+          <p><%=safe_join(@review.body.split("\n"),tag(:br))%></p>
         </div>
         
       </div>
@@ -79,7 +79,7 @@
       <% end %>
     </div>
     <!--コメント新規投稿フォーム-->
-    <div>
+    <div class="row">
       <%= form_with model: [@hot_spring, @review, @comment] do |f| %>
         <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
         <%= f.submit "送信する" %>
