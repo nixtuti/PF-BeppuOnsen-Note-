@@ -4,8 +4,8 @@
     <%= link_to "温泉情報", hot_spring_path(@hot_spring), class: "btn btn-info disabled col-4" %>
     <%= link_to "クチコミ一覧", hot_spring_reviews_path(@hot_spring.id), class: "btn btn-info col-4" %>
   </div>
-  <div class="m-5">
-    <table class="table table-bordered table-dark">
+  <div class="col-11 py-5 mx-auto">
+    <table class="table table-bordered table-dark table-responsive">
       <tr>
         <th>住所</th>
         <td><%= @hot_spring.address %></td>

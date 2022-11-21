@@ -1,6 +1,6 @@
 class Public::HomesController < ApplicationController
   def top
-    @reviews = get_latest_reviews(2)
+    @reviews = get_latest_reviews(4)
     @qualities = Quality.all
     @tags = Tag.all
   end
