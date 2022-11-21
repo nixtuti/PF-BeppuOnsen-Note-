@@ -25,6 +25,8 @@ class Public::HotSpringsController < ApplicationController
       hot_springs_array = hot_springs.oldest
     elsif params[:rate_count]=="true"
       hot_springs_array = hot_springs.rate_avg
+    elsif params[:review_count]=="true"
+      hot_springs_array = hot_springs.review_amount
     else
       hot_springs_array = hot_springs
     end

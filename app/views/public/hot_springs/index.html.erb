@@ -5,6 +5,7 @@
     <%= link_to '新しい順', hot_springs_path(latest: "true") %>
     |<%= link_to '古い順', hot_springs_path(oldest: "true") %>
     |<%= link_to '評価の高い順', hot_springs_path(rate_count: "true") %>
+    |<%= link_to 'クチコミの多い順', hot_springs_path(review_count: "true") %>
     
     <!--余裕があれば、ユーザーの温泉情報登録申請ができるようにする-->
     <%#= link_to "新規登録を申請する", class: "align-middle text-dark" %>
