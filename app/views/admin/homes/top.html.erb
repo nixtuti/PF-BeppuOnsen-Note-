@@ -16,6 +16,7 @@
                         <th>温泉名</th>
                         <th>評価</th>
                         <th>クチコミ</th>
+                        <th>画像数</th>
                         <th>公開ステータス</th>
                     </tr>
                 </thead>
@@ -33,6 +34,7 @@
                                 <%=link_to review.title, admin_review_path(review), class: "text-dark" %><br>
                                 <%= review.body %>
                             </td>
+                            <td><%= review.images.count %></td>
                             <td><%= review.is_pablished ? "公開" : "非公開"%></td>
                         </tr>
                     <% end %>

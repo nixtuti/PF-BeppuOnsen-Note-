@@ -8,6 +8,9 @@ class Review < ApplicationRecord
   
   validates :title, presence: true
   validates :body, presence: true
+  validates :hot_spring_id, presence: true
+  validates :user_id, presence: true
+  validates :is_pablished, presence: true
   #5段階評価のバリデーション
   validates :rate, presence: true
   validates :rate, numericality: {

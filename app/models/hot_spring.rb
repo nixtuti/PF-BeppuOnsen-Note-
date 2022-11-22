@@ -17,7 +17,18 @@ class HotSpring < ApplicationRecord
   end
 
   validates :name, presence: true
+  validates :introduction, presence: true
+  validates :address, presence: true
+  validates :price, presence: true
+  validates :private_bath_price, presence: true
+  validates :hours, presence: true
+  validates :holiday, presence: true
+  validates :parking, presence: true
+  validates :contact, presence: true
+  validates :running_status, presence: true
   validates :is_pablished, inclusion: { in: [true, false] }
+  validates :hot_spring_qualities, presence: true
+  
   
   scope :latest, -> {order(created_at: :desc)}
   scope :oldest, -> {order(created_at: :asc)}

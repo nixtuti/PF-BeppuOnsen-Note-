@@ -1,0 +1,26 @@
+ja:
+  activerecord:
+    models:
+      hot_spring: 温泉
+      review: レビュー
+      comment: コメント
+    attributes:
+      hot_spring:
+        name: 温泉名
+        introduction: 紹介文
+        price: 料金
+        address: 住所
+        private_bath_price: 貸切風呂料金
+        hours: 立寄湯利用時間
+        holiday: 定休日
+        parking: 駐車場
+        contact: 問い合わせ先
+        running_status: 営業ステータス
+        hot_spring_qualities: 泉質
+      review:
+        title: クチコミタイトル
+        body: クチコミ本文
+        rate: 評価
+        is_pablished: 公開ステータス
+      comment:
+        comment: コメント

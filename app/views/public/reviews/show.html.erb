@@ -1,78 +1,77 @@
-<div class="container">
+<div id="review_<%= @review.id %>" class="pb-3">
   <!-- 吹き出し表示にしたい-->
-  <div class="mt-5">
-    <div id="review_<%= @review.id %>" class="row mx-auto">
-      <div class="col-lg-2 col-md-3 col-sm-4 col-xs-5">
-        <%= image_tag @review.user.get_profile_image, size: '50x50', class: "img-responsive m-3 rounded-circle" %>
-      </div>
-      <div class="col-lg-10 col-md-9 col-sm-8 col-xs-7">
-        <div class="popover left show" style="position:relative; top=-90px; left=100px; max-width:100%; display:inline;">
-          <div class="arrow"></div>
-          <% if @review.images.attached? %>
-            <% @review.images.each do |image| %>
-              <%= image_tag image, size: '160x100' %>
-            <% end %>
-          <% end %>
-          <div class="row">
-            <div class="col-6">
-              <!--レビュータイトル-->
-              <h3 class="popover-title"><%= @review.title %></h3>
-              <!--星5段階評価表示-->
-              <div id="star-rate<%= @review.id %>"></div>
-                <script>
-                  raty(document.querySelector('#star-rate<%= @review.id %>'),{
-                    //星画像の指定などのオプションをここに
-                    size      : 36,
-                    starOff   : '<%= asset_path('star-off.png') %>',
-                    starOn    : '<%= asset_path('star-on.png') %>',
-                    starHalf: '<%= asset_path('star-half.png') %>',
-                    readOnly: true,
-                    score: <%= @review.rate %>,
-                    half: true,
-                  });
-                </script>
-            </div>
-            <div class="col-6 text-right">
-              投稿日：<%= @review.created_at.strftime('%Y年%m月%d日')%><br>
-              <!--いいね表示-->
-              <div class="favorite-btn d-inline">
-                <%= render 'public/favorites/favorite-btn', hot_spring: @hot_spring, review: @review %>
-              </div>
-              <!--コメント数表示-->
-              <i class="fa-solid fa-comment-dots"></i>
-              <div class="comments-count d-inline">
-                コメント：<%= @review.comments.count %>　
-              </div>
-              <!--ログイン中のユーザーであれば、編集、削除のリンクを表示-->
-              <% if @review.user_id == current_user.id %>
-                  <%= link_to "編集", edit_hot_spring_review_path(@hot_spring, @review) %>
-                  |
-                  <%= link_to "削除", hot_spring_review_path(@hot_spring, @review), data: { confirm: '本当に消しますか？' }, method: :delete %>
-              <% end %>
-            </div>
-          </div>
-          <div class="popover-content">
-            <p><%=safe_join(@review.body.split("\n"),tag(:br))%></p>
-          </div>
-          
-        </div>
-        <!--コメントを表示-->
-        <div class="review_comments">
-          <%= render 'public/comments/index', review: @review, hot_spring: @hot_spring %>
-        </div>
-        
-      </div>
-    </div>
-    
-    <!--コメント新規投稿フォーム-->
-    <div class="row mx-auto">
-      <div class="col-7">
-      <%= form_with model: [@hot_spring, @review, @comment], local: false do |f| %>
-        <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに", class: "form-control" %>
-        <%= f.submit "送信する" %>
+  <div class="review row my-4">
+    <div class="col-lg-2 col-md-3">
+      <%= image_tag @review.user.get_profile_image, size: '50x50', class: "img-responsive rounded-circle" %><br>
+      <%= @review.user.username %><br>
+      <% if @review.user.username != "ゲスト" %>
+        (<%= @review.user.age %>)
       <% end %>
+    </div>
+    <div class="col-lg-10 col-md-9">
+      <% if @review.images.attached? %>
+        <% @review.images.each do |image| %>
+          <%= image_tag image, size: '160x100' %>
+        <% end %>
+      <% end %>
+      <div class="row">
+        <div class="col-lg-6">
+          <!--レビュータイトル-->
+          <h3 class="title"><%= @review.title %></h3>
+          <!--星5段階評価表示-->
+          <div id="star-rate<%= @review.id %>"></div>
+            <script>
+              raty(document.querySelector('#star-rate<%= @review.id %>'),{
+                //星画像の指定などのオプションをここに
+                size      : 36,
+                starOff   : '<%= asset_path('star-off.png') %>',
+                starOn    : '<%= asset_path('star-on.png') %>',
+                starHalf: '<%= asset_path('star-half.png') %>',
+                readOnly: true,
+                score: <%= @review.rate %>,
+                half: true,
+              });
+            </script>
+        </div>
+        <div class="col-lg-6 text-right">
+          投稿日：<%= @review.created_at.strftime('%Y年%m月%d日')%><br>
+          <!--いいね表示-->
+          <div class="favorite-btn d-inline">
+            <%= render 'public/favorites/favorite-btn', hot_spring: @hot_spring, review: @review %>
+          </div>
+          <!--コメント数表示-->
+          <i class="fa-solid fa-comment-dots"></i>
+          <div class="comments-count d-inline">
+            コメント：<%= @review.comments.count %>　
+          </div>
+          <!--ログイン中のユーザーであれば、編集、削除のリンクを表示-->
+          <% if @review.user_id == current_user.id %>
+              <%= link_to "編集", edit_hot_spring_review_path(@hot_spring, @review) %>
+              |
+              <%= link_to "削除", hot_spring_review_path(@hot_spring, @review), data: { confirm: '本当に消しますか？' }, method: :delete %>
+          <% end %>
+        </div>
+      </div>
+      <div class="content">
+        <p><%=safe_join(@review.body.split("\n"),tag(:br))%></p>
       </div>
     </div>
   </div>
+  <div class="comment_box row">
+    <!--コメント新規投稿フォーム-->
+    <div class="col-md-4 comment_field py-2">
+      <div class="comment_form">
+      <%= form_with model: [@hot_spring, @review, @comment], method: :post, local: false do |f| %>
+        <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに", class: "form-control" %>
+        <div class="text-right">
+          <%= f.submit "送信する", class: "btn btn-success btn-sm mt-1 text-right" %>
+        </div>
+      <% end %>
+      </div>
+    </div>
+    <!--コメントを表示-->
+    <div class="col-md-7 col-11 review_comments m-auto bg-light">
+      <%= render 'public/comments/index', review: @review, hot_spring: @hot_spring %>
+    </div>
+  </div>
 </div>
-

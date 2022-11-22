@@ -1,6 +1,9 @@
 
  <div class="col-7 mx-auto py-5 position-static">
     <h6 class="col-lg-4 col-md-6 bg-dark text-light text-center">クチコミ編集</h6>
+    <div class="text-danger">
+      <%= render"layouts/errors", obj: @review %>
+    </div>
     <!--クチコミフォーム表示-->
     <%= render 'form', hot_spring: @hot_spring, review: @review, url: hot_spring_review_path, method: :patch, message: "変更を保存" %>
   </div>
