@@ -31,7 +31,7 @@
       <% if @user.username != "ゲスト" && @user == current_user %>
         <div class="actions m-4 text-center">
           <%= link_to '編集する', edit_user_path, class: "btn btn-success" %>
-          <%= link_to '退会削除', user_path(@user), method: :delete, class: "btn btn-danger" %>
+          <%= link_to '退会削除', user_path(@user), method: :delete, data: { confirm: '本当に退会しますか？一度退会すると、ユーザー情報は復旧できません' }, class: "btn btn-danger" %>
         </div>
       <% end %>
     </div>

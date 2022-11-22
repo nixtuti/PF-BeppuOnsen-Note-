@@ -3,15 +3,16 @@ class Public::ReviewsController < ApplicationController
   def index
     @hot_spring = HotSpring.find(params[:hot_spring_id])
     @review = @hot_spring.reviews.new
-    @reviews = @hot_spring.reviews.page(params[:page]).order(created_at: :desc)
+    @reviews = @hot_spring.reviews.where(is_pablished: true).page(params[:page]).per(5).order(created_at: :desc)
   end
 
   def create
-    hot_spring = HotSpring.find(params[:hot_spring_id])
-    @review = hot_spring.reviews.new(review_params)
+    @hot_spring = HotSpring.find(params[:hot_spring_id])
+    @review = @hot_spring.reviews.new(review_params)
+    @reviews = @hot_spring.reviews.where(is_pablished: true).page(params[:page]).per(5).order(created_at: :desc)
     @review.user_id = current_user.id
     if @review.save
-      redirect_to hot_spring_reviews_path(hot_spring), notice: "クチコミを投稿しました"
+      redirect_to hot_spring_reviews_path(@hot_spring), notice: "クチコミを投稿しました"
     else
       render 'index', alert: "クチコミの投稿に失敗しました"
     end

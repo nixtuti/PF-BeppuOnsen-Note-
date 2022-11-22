@@ -1,49 +1,56 @@
 <% hot_springs.each do |hot_spring| %>
-  <tbody>
-    <tr id="hot_spring_<%= hot_spring.id %>">
-      <td class="text-center align-middle"><%=image_tag hot_spring.get_hot_spring_image, size: "160x100" %></td>
-      <td>
-        <div class="row">
-          <ul class="col-11 list-unstyled d-flex mb-0">
-            <li class="bookmark-btn m-1">
-              <%= render 'public/bookmarks/bookmark-btn', hot_spring: hot_spring, user: user %>
-            </li>
-            <li class="visited_mark-btn m-1">
-              <%= render 'public/visited_marks/visited_mark-btn', hot_spring: hot_spring, user: user %>
-            </li>
-            <li class="m-1">
-              <%= link_to "クチコミを投稿する", hot_spring_reviews_path(hot_spring), class: "btn btn-outline-success btn-sm" %>
-            </li>
-          </ul>
-        </div>
-        <div class="row">
-          <h5 class="col-3 m-auto"><%= link_to hot_spring.name, hot_spring_path(hot_spring), class: "text-dark" %></h5>
-          <ul class="col-9 small list-unstyled d-flex mt-3">
-            <% hot_spring.qualities.each do |quality| %>
-              <li class="border border-danger text-danger rounded p-1 mr-1"><%= quality.name %></li>
-            <% end %>
-            <% hot_spring.tags.each do |tag| %>
-              <li class="border border-info text-info rounded p-1 mr-1"><%= tag.name %></li>
-            <% end %>
-          </ul>
-        </div>
-        <div class="row">
-          <div id="average-star-rate<%= hot_spring.id %>" class="col-xl-4 col-lg-5 col-md-8">　総合評価　</div>
-          <script>
-            raty(document.querySelector('#average-star-rate<%= hot_spring.id %>'),{
-              //星画像の指定などのオプションをここに
-              size      : 36,
-              starOff   : '<%= asset_path('star-off.png') %>',
-              starOn    : '<%= asset_path('star-on.png') %>',
-              starHalf: '<%= asset_path('star-half.png') %>',
-              readOnly: true,
-              score: <%= hot_spring.reviews.average(:rate).to_f.round(1) %>,
-              half: true,
-            });
-          </script>
-          <div class="col-md-3 text-right"><%= hot_spring.reviews.count %> 件の評価</div>
-        </div>
-      </td>
-    </tr>
-  </tbody>
+  <% unless hot_spring.is_pablished == false %>
+    <tbody>
+      <tr id="hot_spring_<%= hot_spring.id %>">
+        <td class="text-center align-middle">
+          <%=image_tag hot_spring.get_hot_spring_image, size: "160x100" %>
+          <% if hot_spring.running_status_i18n != "営業" %>
+            <div class="text-center text-danger"><%= hot_spring.running_status_i18n %></div>
+          <% end %>
+        </td>
+        <td>
+          <div class="row">
+            <ul class="col-11 list-unstyled d-flex mb-0">
+              <li class="bookmark-btn m-1">
+                <%= render 'public/bookmarks/bookmark-btn', hot_spring: hot_spring, user: user %>
+              </li>
+              <li class="visited_mark-btn m-1">
+                <%= render 'public/visited_marks/visited_mark-btn', hot_spring: hot_spring, user: user %>
+              </li>
+              <li class="m-1">
+                <%= link_to "クチコミを投稿する", hot_spring_reviews_path(hot_spring), class: "btn btn-outline-success btn-sm" %>
+              </li>
+            </ul>
+          </div>
+          <div class="row">
+            <h5 class="col-3 m-auto"><%= link_to hot_spring.name, hot_spring_path(hot_spring), class: "text-dark" %></h5>
+            <ul class="col-9 small list-unstyled d-flex mt-3">
+              <% hot_spring.qualities.each do |quality| %>
+                <li class="border border-danger text-danger rounded p-1 mr-1"><%= quality.name %></li>
+              <% end %>
+              <% hot_spring.tags.each do |tag| %>
+                <li class="border border-info text-info rounded p-1 mr-1"><%= tag.name %></li>
+              <% end %>
+            </ul>
+          </div>
+          <div class="row">
+            <div id="average-star-rate<%= hot_spring.id %>" class="col-xl-4 col-lg-5 col-md-8">　総合評価　</div>
+            <script>
+              raty(document.querySelector('#average-star-rate<%= hot_spring.id %>'),{
+                //星画像の指定などのオプションをここに
+                size      : 36,
+                starOff   : '<%= asset_path('star-off.png') %>',
+                starOn    : '<%= asset_path('star-on.png') %>',
+                starHalf: '<%= asset_path('star-half.png') %>',
+                readOnly: true,
+                score: <%= hot_spring.reviews.where(is_pablished: true).average(:rate).to_f.round(1) %>,
+                half: true,
+              });
+            </script>
+            <div class="col-md-3 text-right"><%= hot_spring.reviews.where(is_pablished: true).count %> 件の評価</div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  <% end %>
 <% end %>

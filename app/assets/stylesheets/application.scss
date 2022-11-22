@@ -28,27 +28,12 @@
   background-position: center;
 }
 
-
-/* 吹き出し用の設定*/
-.popover.show{
-  margin-bottom: 10px;
+.pagination{
+  justify-content: center;
+  margin: 1rem 0;
 }
 
-/* 横の画像用の設定*/
-img.reviews {
-  margin-bottom: 10px;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-}
-
-/* 並んでいるものを上下中央で揃える設定*/
-.row-center{
-  text-align: center;
-  letter-spacing: -0.4em;
-}
-.row-center > [class*='col-'] {
+.page.current, .pagination a{
   display: inline-block;
-  letter-spacing: 0;
-  vertical-align: middle;
-  float: none !important;
+  padding: 3px 8px;
 }
-

@@ -1,43 +1,44 @@
 <div class="container"> 
-    <div class="row py-4">
-        <h4 class="col-lg-3 col-sm-5 mb-5 bg-dark text-light text-center text-nowrap">クチコミ一覧</h4>
-        <table class="table table-bordered table-secondary mb-5">
-            <thead>
-                <tr>
-                    <th class="col-2">ユーザー名</th>
-                    <th class="col-2">温泉名</th>
-                    <th>評価</th>
-                    <th class="col-8">クチコミ</th>
-                </tr>
-            </thead>
-            <tbody>
-                <% @reviews.each do |review| %>
+    <div class="py-2">
+        <div class="row">
+            <h4 class="col-lg-3 col-sm-5 mb-4 bg-dark text-light text-center">クチコミ一覧</h4>
+            <div class="col-md-4 mx-2">
+                <%= link_to "新着順", admin_root_path(latest: "true") %>
+                |<%= link_to "更新日時降順", admin_root_path(latest_update: "true") %>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-bordered table-secondary">
+                <thead>
                     <tr>
-                        <td><%= review.user.username %></td>
-                        <td><%= review.hot_spring.name %></td>
-                        <td>
-                            <!--星5段階評価表示-->
-                            <div id="star-rate<%= review.id %>" class="text-nowrap"></div>
-                            <script>
-                            raty(document.querySelector('#star-rate<%= review.id %>'),{
-                                //星画像の指定などのオプションをここに
-                                size      : 36,
-                                starOff   : '<%= asset_path('star-off.png') %>',
-                                starOn    : '<%= asset_path('star-on.png') %>',
-                                starHalf: '<%= asset_path('star-half.png') %>',
-                                readOnly: true,
-                                score: <%= review.rate %>,
-                                half: true,
-                            });
-                            </script>
-                        </td>
-                        <td>
-                            <%=link_to review.title, admin_review_path(review), class: "text-dark" %><br>
-                            <%= review.body %>
-                        </td>
+                        <th>投稿日<br>最終更新日</th>
+                        <th>ユーザー名</th>
+                        <th>温泉名</th>
+                        <th>評価</th>
+                        <th>クチコミ</th>
+                        <th>公開ステータス</th>
                     </tr>
-                <% end %>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    <% @reviews.each do |review| %>
+                        <tr>
+                            <td>
+                                <%= review.created_at.strftime('%Y/%m/%d %H:%M:%S') %><br>
+                                <%= review.updated_at.strftime('%Y/%m/%d %H:%M:%S') %>
+                            </td>
+                            <td><%= review.user.username %></td>
+                            <td><%= review.hot_spring.name %></td>
+                            <td><%= review.rate %></td>
+                            <td>
+                                <%=link_to review.title, admin_review_path(review), class: "text-dark" %><br>
+                                <%= review.body %>
+                            </td>
+                            <td><%= review.is_pablished ? "公開" : "非公開"%></td>
+                        </tr>
+                    <% end %>
+                </tbody>
+            </table>
+            <%= paginate @reviews %>
+        </div>
     </div>
 </div>

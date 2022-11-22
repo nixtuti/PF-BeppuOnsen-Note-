@@ -1,4 +1,4 @@
-<div class="container pt-3">
+<div class="container">
   <div class="row mx-auto">
     <%= render "public/homes/sidebar" %>
     <div class="col-lg-9 col-md-12">
@@ -23,7 +23,7 @@
             </div>
           </div>
         </div>
-        
+
         <% if user_signed_in? || admin_signed_in? %>
         <% else %>
         <div class='guest-login-box text-center'>
@@ -61,7 +61,7 @@
           </div>
           <% end %>
         </div>
-        
+
       </div>
     </div>
   </div>

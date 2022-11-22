@@ -12,15 +12,17 @@
   </div>
 
   <!-- 吹き出し表示にしたい-->
-  <div class="col-xl-10 mx-auto">
+  <div class="col-xl-10 mx-auto pb-4">
     <!--温泉に紐付くレビューを１つずつ取り出して表示-->
     <% @reviews.each do |review| %>
       <div id="review_<%= review.id %>" class="row border-bottom p-2">
         <!--レビューを投稿したユーザーの情報-->
         <div class="col-lg-2 col-md-3">
-          <%= image_tag review.user.get_profile_image, size: '50x50', class: "img-responsive m-3 rounded-circle" %><br>
+          <%= image_tag review.user.get_profile_image, size: '50x50', class: "img-responsive rounded-circle" %><br>
           <%= review.user.username %><br>
-          (<%= review.user.age %>)
+          <% if review.user.username != "ゲスト" %>
+            (<%= review.user.age %>)
+          <% end %>
         </div>
         <!--レビュー内容-->
         <div class="col-lg-10 col-md-9">
@@ -82,6 +84,7 @@
         </div>
       </div>
     <% end %>
+    <%= paginate @reviews, class: "text-center" %>
   </div>
-
+  
 </div>
