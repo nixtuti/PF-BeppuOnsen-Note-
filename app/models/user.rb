@@ -2,7 +2,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable#, :validatable
 
   enum sex: { unknown: 0, male: 1, female: 2 }
 
@@ -11,6 +11,12 @@ class User < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
   has_many :visited_marks, dependent: :destroy
+
+  validates :email, presence: true
+  validates :password, presence: true
+  validates :sex, presence: true
+  validates :username, presence: true
+  validates :encrypted_password, presence: true
 
   has_one_attached :profile_image
 

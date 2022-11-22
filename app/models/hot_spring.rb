@@ -16,8 +16,8 @@ class HotSpring < ApplicationRecord
     (hot_spring_image.attached?) ? hot_spring_image : 'noimage.png'
   end
 
-  validates :name, presence: true
-  validates :introduction, presence: true
+  validates :name, presence: true, uniqueness: true
+  validates :introduction, presence: true, length: {maximum: 200}
   validates :address, presence: true
   validates :price, presence: true
   validates :private_bath_price, presence: true
