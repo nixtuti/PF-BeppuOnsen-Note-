@@ -3,12 +3,12 @@
     <div class="mx-auto col-11 col-sm-10 col-lg-8 col-xl-7">
       
       <div class="my-4">
-        <h4 class="col-3 bg-light text-center">ログイン</h4>
+        <h4 class="col-3 bg-dark text-light text-center">ログイン</h4>
       </div>
       
-      <div class="m-4 p-2">
-        <h6 class="col-6 bg-light text-center text-nowrap">会員の方はこちらからログイン</h6>
-        <div class="mx-5 my-3">
+      <div class="p-2">
+        <h6 class="col-6 bg-dark text-light text-center text-nowrap">会員の方はこちらからログイン</h6>
+        <div class="">
           <%= form_with model: @user, url: user_session_path, local: true do |f| %>
             
             <table class="table table-borderless text-nowrap">
@@ -31,9 +31,13 @@
       </div>
       
       <div class="m-4 p-2 text-center">
-        <h6 class="col-5 bg-light text-center">会員登録がお済みでない方</h6>
+        <h6 class="col-5 bg-dark text-light text-center">会員登録がお済みでない方</h6>
         <p><%= render "public/shared/links" %>から新規登録を行なってください</p>
       </div>
       
+      <div class="m-4 p-2 text-center">
+        <h6 class="col-5 bg-dark text-light text-center">管理者の方</h6>
+        <p><%= link_to "こちら", admin_session_path %>からログインしてください</p>
+      </div>
     </div>
   </div>

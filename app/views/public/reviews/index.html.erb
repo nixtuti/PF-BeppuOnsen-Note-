@@ -16,79 +16,80 @@
   </div>
 
   <!-- 吹き出し表示にしたい-->
-  <div class="col-xl-10 mx-auto pb-4">
-    <!--温泉に紐付くレビューを１つずつ取り出して表示-->
-    <% @reviews.each do |review| %>
-      <div id="review_<%= review.id %>" class="row border-bottom p-2">
-        <!--レビューを投稿したユーザーの情報-->
-        <div class="col-lg-2 col-md-3">
-          <%= image_tag review.user.get_profile_image, size: '50x50', class: "img-responsive rounded-circle" %><br>
-          <%= review.user.username %><br>
-          <% if review.user.username != "ゲスト" %>
-            (<%= review.user.age %>)
-          <% end %>
-        </div>
-        <!--レビュー内容-->
-        <div class="col-lg-10 col-md-9">
-          <div>
-            <!--写真があれば表示-->
-            <% if review.images.attached? %>
-              <!--画像を1つずつ取り出して表示-->
-              <% review.images.each do |image| %>
-                <div class="m-1 d-inline-block"><%= image_tag image, size: '160x100' %></div>
-              <% end %>
+  <div class="pb-3">
+    <div class="col-xl-10 mx-auto bg-light">
+      <!--温泉に紐付くレビューを１つずつ取り出して表示-->
+      <% @reviews.each do |review| %>
+        <div id="review_<%= review.id %>" class="row border-bottom p-2">
+          <!--レビューを投稿したユーザーの情報-->
+          <div class="col-lg-2 col-md-3">
+            <%= image_tag review.user.get_profile_image, size: '50x50', class: "img-responsive rounded-circle" %><br>
+            <%= review.user.username %><br>
+            <% if review.user.username != "ゲスト" %>
+              (<%= review.user.age %>)
             <% end %>
-            <div class="row">
-              <div class="col-md-6">
-                <!--レビュータイトル-->
-                <h5 class="title mt-2"><%= link_to review.title, hot_spring_review_path(@hot_spring, review), class: "text-dark" %></h5>
-                <!--星5段階評価表示-->
-                <div id="star-rate<%= review.id %>"></div>
-                  <script>
-                    raty(document.querySelector('#star-rate<%= review.id %>'),{
-                      //星画像の指定などのオプションをここに
-                      size      : 36,
-                      starOff   : '<%= asset_path('star-off.png') %>',
-                      starOn    : '<%= asset_path('star-on.png') %>',
-                      starHalf: '<%= asset_path('star-half.png') %>',
-                      readOnly: true,
-                      score: <%= review.rate %>,
-                      half: true,
-                    });
-                  </script>
-              </div>
-              <div class="col-md-6 text-right">
-                投稿日：<%= review.created_at.strftime('%Y年%m月%d日')%><br>
-                <!--いいね表示-->
-                <div class="favorite-btn d-inline">
-                  <%= render 'public/favorites/favorite-btn', hot_spring: @hot_spring, review: review %>
-                </div>
-                
-                <!--コメント数表示-->
-                <%= link_to hot_spring_review_path(@hot_spring, review), class: "text-decoration-none" do %>
-                  <i class="fa-solid fa-comment-dots"></i>
+          </div>
+          <!--レビュー内容-->
+          <div class="col-lg-10 col-md-9">
+            <div>
+              <!--写真があれば表示-->
+              <% if review.images.attached? %>
+                <!--画像を1つずつ取り出して表示-->
+                <% review.images.each do |image| %>
+                  <div class="m-1 d-inline-block"><%= image_tag image, size: '160x100' %></div>
                 <% end %>
-                <div class="comments-count d-inline">
-                  コメント：<%= review.comments.count %>
+              <% end %>
+              <div class="row">
+                <div class="col-md-6">
+                  <!--レビュータイトル-->
+                  <h5 class="title mt-2 border-bottom"><%= link_to review.title, hot_spring_review_path(@hot_spring, review), class: "text-dark" %></h5>
+                  <!--星5段階評価表示-->
+                  <div id="star-rate<%= review.id %>"></div>
+                    <script>
+                      raty(document.querySelector('#star-rate<%= review.id %>'),{
+                        //星画像の指定などのオプションをここに
+                        size      : 36,
+                        starOff   : '<%= asset_path('star-off.png') %>',
+                        starOn    : '<%= asset_path('star-on.png') %>',
+                        starHalf: '<%= asset_path('star-half.png') %>',
+                        readOnly: true,
+                        score: <%= review.rate %>,
+                        half: true,
+                      });
+                    </script>
                 </div>
-                <!--ログイン中のユーザーであれば、編集、削除のリンクを表示-->
-                <% if review.user_id == current_user.id %>
-                    <%= link_to "編集", edit_hot_spring_review_path(review.hot_spring_id, review.id) %>
-                    |
-                    <%= link_to "削除", hot_spring_review_path(review.hot_spring_id, review.id), data: { confirm: '本当に消しますか？' }, method: :delete %>
-                <% end %>
+                <div class="col-md-6 text-right">
+                  投稿日：<%= review.created_at.strftime('%Y年%m月%d日')%><br>
+                  <!--いいね表示-->
+                  <div class="favorite-btn d-inline">
+                    <%= render 'public/favorites/favorite-btn', hot_spring: @hot_spring, review: review %>
+                  </div>
+                  
+                  <!--コメント数表示-->
+                  <%= link_to hot_spring_review_path(@hot_spring, review), class: "text-decoration-none" do %>
+                    <i class="fa-solid fa-comment-dots"></i>
+                  <% end %>
+                  <div class="comments-count d-inline">
+                    コメント：<%= review.comments.count %>
+                  </div>
+                  <!--ログイン中のユーザーであれば、編集、削除のリンクを表示-->
+                  <% if review.user_id == current_user.id %>
+                      <%= link_to "編集", edit_hot_spring_review_path(review.hot_spring_id, review.id) %>
+                      |
+                      <%= link_to "削除", hot_spring_review_path(review.hot_spring_id, review.id), data: { confirm: '本当に消しますか？' }, method: :delete %>
+                  <% end %>
+                </div>
               </div>
+              <!--レビュー本文表示-->
+              <div class="content p-2">
+                <p><%=safe_join(review.body.split("\n"),tag(:br))%></p>
+              </div>
+      
             </div>
-            <!--レビュー本文表示-->
-            <div class="content p-2">
-              <p><%=safe_join(review.body.split("\n"),tag(:br))%></p>
-            </div>
-    
           </div>
         </div>
-      </div>
-    <% end %>
-    <%= paginate @reviews, class: "text-center" %>
+      <% end %>
+      <%= paginate @reviews, class: "text-center" %>
+    </div>
   </div>
-  
 </div>
