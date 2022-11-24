@@ -23,7 +23,7 @@
       <%# end %>
       <!--br-->
       <!--チェックボックス-->
-      <%= form_with url: hot_springs_path, class: "check_boxes", method: :get do |f| %>
+      <%= form_with url: hot_springs_path(, class: "check_boxes", method: :get do |f| %>
         <ul class="" style="list-style: none;">
           <%= f.collection_check_boxes :quality_ids, Quality.all, :id, :name do |b| %>
           <li><%= b.label { b.check_box + " #{b.text}" } %></li>
