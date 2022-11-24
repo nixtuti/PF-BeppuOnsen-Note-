@@ -32,13 +32,17 @@
           <!--レビュー内容-->
           <div class="col-lg-10 col-md-9">
             <div>
-              <!--写真があれば表示-->
-              <% if review.images.attached? %>
-                <!--画像を1つずつ取り出して表示-->
-                <% review.images.each do |image| %>
-                  <div class="m-1 d-inline-block"><%= image_tag image, size: '160x100' %></div>
+              <div class="row">
+                <!--写真があれば表示-->
+                <% if review.images.attached? %>
+                  <!--画像を1つずつ取り出して表示-->
+                  <% review.images.each do |image| %>
+                    <div class="col-lg-4 col-md-6 mb-3">
+                      <%= image_tag image, size: '320x200', class: "w-100" %>
+                    </div>
+                  <% end %>
                 <% end %>
-              <% end %>
+              </div>
               <div class="row">
                 <div class="col-md-6">
                   <!--レビュータイトル-->
@@ -64,7 +68,7 @@
                   <div class="favorite-btn d-inline">
                     <%= render 'public/favorites/favorite-btn', hot_spring: @hot_spring, review: review %>
                   </div>
-                  
+
                   <!--コメント数表示-->
                   <%= link_to hot_spring_review_path(@hot_spring, review), class: "text-decoration-none" do %>
                     <i class="fa-solid fa-comment-dots"></i>
@@ -84,7 +88,7 @@
               <div class="content p-2">
                 <p><%=safe_join(review.body.split("\n"),tag(:br))%></p>
               </div>
-      
+
             </div>
           </div>
         </div>

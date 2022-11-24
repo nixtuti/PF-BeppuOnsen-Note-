@@ -18,10 +18,12 @@
       <div id="post_raty"></div>
       <%= f.text_field :title, class: "form-control", placeholder: "クチコミタイトルを入力"%>
       <%= f.text_area :body, class: "form-control", placeholder: "クチコミ本文を入力", rows: "5" %>
+
       <%= f.radio_button :is_pablished, :true %>
       <%= f.label :is_pablished, "公開", value: :true %>
       <%= f.radio_button :is_pablished, :false %>
       <%= f.label :is_pablished, "非公開", value: :false %>
+
       <%= f.hidden_field :user_id, :value => current_user.id %>
       <div class="text-right">
         <%= f.submit message, class: "btn btn-success btn-sm"%>

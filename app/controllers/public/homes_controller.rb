@@ -11,7 +11,7 @@ class Public::HomesController < ApplicationController
   private
 
   def get_latest_reviews(num)
-    all = Review.all.order(created_at: :DESC)
+    all = Review.where(is_pablished: true).order(created_at: :DESC)
     all.slice(0...num)
   end
 end
