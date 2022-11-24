@@ -4,10 +4,10 @@
   </div>
   <div class="row">
     <div class="col-md-8 pt-5 table-responsive">
-      <table class="table table-border table-secondary">
+      <table class="table table-border table-dark">
         <tr>
           <th class="align-middle">プロフィール画像</th>
-          <td><%= image_tag @user.get_profile_image, size: "70x70" %></td>
+          <td><%= image_tag @user.get_profile_image, size: "70x70", class: "img-responsive rounded-circle" %></td>
         </tr>
         <tr>
           <th class="align-middle">ユーザーネーム</th>
@@ -15,7 +15,7 @@
         </tr>
         <tr>
           <th>生年月日</th>
-          <td><%= @user.birth_date %></td>
+          <td><%= @user.birth_date.strftime('%Y年%m月%d日') %></td>
         </tr>
         <tr class="field align-middle">
           <th>性別</th>
