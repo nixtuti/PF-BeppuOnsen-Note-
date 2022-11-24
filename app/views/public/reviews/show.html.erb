@@ -1,23 +1,27 @@
 <div id="review_<%= @review.id %>" class="pb-3">
   <!-- 吹き出し表示にしたい-->
   <div class="review row my-4">
-    <div class="col-lg-2 col-md-3">
+    <div class="col-lg-2 col-md-3 col-sm-4">
       <%= image_tag @review.user.get_profile_image, size: '50x50', class: "img-responsive rounded-circle" %><br>
       <%= @review.user.username %><br>
       <% if @review.user.username != "ゲスト" %>
         (<%= @review.user.age %>)
       <% end %>
     </div>
-    <div class="col-lg-10 col-md-9">
-      <% if @review.images.attached? %>
-        <% @review.images.each do |image| %>
-          <%= image_tag image, size: '160x100' %>
-        <% end %>
-      <% end %>
+    <div class="col-lg-10 col-md-9 col-sm-8">
+      <div class="row">
+        <div class="col-xl-3 col-lg-4 col-md-5 col-12">
+          <% if @review.images.attached? %>
+            <% @review.images.each do |image| %>
+              <%= image_tag image, class: "w-100" %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
       <div class="row">
         <div class="col-lg-6">
           <!--レビュータイトル-->
-          <h3 class="title"><%= @review.title %></h3>
+          <h4 class="title mt-3"><%= @review.title %></h4>
           <!--星5段階評価表示-->
           <div id="star-rate<%= @review.id %>"></div>
             <script>
