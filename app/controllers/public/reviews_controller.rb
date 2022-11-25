@@ -1,4 +1,5 @@
 class Public::ReviewsController < ApplicationController
+  before_action :correct_user, only: [:edit, :update]
 
   def index
     @hot_spring = HotSpring.find(params[:hot_spring_id])
@@ -55,6 +56,14 @@ class Public::ReviewsController < ApplicationController
 
   def review_params
     params.require(:review).permit(:title,:body, :rate, :user_id, :hot_spring_id, :is_pablished, images: [])
+  end
+  
+  def correct_user
+    @hot_spring = HotSpring.find(params[:hot_spring_id])
+    @review = Review.find(params[:id])
+    unless @review.user == current_user
+      redirect_to hot_spring_review_path(@hot_spring, @review), alert: "他人の投稿したクチコミは編集できません。"
+    end
   end
 
 end
