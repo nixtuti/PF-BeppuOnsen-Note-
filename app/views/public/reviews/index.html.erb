@@ -23,10 +23,12 @@
         <div id="review_<%= review.id %>" class="row border-bottom p-2">
           <!--レビューを投稿したユーザーの情報-->
           <div class="col-lg-2 col-md-3">
-            <%= image_tag review.user.get_profile_image, size: '50x50', class: "img-responsive rounded-circle" %><br>
-            <%= review.user.username %><br>
-            <% if review.user.username != "ゲスト" %>
-              (<%= review.user.age %>)
+            <%= link_to user_path(review.user),class: "text-dark" do %>
+              <%= image_tag review.user.get_profile_image, size: '50x50', class: "img-responsive rounded-circle" %><br>
+              <%= review.user.username %><br>
+              <% if review.user.username != "ゲスト" %>
+                (<%= review.user.age %>)
+              <% end %>
             <% end %>
           </div>
           <!--レビュー内容-->
