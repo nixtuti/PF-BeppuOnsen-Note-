@@ -14,9 +14,9 @@ class Public::ReviewsController < ApplicationController
     @review.user_id = current_user.id
     if @review.save
       if @review.is_pablished == true
-        redirect_to hot_spring_review_path(@hot_spring, @review), notice: "クチコミを投稿しました"
+        redirect_to hot_spring_review_path(@hot_spring, @review), notice: "クチコミを投稿しました。"
       else
-        redirect_to hot_spring_review_path(@hot_spring, @review), notice: "クチコミを公開せず保存しました"
+        redirect_to hot_spring_review_path(@hot_spring, @review), notice: "クチコミを公開せず保存しました。この評価は温泉の総合評価点数に加味されません"
       end
     else
       render 'index'
@@ -37,7 +37,7 @@ class Public::ReviewsController < ApplicationController
     @hot_spring = HotSpring.find(params[:hot_spring_id])
     @review = Review.find(params[:id])
     if @review.update(review_params)
-      redirect_to hot_spring_review_path(@hot_spring, @review), notice: "クチコミの編集に成功しました"
+      redirect_to hot_spring_review_path(@hot_spring, @review), notice: "クチコミの編集に成功しました。"
     else
       render 'edit'
     end
@@ -46,7 +46,7 @@ class Public::ReviewsController < ApplicationController
   def destroy
     @review = Review.find(params[:id])
     if @review.destroy
-      redirect_to hot_spring_reviews_path(@review.hot_spring), notice: "クチコミを削除しました"
+      redirect_to hot_spring_reviews_path(@review.hot_spring), notice: "クチコミを削除しました。"
     else
       render 'index'
     end

@@ -1,10 +1,12 @@
 <% review.comments.each do |comment| %>
   <div class="row p-2 mb-3 bg-light">
     <div class="col-md-2">
-      <%= image_tag comment.user.get_profile_image, size: '50x50', class: "mg-responsive rounded-circle" %><br>
-      <%= comment.user.username %><br>
-      <% if comment.user.username != "ゲスト" %>
-      （<%= comment.user.age %>）
+      <%= link_to user_path(comment.user), class: "text-dark" do %>
+        <%= image_tag comment.user.get_profile_image, size: '50x50', class: "mg-responsive rounded-circle" %><br>
+        <%= comment.user.username %><br>
+        <% if comment.user.username != "ゲスト" %>
+        （<%= comment.user.age %>）
+        <% end %>
       <% end %>
     </div>
     <div class="col-md-10">
@@ -14,6 +16,9 @@
         <%= comment.created_at.strftime('%Y/%m/%d') %>
         <% if comment.user == current_user %>
           <%= link_to "削除", hot_spring_review_comment_path(hot_spring, review, comment), method: :delete, remote: true %>
+        <% end %>
+        <% if admin_signed_in? %>
+          <%= link_to "削除", admin_review_comment_path(review, comment), method: :delete, remote: true %>
         <% end %>
       </div>
     </div>
