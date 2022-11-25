@@ -12,9 +12,13 @@ class Public::ReviewsController < ApplicationController
     @reviews = @hot_spring.reviews.where(is_pablished: true).page(params[:page]).per(5).order(created_at: :desc)
     @review.user_id = current_user.id
     if @review.save
-      redirect_to hot_spring_reviews_path(@hot_spring), notice: "クチコミを投稿しました"
+      if @review.is_pablished == true
+        redirect_to hot_spring_review_path(@hot_spring, @review), notice: "クチコミを投稿しました"
+      else
+        redirect_to hot_spring_review_path(@hot_spring, @review), notice: "クチコミを公開せず保存しました"
+      end
     else
-      render 'index', alert: "クチコミの投稿に失敗しました"
+      render 'index'
     end
   end
 

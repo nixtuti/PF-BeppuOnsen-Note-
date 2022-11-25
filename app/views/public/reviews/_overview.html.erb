@@ -9,10 +9,10 @@
     <div class="col-xl-8">
       <ul class="list-unstyled d-flex mt-3">
         <% hot_spring.qualities.each do |quality| %>
-          <li class="border border-danger text-danger rounded p-1"><%= quality.name %></li>
+          <li class="border border-danger text-danger rounded p-1 mr-1"><%= quality.name %></li>
         <% end %>
         <% hot_spring.tags.each do |tag| %>
-          <li class="border border-info text-info rounded p-1"><%= tag.name %></li>
+          <li class="border border-info text-info rounded p-1 mr-1"><%= tag.name %></li>
         <% end %>
       </ul>
     </div>
