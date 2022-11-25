@@ -61,8 +61,19 @@
                         half: true,
                       });
                     </script>
+                  <!--レビュー本文表示-->
+                  <div class="content p-2">
+                    <p><%=safe_join(review.body.split("\n"),tag(:br))%></p>
+                  </div>
                 </div>
-                <div class="col-md-6 text-right">
+                <div class="col-md-6 text-right text-bottom">
+                  <!--ログイン中のユーザーであれば、編集、削除のリンクを表示-->
+                  <% if review.user_id == current_user.id %>
+                    <%= link_to "編集", edit_hot_spring_review_path(review.hot_spring_id, review.id) %>
+                    |
+                    <%= link_to "削除", hot_spring_review_path(review.hot_spring_id, review.id), data: { confirm: '本当に消しますか？' }, method: :delete %>
+                  <% end %>
+                  <br>
                   投稿日：<%= review.created_at.strftime('%Y年%m月%d日')%><br>
                   <!--いいね表示-->
                   <div class="favorite-btn d-inline">
@@ -76,17 +87,9 @@
                   <div class="comments-count d-inline">
                     コメント：<%= review.comments.count %>
                   </div>
-                  <!--ログイン中のユーザーであれば、編集、削除のリンクを表示-->
-                  <% if review.user_id == current_user.id %>
-                      <%= link_to "編集", edit_hot_spring_review_path(review.hot_spring_id, review.id) %>
-                      |
-                      <%= link_to "削除", hot_spring_review_path(review.hot_spring_id, review.id), data: { confirm: '本当に消しますか？' }, method: :delete %>
-                  <% end %>
+                  
+                  
                 </div>
-              </div>
-              <!--レビュー本文表示-->
-              <div class="content p-2">
-                <p><%=safe_join(review.body.split("\n"),tag(:br))%></p>
               </div>
 
             </div>

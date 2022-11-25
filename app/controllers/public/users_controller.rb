@@ -5,6 +5,7 @@ class Public::UsersController < ApplicationController
     @user = User.find(params[:id])
     @bookmarks = Bookmark.where(user_id: @user.id)
     @visited_marks = VisitedMark.where(user_id: @user.id)
+    @reviews = Review.where(user_id: @user.id)
   end
 
   def edit
@@ -38,6 +39,12 @@ class Public::UsersController < ApplicationController
   def visited_marks
     @user = User.find(params[:id])
     @hot_springs = HotSpring.where(id: @user.visited_marks.pluck(:hot_spring_id))
+  end
+  
+  def reviews
+    @user = User.find(params[:id])
+    reviews = Review.where(user_id: @user.id)
+    @reviews = reviews.page(params[:page]).per(5).order(created_at: :DESC)
   end
   
   private

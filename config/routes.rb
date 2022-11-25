@@ -28,6 +28,7 @@ Rails.application.routes.draw do
       member do
         get :bookmarks
         get :visited_marks
+        get :reviews 
       end
     end
     resources :hot_springs, only: [:index, :show] do
