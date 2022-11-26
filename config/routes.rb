@@ -28,7 +28,7 @@ Rails.application.routes.draw do
       member do
         get :bookmarks
         get :visited_marks
-        get :reviews 
+        get :reviews
       end
     end
     resources :hot_springs, only: [:index, :show] do
@@ -43,10 +43,16 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root to: 'homes#top'
-    resources :users, only: [:index, :show, :edit, :update, :destroy]
+    resources :users, only: [:index, :show, :edit, :update, :destroy] do
+      member do
+        get :reviews
+        get :comments
+      end
+    end
     resources :reviews, only:[:show, :destroy] do
       resources :comments, only: [:destroy]
     end
+    resources :comments, only: [:index]
     resources :hot_springs, only: [:index, :show, :new, :create, :edit, :update]
   end
 

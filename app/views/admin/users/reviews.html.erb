@@ -1,0 +1,68 @@
+<div class="mx-auto">
+  <h4 class="col-lg-5 col-md-6 bg-dark text-light text-center mb-3"><%= @user.username %> さんのクチコミ一覧</h4>
+  <div class="pb-3">
+    <div class="col-xl-10 mx-auto bg-light">
+      <!--レビューを１つずつ取り出して表示-->
+      <% @reviews.each do |review| %>
+        <div id="review_<%= review.id %>" class="row border-bottom p-2">
+          <div class="col-lg-2 col-md-3 m-auto">
+            <%= review.hot_spring.name %>
+          </div>
+          <!--レビュー内容-->
+          <div class="col-lg-10 col-md-9">
+            <div>
+              <div class="row">
+                <!--写真があれば表示-->
+                <% if review.images.attached? %>
+                  <!--画像を1つずつ取り出して表示-->
+                  <% review.images.each do |image| %>
+                    <div class="col-lg-4 col-md-6 mb-3">
+                      <%= image_tag image, size: '320x200', class: "w-100" %>
+                    </div>
+                  <% end %>
+                <% end %>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <!--レビュータイトル-->
+                  <h5 class="title mt-2 border-bottom"><%= link_to review.title, admin_review_path(review), class: "text-dark" %></h5>
+                  <!--星5段階評価表示-->
+                  <div id="star-rate<%= review.id %>"></div>
+                    <script>
+                      raty(document.querySelector('#star-rate<%= review.id %>'),{
+                        //星画像の指定などのオプションをここに
+                        size      : 36,
+                        starOff   : '<%= asset_path('star-off.png') %>',
+                        starOn    : '<%= asset_path('star-on.png') %>',
+                        starHalf: '<%= asset_path('star-half.png') %>',
+                        readOnly: true,
+                        score: <%= review.rate %>,
+                        half: true,
+                      });
+                    </script>
+                  <!--レビュー本文表示-->
+                  <div class="content p-2">
+                    <p><%=safe_join(review.body.split("\n"),tag(:br))%></p>
+                  </div>
+                </div>
+                <div class="col-md-6 text-right">
+                  投稿日：<%= review.created_at.strftime('%Y年%m月%d日')%><br>
+                  <!--コメント数表示-->
+                  <div class="comments-count d-inline">
+                    コメント：<%= review.comments.count %>
+                  </div>
+                  
+                  <!--非公開の場合の表示-->
+                  <% if review.is_pablished == false %>
+                    <p class="text-danger">（非公開の投稿です）</p>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <%= paginate @reviews, class: "text-center" %>
+  </div>
+</div>

@@ -1,0 +1,29 @@
+<div class="mx-auto">
+  <h4 class="col-lg-5 col-md-6 bg-dark text-light text-center mb-3"><%= @user.username %> さんのコメント一覧</h4>
+  <div class="pb-3">
+    <div class="col-xl-10 mx-auto bg-light">
+      <% @comments.each do |comment| %> 
+        <div class="border-bottom p-2">
+        
+          <div class="row">
+            <div class="col-md-8">
+              <!--コメント表示-->
+              <div class="content p-2">
+                <p>
+                  <%= link_to admin_review_path(comment.review_id), class: "text-dark" do %>
+                    <%= safe_join(comment.comment.split("\n"),tag(:br)) %>
+                  <% end %>
+                </p>
+              </div>
+            </div>
+            <div class="col-md-4 text-right">
+              投稿日：<%= comment.created_at.strftime('%Y年%m月%d日')%><br>
+            </div>
+          </div>
+        
+        </div>
+      <% end %>  
+    </div>
+    <%= paginate @comments, class: "text-center" %>
+  </div>
+</div>

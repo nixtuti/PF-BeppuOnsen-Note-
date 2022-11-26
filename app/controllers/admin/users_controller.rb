@@ -30,6 +30,17 @@ class Admin::UsersController < ApplicationController
     end
   end
   
+  def reviews
+    @user = User.find(params[:id])
+    reviews = Review.where(user_id: @user.id)
+    @reviews = reviews.page(params[:page]).per(5).order(created_at: :DESC)
+  end
+  
+  def comments
+    @user = User.find(params[:id])
+    comments = Comment.where(user_id: @user.id)
+    @comments = comments.page(params[:page]).per(10).order(created_at: :DESC)
+  end
   
   private
   

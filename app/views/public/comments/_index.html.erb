@@ -1,13 +1,23 @@
 <% review.comments.each do |comment| %>
   <div class="row p-2 mb-3 bg-light">
     <div class="col-md-2">
-      <%= link_to user_path(comment.user), class: "text-dark" do %>
-        <%= image_tag comment.user.get_profile_image, size: '50x50', class: "mg-responsive rounded-circle" %><br>
-        <%= comment.user.username %><br>
-        <% if comment.user.username != "ゲスト" %>
-        （<%= comment.user.age %>）
+      <% if admin_signed_in? %>
+        <%= link_to admin_user_path(comment.user), class: "text-dark" do %>
+          <%= image_tag comment.user.get_profile_image, size: '50x50', class: "mg-responsive rounded-circle" %><br>
+          <%= comment.user.username %><br>
+          <% if comment.user.username != "ゲスト" %>
+          （<%= comment.user.age %>）
+          <% end %>
         <% end %>
-      <% end %>
+      <% else %>
+        <%= link_to user_path(comment.user), class: "text-dark" do %>
+          <%= image_tag comment.user.get_profile_image, size: '50x50', class: "mg-responsive rounded-circle" %><br>
+          <%= comment.user.username %><br>
+          <% if comment.user.username != "ゲスト" %>
+          （<%= comment.user.age %>）
+          <% end %>
+        <% end %>
+      <% end %> 
     </div>
     <div class="col-md-10">
       <%=safe_join(comment.comment.split("\n"),tag(:br))%>

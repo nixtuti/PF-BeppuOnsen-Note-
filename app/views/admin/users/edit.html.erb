@@ -3,6 +3,9 @@
     <div class="mx-auto col-11 col-sm-10 col-lg-8">
       <div class="my-4">
         <h4 class="col-md-5 bg-dark text-light text-center">ユーザー情報編集</h4>
+        <div class="text-danger">
+          <%= render"layouts/errors", obj: @user %>
+        </div>
       </div>
       <div class="table-responsive">
         <%= form_with model: @user, url:admin_user_path, method: :patch, local: true do |f| %>
