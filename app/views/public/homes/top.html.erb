@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row mx-auto">
     <%= render "public/homes/sidebar" %>
-    <div class="col-lg-9 col-md-7 col-sm-12">
+    <div class="col-lg-9 col-md-8 col-sm-12">
       <div id="main_visual" class="mb-4">
         <div class="pt-4">
           <div class="d-flex">
@@ -37,27 +37,38 @@
         <div class="row mx-auto">
           <h4 class="col-lg-4 col-md-7 col-sm-6 bg-dark text-center text-light">新着クチコミ</h4>
         </div>
-        <div class="row mx-auto">
+        <div class="reviews">
           <% @reviews.each do |review| %>
-          <div class="col-12 py-2 my-2 mx-auto border border-dark rounded">
-            <h5>
-              <%=link_to review.title, hot_spring_review_path(review.hot_spring.id, review.id), class: "text-dark" %>
-              （<%=link_to review.hot_spring.name, hot_spring_path(review.hot_spring.id), class: "text-dark" %>）
-            </h5>
-            <div id="star-rate<%= review.id %>"></div>
-              <script>
-                raty(document.querySelector('#star-rate<%= review.id %>'),{
-                  //星画像の指定などのオプションをここに
-                  size      : 36,
-                  starOff   : '<%= asset_path('star-off.png') %>',
-                  starOn    : '<%= asset_path('star-on.png') %>',
-                  starHalf: '<%= asset_path('star-half.png') %>',
-                  readOnly: true,
-                  score: <%= review.rate %>,
-                  half: true,
-                });
-              </script>
-            <div class="p-2"><%=safe_join(review.body.split("\n"),tag(:br))%></div>
+          <div class="row  my-2 mx-auto">
+            <div class="col-lg-2 col-sm-3 py-2">
+              <%= image_tag review.user.get_profile_image, size: '50x50', class: "img-responsive rounded-circle" %><br>
+              <%= review.user.username %><br>
+              <% if review.user.username != "ゲスト" %>
+                (<%= review.user.age %>)
+              <% end %>
+            </div>
+
+            <div class="col-lg-10 col-sm-9 py-2 border border-dark rounded bg-light">
+              <h5>
+                <%=link_to review.title, hot_spring_review_path(review.hot_spring.id, review.id), class: "text-dark" %>
+                （<%=link_to review.hot_spring.name, hot_spring_path(review.hot_spring.id), class: "text-dark" %>）
+              </h5>
+              <div id="star-rate<%= review.id %>"></div>
+                <script>
+                  raty(document.querySelector('#star-rate<%= review.id %>'),{
+                    //星画像の指定などのオプションをここに
+                    size      : 36,
+                    starOff   : '<%= asset_path('star-off.png') %>',
+                    starOn    : '<%= asset_path('star-on.png') %>',
+                    starHalf: '<%= asset_path('star-half.png') %>',
+                    readOnly: true,
+                    score: <%= review.rate %>,
+                    half: true,
+                  });
+                </script>
+              <div class="p-2"><%=safe_join(review.body.split("\n"),tag(:br))%></div>
+            </div>
+
           </div>
           <% end %>
         </div>
