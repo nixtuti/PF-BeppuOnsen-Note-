@@ -33,7 +33,7 @@ class HotSpring < ApplicationRecord
   scope :latest, -> {order(created_at: :desc)}
   scope :oldest, -> {order(created_at: :asc)}
   scope :rate_avg, -> {eager_load(:reviews).group("hot_springs.id").order("avg(reviews.rate) desc")}
-  scope :review_amount, -> {eager_load(:reviews).group("hot_springs.id").order("count(hot_spring_id) desc")}
+  scope :review_amount, -> {eager_load(:reviews).group("hot_springs.id").order("count(reviews.hot_spring_id) desc")}
   
   def bookmarked_by?(user)
     bookmarks.exists?(user_id: user.id)
