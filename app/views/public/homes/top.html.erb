@@ -53,7 +53,7 @@
                   <% if review.images.attached? %>
                     <% review.images.each do |image| %>
                       <div class="col-xl-4 col-lg-6 mb-3">
-                        <%= image_tag image, size: '240x150', class: "w-100" %>
+                        <%= image_tag image.variant(resize: '240x150!').processed, class: "w-100" %>
                       </div>
                     <% end %>
                   <% end %>
