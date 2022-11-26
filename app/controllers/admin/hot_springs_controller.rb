@@ -36,7 +36,7 @@ class Admin::HotSpringsController < ApplicationController
   def update
     @hot_spring = HotSpring.find(params[:id])
     if @hot_spring.update(hot_spring_params)
-      redirect_to admin_hot_spring_path(@hot_spring), notice: "温泉情報を編集に成功しました"
+      redirect_to admin_hot_spring_path(@hot_spring), notice: "温泉情報の編集に成功しました"
     else
       render 'edit'
     end

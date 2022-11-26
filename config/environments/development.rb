@@ -77,4 +77,5 @@ Rails.application.configure do
   config.hosts.clear
   
   config.active_job.queue_adapter = :inline
+  config.active_storage.web_image_content_types = %w(image/jpeg image/png image/webp image/jpg)
 end

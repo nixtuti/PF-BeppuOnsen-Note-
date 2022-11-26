@@ -1,5 +1,5 @@
  <%= form_with model: [hot_spring, review], url: url, method: method do |f| %>
-    <%= f.file_field :images, multiple: true %>
+    <%= f.file_field :images, accept: 'image/jpg, image/jpeg, image/png, image/gif', multiple: true %>
       <div id="post_raty"></div>
       <script>
         // scriptファイルをどのidの部分に配置するかを指定
