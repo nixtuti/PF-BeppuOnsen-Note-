@@ -78,6 +78,9 @@
     <!--コメントを表示-->
     <div class="col-md-7 col-11 review_comments m-auto">
       <%= render 'public/comments/index', review: @review, hot_spring: @hot_spring %>
+      <div class="text-right">
+        <%= link_to "クチコミの一覧に戻る", hot_spring_reviews_path(@hot_spring) %>
+      </div>
     </div>
   </div>
 </div>
