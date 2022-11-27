@@ -3,8 +3,7 @@
       <div id="post_raty"></div>
       <script>
         // scriptファイルをどのidの部分に配置するかを指定
-        let elem = document.querySelector('#post_raty');
-        let opt = {
+        raty(document.querySelector('#post_raty'),{
         //星画像の指定などのオプションをここに記述
         size     : 36,
         starOff:  '<%= asset_path('star-off.png') %>',
@@ -12,8 +11,7 @@
         starHalf: '<%= asset_path('star-half.png') %>',
         scoreName: 'review[rate]',
         half: true,
-        };
-        raty(elem,opt);
+        });
       </script>
       <div id="post_raty"></div>
       <%= f.text_field :title, class: "form-control", placeholder: "クチコミタイトルを入力"%>
