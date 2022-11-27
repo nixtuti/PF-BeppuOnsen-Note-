@@ -29,8 +29,9 @@
       </div>
       
       <div class="my-4 p-2 text-center">
-        <h6 class="col-md-6 col-sm-9 bg-dark text-light text-center">ユーザー登録がお済みでない方</h6>
+        <h6 class="col-md-6 col-sm-9 bg-dark text-light text-center mb-3">ユーザー登録がお済みでない方</h6>
         <p><%= render "public/shared/links" %>から新規登録を行なってください</p>
+        <p>登録せずに使ってみる →　<%= link_to 'ゲストログイン', users_guest_sign_in_path, method: :post, class: 'guest-login-btn btn btn btn-info' %></p>
       </div>
       
       <div class="my-4 p-2 text-center">
