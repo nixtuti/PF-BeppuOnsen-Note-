@@ -56,6 +56,7 @@ Rails.application.routes.draw do
     resources :hot_springs, only: [:index, :show, :new, :create, :edit, :update]
   end
 
+  # 画像が表示されなくなるため、削除
   # get '*path', controller: 'application', action: 'render_404'
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
