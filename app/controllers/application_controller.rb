@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   rescue_from ActiveRecord::RecordNotFound, with: :render_404
   rescue_from ActionController::RoutingError, with: :render_404
   rescue_from Exception, with: :render_500
-    
+
   def render_404
     render template: 'errors/error_404', status: 404, layout: 'application', content_type: 'text/html'
   end
@@ -16,12 +16,12 @@ class ApplicationController < ActionController::Base
   def render_500
     render template: 'errors/error_500', status: 500, layout: 'application', content_type: 'text/html'
   end
-  
+
   protected
-  
+
   #deviseのデータ受取カラム追加
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:username, :sex, :birth_date, :status, :profile_image])
   end
-  
+
 end
