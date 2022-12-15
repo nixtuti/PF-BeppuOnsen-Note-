@@ -1,20 +1,21 @@
 class Public::HotSpringsController < ApplicationController
 
   def index
+    hot_spring = HotSpring.where(is_pablished: true)
     #サイドバーから検索があった場合と、全表示の場合の条件分岐
     if params[:search].present?
       @search = params[:search]
-      hot_springs = HotSpring.looks(params[:search])
+      hot_springs = hot_spring.looks(params[:search])
     elsif params[:quality_ids].present?
       @quality_ids = params[:quality_ids]
       hot_spring_ids = HotSpringQuality.where(quality_id: params[:quality_ids].compact_blank).pluck(:hot_spring_id).uniq
-      hot_springs = HotSpring.where(id: hot_spring_ids)
+      hot_springs = hot_spring.where(id: hot_spring_ids)
     elsif params[:tag_id].present?
       @tag_id = params[:tag_id]
       tag = Tag.find(params[:tag_id])
-      hot_springs = tag.hot_springs
+      hot_springs = tag.hot_springs.where(is_pablished: true)
     else
-      hot_springs = HotSpring.all
+      hot_springs = hot_spring.all
     end
 
     #並び替えの選択があった場合の条件分岐
