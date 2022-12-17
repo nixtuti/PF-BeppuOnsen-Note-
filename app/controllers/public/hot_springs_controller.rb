@@ -30,10 +30,10 @@ class Public::HotSpringsController < ApplicationController
     else
       hot_springs_array = hot_springs
     end
-    
+
     #ページネーションしたものをviewに渡す
     @hot_springs = Kaminari.paginate_array(hot_springs_array).page(params[:page]).per(10)
-    
+
   end
 
   def show
