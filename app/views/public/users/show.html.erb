@@ -48,7 +48,12 @@
       </div>
       <div class="m-2">
         <%= link_to reviews_user_path(@user), class: "btn btn-primary" do %>
-          投稿したクチコミ　（<%= @reviews.count %>）
+          <% if @user == current_user %>
+            公開クチコミ（<%= @reviews.where(is_pablished: true).count %>）<br>
+            非公開クチコミ（<%= @reviews.where(is_pablished: false).count %>）
+          <% else %>
+            投稿したクチコミ　（<%= @reviews.where(is_pablished: true).count %>）
+          <% end %>
         <% end %>
       </div>
     </div>
