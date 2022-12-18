@@ -1,9 +1,9 @@
 <div>
-  <% if @quality_ids.include?("10") %>
+  <% if @quality_ids == ["10"] %>
     <%= render 'radioactive' %>
-  <% elsif @quality_ids.include?("5") %>
+  <% elsif @quality_ids ==["5"] %>
     <%= render 'co2' %>
-  <% elsif @quality_ids.include?("8") %>
+  <% elsif @quality_ids ==["8"] %>
     <%= render 'iodine' %>
   <% else %>
     <div class="row mx-auto my-2">
