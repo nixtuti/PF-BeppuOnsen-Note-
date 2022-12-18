@@ -19,7 +19,7 @@
  温泉を検索する時、温泉のレビューを投稿する時
 
 ## 設計書
-###実装機能リスト
+### 実装機能リスト
  https://docs.google.com/spreadsheets/d/1ejjKvdeO3fDqK7HIPGF6f0-k6buL6TLNblnHiW2eML8/edit#gid=1091086188
 　
 ### ワイヤーフレーム
