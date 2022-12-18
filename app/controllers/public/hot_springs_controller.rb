@@ -7,7 +7,7 @@ class Public::HotSpringsController < ApplicationController
       @search = params[:search]
       hot_springs = hot_spring.looks(params[:search])
     elsif params[:quality_ids].present?
-      @quality_ids = params[:quality_ids]
+      @quality_ids = params[:quality_ids].compact_blank
       hot_spring_ids = HotSpringQuality.where(quality_id: params[:quality_ids].compact_blank).pluck(:hot_spring_id).uniq
       hot_springs = hot_spring.where(id: hot_spring_ids)
     elsif params[:tag_id].present?

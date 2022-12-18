@@ -26,62 +26,62 @@
 
         <% if user_signed_in? || admin_signed_in? %>
         <% else %>
-        <div class='guest-login-box text-center'>
-          <%= link_to 'ゲストログイン', users_guest_sign_in_path, method: :post, class: 'guest-login-btn btn btn btn-info' %>
-        </div>
+          <div class='guest-login-box text-center'>
+            <%= link_to 'ゲストログイン', users_guest_sign_in_path, method: :post, class: 'guest-login-btn btn btn btn-info' %>
+          </div>
         <% end %>
-
       </div>
 
       <div id="new_items" class="mb-3">
         <div class="row mx-auto">
           <h4 class="col-lg-4 col-md-7 col-sm-6 bg-dark text-center text-light">新着クチコミ</h4>
         </div>
-
+        
         <div class="reviews">
           <% @reviews.each do |review| %>
-            <div class="row my-2 mx-auto">
-              <div class="col-lg-2 col-sm-3 py-2">
-                <%= link_to user_path(review.user), class: "text-dark" do %>
-                  <%= image_tag review.user.get_profile_image, size: '50x50', class: "img-responsive rounded-circle" %><br>
-                  <%= review.user.username %><br>
-                  <% if review.user.username != "ゲスト" %>
-                    (<%= review.user.age %>)
-                  <% end %>
-                <% end %>
-              </div>
-
-              <div class="col-lg-10 col-sm-9 py-2 border border-dark rounded bg-light">
-                <div class="row">
-                  <% if review.images.attached? %>
-                    <% review.images.each do |image| %>
-                      <div class="col-xl-4 col-lg-6 mb-3">
-                        <%= image_tag image.variant(resize: '240x150!').processed, class: "w-100" %>
-                      </div>
+            <% if review.hot_spring.is_pablished %>
+              <div class="row my-2 mx-auto">
+                <div class="col-lg-2 col-sm-3 py-2">
+                  <%= link_to user_path(review.user), class: "text-dark" do %>
+                    <%= image_tag review.user.get_profile_image, size: '50x50', class: "img-responsive rounded-circle" %><br>
+                    <%= review.user.username %><br>
+                    <% if review.user.username != "ゲスト" %>
+                      (<%= review.user.age %>)
                     <% end %>
                   <% end %>
                 </div>
-                <h5>
-                  <%=link_to review.title, hot_spring_review_path(review.hot_spring.id, review.id), class: "text-dark" %>
-                  （<%=link_to review.hot_spring.name, hot_spring_path(review.hot_spring.id), class: "text-dark" %>）
-                </h5>
-                <div id="star-rate<%= review.id %>"></div>
-                  <script>
-                    raty(document.querySelector('#star-rate<%= review.id %>'),{
-                      //星画像の指定などのオプションをここに
-                      size      : 36,
-                      starOff   : '<%= asset_path('star-off.png') %>',
-                      starOn    : '<%= asset_path('star-on.png') %>',
-                      starHalf: '<%= asset_path('star-half.png') %>',
-                      readOnly: true,
-                      score: <%= review.rate %>,
-                      half: true,
-                    });
-                  </script>
-                <div class="p-2"><%=safe_join(review.body.split("\n"),tag(:br))%></div>
-              </div>
+                <div class="col-lg-10 col-sm-9 py-2 border border-dark rounded bg-light">
+                  <div class="row">
+                    <% if review.images.attached? %>
+                      <% review.images.each do |image| %>
+                        <div class="col-xl-4 col-lg-6 mb-3">
+                          <%= image_tag image.variant(resize: '240x150!').processed, class: "w-100" %>
+                        </div>
+                      <% end %>
+                    <% end %>
+                  </div>
+                  <h5>
+                    <%=link_to review.title, hot_spring_review_path(review.hot_spring.id, review.id), class: "text-dark" %>
+                    （<%=link_to review.hot_spring.name, hot_spring_path(review.hot_spring.id), class: "text-dark" %>）
+                  </h5>
+                  <div id="star-rate<%= review.id %>"></div>
+                    <script>
+                      raty(document.querySelector('#star-rate<%= review.id %>'),{
+                        //星画像の指定などのオプションをここに
+                        size      : 36,
+                        starOff   : '<%= asset_path('star-off.png') %>',
+                        starOn    : '<%= asset_path('star-on.png') %>',
+                        starHalf: '<%= asset_path('star-half.png') %>',
+                        readOnly: true,
+                        score: <%= review.rate %>,
+                        half: true,
+                      });
+                    </script>
+                  <div class="p-2"><%=safe_join(review.body.split("\n"),tag(:br))%></div>
+                </div>
 
-            </div>
+              </div>
+            <% end %>
           <% end %>
         </div>
 
@@ -89,4 +89,3 @@
     </div>
   </div>
 </div>
-

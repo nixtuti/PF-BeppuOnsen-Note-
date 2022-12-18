@@ -1,20 +1,28 @@
 <div>
-  <div class="row mx-auto my-2">
-    <h4 class="col-md-4 col-8 bg-dark text-light text-center">温泉一覧</h4>
-    <p class="col-md-2 col-4 text-center">（全<%= @hot_springs.total_count %>件）</p>
-    <div class="col-lg-6">
-      <%= link_to '新しい順', hot_springs_path(latest: "true", search: @search, quality_ids: @quality_ids, tag_id: @tag_id) %>
-      |<%= link_to '古い順', hot_springs_path(oldest: "true", search: @search, quality_ids: @quality_ids, tag_id: @tag_id) %>
-      |<%= link_to '評価の高い順', hot_springs_path(rate_count: "true", search: @search, quality_ids: @quality_ids, tag_id: @tag_id)  %>
-      |<%= link_to 'クチコミの多い順', hot_springs_path(review_count: "true", search: @search, quality_ids: @quality_ids, tag_id: @tag_id) %>
-      <!--余裕があれば、ユーザーの温泉情報登録申請ができるようにする-->
-      <%#= link_to "新規登録を申請する", class: "align-middle text-dark" %>
+  <% if @quality_ids == ["10"] %>
+    <%= render 'radioactive' %>
+  <% elsif @quality_ids ==["5"] %>
+    <%= render 'co2' %>
+  <% elsif @quality_ids ==["8"] %>
+    <%= render 'iodine' %>
+  <% else %>
+    <div class="row mx-auto my-2">
+      <h4 class="col-md-4 col-8 bg-dark text-light text-center">温泉一覧</h4>
+      <p class="col-md-2 col-4 text-center">（全<%= @hot_springs.total_count %>件）</p>
+      <div class="col-lg-6">
+        <%= link_to '新しい順', hot_springs_path(latest: "true", search: @search, quality_ids: @quality_ids, tag_id: @tag_id) %>
+        |<%= link_to '古い順', hot_springs_path(oldest: "true", search: @search, quality_ids: @quality_ids, tag_id: @tag_id) %>
+        |<%= link_to '評価の高い順', hot_springs_path(rate_count: "true", search: @search, quality_ids: @quality_ids, tag_id: @tag_id)  %>
+        |<%= link_to 'クチコミの多い順', hot_springs_path(review_count: "true", search: @search, quality_ids: @quality_ids, tag_id: @tag_id) %>
+        <!--余裕があれば、ユーザーの温泉情報登録申請ができるようにする-->
+        <%#= link_to "新規登録を申請する", class: "align-middle text-dark" %>
+      </div>
     </div>
-  </div>
-  <div class="row mx-auto pt-3 table-responsive">
-    <table class="table table-secondary table-border">
-      <%= render 'index', hot_springs: @hot_springs , user: current_user %>
-    </table>
-    <%= paginate @hot_springs %>
-  </div>
+    <div class="row mx-auto pt-3 table-responsive">
+      <table class="table table-secondary table-border">
+        <%= render 'index', hot_springs: @hot_springs , user: current_user %>
+      </table>
+      <%= paginate @hot_springs %>
+    </div>
+  <% end %>
 </div>
