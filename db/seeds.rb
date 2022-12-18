@@ -116,4 +116,3 @@ reviews[4].images.attach(io: File.open("#{Rails.root}/db/fixtures/review1.jpg"),
 reviews[4].save!
 reviews[2].images.attach(io: File.open("#{Rails.root}/db/fixtures/review2.jpg"), filename:"review2.jpg")
 reviews[2].save!
-
