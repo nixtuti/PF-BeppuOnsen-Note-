@@ -1,6 +1,7 @@
 # BeppuOnsen Note
 
 ## URL
+ http://beppuonsen-note.com/
 
 ## サイト概要
 ### サイトテーマ
@@ -18,7 +19,26 @@
  温泉を検索する時、温泉のレビューを投稿する時
 
 ## 設計書
+###実装機能リスト
+ https://docs.google.com/spreadsheets/d/1ejjKvdeO3fDqK7HIPGF6f0-k6buL6TLNblnHiW2eML8/edit#gid=1091086188
+　
+### ワイヤーフレーム
+ https://app.diagrams.net/#G1BjM9cgybEfeIooU97E5JIsKAtIKVky4U
+　
+### ER図
+ https://app.diagrams.net/#G1zUmeM426UEk1Wdl85WizCrboJ3pruvda
  
+### テーブル定義書
+ https://docs.google.com/spreadsheets/d/1fj_c1JFR2cGDQkg4IOyQm6Clg9epr3Ah1U9nwj7InVQ/edit#gid=613511974
+　
+### アプリケーション詳細設計書
+ https://docs.google.com/spreadsheets/d/1-Ye1nnB9gsKtA6IHH0U_V5FJk6BaPekKONgcrRgfmk8/edit#gid=0
+ 
+### WBS
+ https://docs.google.com/spreadsheets/d/1uuFBKZvUys2y_NeXdObhZMylGQin5unXbwmfmvXEDwM/edit#gid=1773513600
+ 
+### テスト仕様書
+ https://docs.google.com/spreadsheets/d/1_CKchmFnJ2obqMt71ojM-3XGXnhCMdmk/edit#gid=547097470
 
 ## 開発環境
 - OS：Linux(CentOS)
@@ -28,5 +48,4 @@
 - IDE：Cloud9
 
 ## 使用素材
-- 外部サービスの画像素材・音声素材を使用した場合は、必ずサービス名とURLを明記してください。
-- 使用しない場合は、使用素材の項目をREADMEから削除してください。
+- 外部サービスの画像素材・音声素材は使用していません
