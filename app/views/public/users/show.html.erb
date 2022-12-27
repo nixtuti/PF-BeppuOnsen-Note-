@@ -14,8 +14,14 @@
           <td><%= @user.username %></td>
         </tr>
         <tr>
-          <th>生年月日</th>
-          <td><%= @user.birth_date.strftime('%Y年%m月%d日') %></td>
+          <th>年齢</th>
+          <td>
+            <% if @user.username == "ゲスト" %>
+              不詳
+            <% else %>
+              <%= @user.age %>
+            <% end %>
+          </td>
         </tr>
         <tr class="field align-middle">
           <th>性別</th>
