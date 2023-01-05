@@ -10,6 +10,7 @@ class Public::ReviewsController < ApplicationController
   def create
     @hot_spring = HotSpring.find(params[:hot_spring_id])
     @review = @hot_spring.reviews.new(review_params)
+    #エラー文表示(render使用)のため、再定義
     @reviews = @hot_spring.reviews.where(is_pablished: true).page(params[:page]).per(5).order(created_at: :desc)
     @review.user_id = current_user.id
     if @review.save
