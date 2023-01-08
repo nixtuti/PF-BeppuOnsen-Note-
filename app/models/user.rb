@@ -13,6 +13,7 @@ class User < ApplicationRecord
   has_many :visited_marks, dependent: :destroy
 
   validates :sex, presence: true
+  validates :birth_date, presence: true
   validates :username, presence: true
 
   has_one_attached :profile_image

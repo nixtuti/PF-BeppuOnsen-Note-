@@ -4,27 +4,28 @@
       <div class="my-4">
         <h4 class="col-lg-4 col-md-5 col-sm-6 bg-dark text-light text-center">新規会員登録</h4>
         <div class="text-danger">
+          <p>* 印は必須入力です</p>
           <%= render "public/shared/error_messages", resource: resource %>
         </div>
       </div>
       <div class="my-5 t4">
         <%= form_with model: @user, url: user_registration_path, id: 'new_customer', class: 'new_customer', local: true do |f| %>
-        <div class="table-responsive">
+          <div class="table-responsive">
             <table class="table table-borderless text-nowrap">
               <tr class="field">
                 <th class="align-middle"><%= f.label :profile_image, "プロフィール画像", class: "m-0" %></th>
                 <td><%= f.file_field :profile_image, accept: "image/*" %></td>
               </tr>
               <tr class="field">
-                <th class="align-middle"><%= f.label :username, "ユーザーネーム", class: "m-0" %></th>
+                <th class="align-middle required"><%= f.label :username, "ユーザーネーム", class: "m-0" %></th>
                 <td><%= f.text_field :username, autofocus: true, autocomplete: "username", class: 'form-control' %></td>
               </tr>
               <tr class="field">
-                <th><%= f.label :birth_date, "生年月日" %></th>
-                <td><%= raw sprintf( f.date_select( :birth_date, use_month_numbers: true, start_year: 1930, end_year: (Time.now.year - 5), default: Date.new(1989, 1, 1), date_separator: '%s' ), '年 ', '月 ') + '日' %></td>
+                <th class="align-middle required"><%= f.label :birth_date, "生年月日" %></th>
+                <td><%= f.date_field :birth_date, class: 'form-control'%><%#= raw sprintf( f.date_select( :birth_date, use_month_numbers: true, start_year: 1930, end_year: (Time.now.year - 5), default: Date.new(1989, 1, 1), date_separator: '%s' ), '年 ', '月 ') + '日' %></td>
               </tr>
               <tr class="field align-middle text-nowrap">
-                <th><%= f.label :sex, "性別" %></th>
+                <th class="required"><%= f.label :sex, "性別" %></th>
                 <td>
                   <div class="w-25 d-inline-block">
                     <%= f.radio_button :sex, :male  %>
@@ -37,11 +38,11 @@
                 </td>
               </tr>
               <tr class="field">
-                <th class="align-middle"><%= f.label :email, "メールアドレス", class: "m-0" %></th>
+                <th class="align-middle required"><%= f.label :email, "メールアドレス", class: "m-0" %></th>
                 <td><%= f.email_field :email, autocomplete: "email", placeholder: "sample@example.com", class: 'form-control' %></td>
               </tr>
               <tr class="field">
-                <th class="align-middle">
+                <th class="align-middle required">
                   <%= f.label :password, "パスワード", class: "m-0" %>
                   <% if @minimum_password_length %>
                     <em>(<%= @minimum_password_length %>文字以上)</em>
@@ -50,7 +51,7 @@
                 <td><%= f.password_field :password, autocomplete: "new-password", class: 'form-control' %></td>
               </tr>
               <tr class="field">
-                <th class="align-middle"><%= f.label :password_confirmation, "パスワード(確認用)", class: "m-0" %></th>
+                <th class="align-middle required"><%= f.label :password_confirmation, "パスワード(確認用)", class: "m-0" %></th>
                 <td><%= f.password_field :password_confirmation, class: 'form-control' %></td>
               </tr>
             </table>
