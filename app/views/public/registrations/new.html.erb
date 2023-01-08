@@ -9,7 +9,7 @@
       </div>
       <div class="my-5 t4">
         <%= form_with model: @user, url: user_registration_path, id: 'new_customer', class: 'new_customer', local: true do |f| %>
-        <div class="table-responsive">
+          <div class="table-responsive">
             <table class="table table-borderless text-nowrap">
               <tr class="field">
                 <th class="align-middle"><%= f.label :profile_image, "プロフィール画像", class: "m-0" %></th>
@@ -21,7 +21,7 @@
               </tr>
               <tr class="field">
                 <th><%= f.label :birth_date, "生年月日" %></th>
-                <td><%= raw sprintf( f.date_select( :birth_date, use_month_numbers: true, start_year: 1930, end_year: (Time.now.year - 5), default: Date.new(1989, 1, 1), date_separator: '%s' ), '年 ', '月 ') + '日' %></td>
+                <td><%= f.date_field :birth_date, class: 'form-control'%><%#= raw sprintf( f.date_select( :birth_date, use_month_numbers: true, start_year: 1930, end_year: (Time.now.year - 5), default: Date.new(1989, 1, 1), date_separator: '%s' ), '年 ', '月 ') + '日' %></td>
               </tr>
               <tr class="field align-middle text-nowrap">
                 <th><%= f.label :sex, "性別" %></th>
