@@ -14,14 +14,13 @@ class User < ApplicationRecord
 
   validates :sex, presence: true
   validates :birth_date, presence: true
-  validates :username, presence: true
+  validates :username, presence: true, length: {minimum: 2, maximum: 20 }, uniqueness: true
 
   has_one_attached :profile_image
 
   def get_profile_image
     (profile_image.attached?) ? profile_image : 'icon.png'
   end
-
 
   def self.guest
     find_or_create_by!(email: 'guest@example.com') do |user|
