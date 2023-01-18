@@ -89,3 +89,6 @@ end
 gem "net-smtp"
 gem "net-pop"
 gem "net-imap"
+
+#住所から緯度・経度取得
+gem "geocoder"

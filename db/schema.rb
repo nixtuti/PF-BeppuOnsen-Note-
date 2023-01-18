@@ -103,7 +103,7 @@ ActiveRecord::Schema.define(version: 2022_11_18_040930) do
     t.string "hours", null: false
     t.string "holiday", null: false
     t.float "latitude"
-    t.float "longtude"
+    t.float "longitude"
     t.string "parking", null: false
     t.string "contact", null: false
     t.integer "running_status", default: 0, null: false

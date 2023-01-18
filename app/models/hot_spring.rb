@@ -29,6 +29,8 @@ class HotSpring < ApplicationRecord
   validates :is_pablished, inclusion: { in: [true, false] }
   validates :hot_spring_qualities, presence: true
   
+  geocoded_by :address
+  after_validation :geocode
   
   scope :latest, -> {order(created_at: :desc)}
   scope :oldest, -> {order(created_at: :asc)}
