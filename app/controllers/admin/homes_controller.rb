@@ -5,6 +5,8 @@ class Admin::HomesController < ApplicationController
       @reviews = Review.page(params[:page]).order(created_at: :desc)
     elsif params[:latest_update]=="true"
       @reviews = Review.page(params[:page]).order(updated_at: :desc)
+    elsif params[:report]=="true"
+      @reviews = Review.where(report: true).page(params[:page]).order(created_at: :desc)
     else
       @reviews = Review.page(params[:page]).order(created_at: :desc)
     end

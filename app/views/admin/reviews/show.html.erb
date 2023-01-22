@@ -1,57 +1,62 @@
-<div class="container mx-auto mt-3">
-  <div class="row mx-auto">
-    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-5">
-      <%= image_tag @review.user.get_profile_image, size: '50x50', class: "img-responsive rounded-circle" %><br>
-      <%= @review.user.username %><br>
-      <% if @review.user.username != "ゲスト" %>
-        (<%= @review.user.age %>)
-      <% end %>
-    </div>
-    <div class="col-lg-10 col-md-9 col-sm-8 col-xs-7">
-      <div class="row">
-        <% if @review.images.attached? %>
-          <% @review.images.each do |image| %>
-            <div class="col-lg-4 col-md-6 mb-3">
-              <%= image_tag image, size: '320x200', class: "w-100" %>
-            </div>
-          <% end %>
+<div id="review_<%= @review.id %>">
+  <div class="container mx-auto mt-3">
+    <div class="row mx-auto">
+      <div class="col-lg-2 col-md-3 col-sm-4 col-xs-5">
+        <%= image_tag @review.user.get_profile_image, size: '50x50', class: "img-responsive rounded-circle" %><br>
+        <%= @review.user.username %><br>
+        <% if @review.user.username != "ゲスト" %>
+          (<%= @review.user.age %>)
         <% end %>
       </div>
-
-      <div class="row">
-        <div class="col-lg-8">
-          <!--レビュータイトル-->
-          <h4 class="title mt-3"><%= @review.title %></h4>
-          <!--星5段階評価表示-->
-          <div id="star-rate<%= @review.id %>"></div>
-            <script>
-              raty(document.querySelector('#star-rate<%= @review.id %>'),{
-                //星画像の指定などのオプションをここに
-                size      : 36,
-                starOff   : '<%= asset_path('star-off.png') %>',
-                starOn    : '<%= asset_path('star-on.png') %>',
-                starHalf: '<%= asset_path('star-half.png') %>',
-                readOnly: true,
-                score: <%= @review.rate %>,
-                half: true,
-              });
-            </script>
-          <div class="content">
-            <p class="mt-3"><%=safe_join(@review.body.split("\n"),tag(:br))%></p>
-          </div>
+      <div class="col-lg-10 col-md-9 col-sm-8 col-xs-7">
+        <div class="row">
+          <% if @review.images.attached? %>
+            <% @review.images.each do |image| %>
+              <div class="col-lg-4 col-md-6 mb-3">
+                <%= image_tag image, size: '320x200', class: "w-100" %>
+              </div>
+            <% end %>
+          <% end %>
         </div>
-        <div class="col-lg-4 text-right">
-          投稿日：<%= @review.created_at.strftime('%Y年%m月%d日')%><br>
-          <%= link_to "削除", admin_review_path(@review), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-danger" %>
+  
+        <div class="row">
+          <div class="col-lg-8">
+            <!--レビュータイトル-->
+            <h4 class="title mt-3"><%= @review.title %></h4>
+            <!--星5段階評価表示-->
+            <div id="star-rate<%= @review.id %>"></div>
+              <script>
+                raty(document.querySelector('#star-rate<%= @review.id %>'),{
+                  //星画像の指定などのオプションをここに
+                  size      : 36,
+                  starOff   : '<%= asset_path('star-off.png') %>',
+                  starOn    : '<%= asset_path('star-on.png') %>',
+                  starHalf: '<%= asset_path('star-half.png') %>',
+                  readOnly: true,
+                  score: <%= @review.rate %>,
+                  half: true,
+                });
+              </script>
+            <div class="content">
+              <p class="mt-3"><%=safe_join(@review.body.split("\n"),tag(:br))%></p>
+            </div>
+          </div>
+          <div class="col-lg-4 text-right">
+            投稿日：<%= @review.created_at.strftime('%Y年%m月%d日')%><br>
+            <%= link_to "削除", admin_review_path(@review), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger mb-1" %>
+            <div class="report-btn">
+              <%= render 'admin/reviews/report-btn', review: @review %>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="comment_box row">
-    <div class="col-md-4 comment_field py-2"></div>
-    <!--コメントを表示-->
-    <div class="col-md-7 col-11 review_comments m-auto">
-      <%= render 'public/comments/index', review: @review %>
+    <div class="comment_box row">
+      <div class="col-md-4 comment_field py-2"></div>
+      <!--コメントを表示-->
+      <div class="col-md-7 col-11 review_comments m-auto">
+        <%= render 'public/comments/index', review: @review %>
+      </div>
     </div>
   </div>
 </div>

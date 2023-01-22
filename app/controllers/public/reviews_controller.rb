@@ -52,12 +52,6 @@ class Public::ReviewsController < ApplicationController
     @hot_spring = HotSpring.find(params[:hot_spring_id])
     @review = Review.find(params[:review_id])
     @review.update(report: true)
-      # if @review.update(report: true)
-      #   @review.report = true
-      #   @review.update
-      #   redirect_to request.referer, notice: "不適切なクチコミとして報告しました。"
-      # else
-      # end
   end
 
   def destroy

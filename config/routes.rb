@@ -52,6 +52,7 @@ Rails.application.routes.draw do
     end
     resources :reviews, only:[:show, :destroy] do
       resources :comments, only: [:destroy]
+      patch 'reports' => 'reviews#report', as: 'report'
     end
     resources :comments, only: [:index]
     resources :hot_springs, only: [:index, :show, :new, :create, :edit, :update]
