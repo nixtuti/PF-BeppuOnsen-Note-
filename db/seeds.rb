@@ -118,11 +118,11 @@ HotSpring.create!([
     ])
 
 reviews = Review.create!([
-    {title: "コスパ最高！", body: "地元の方が多いですが回転が速いので気になりません。この値段でシャワーがあり、露天風呂もあるので最高です！", rate: 5.0, hot_spring_id: 4, user_id: 1, is_pablished: true},
-    {title: "仕事帰りに！", body: "毎日仕事帰りに寄っています。熱湯とぬる湯があり、子供連れでも安心です。堀田温泉と同じお湯を引いているようですが、温泉を濾しているので浮遊物は少ないです。管理の方が温度を頻繁にチェックされているので快適に入浴できます。", rate: 4.5, hot_spring_id: 3, user_id: 1, is_pablished: true},
-    {title: "春は桜が咲きます", body: "浴室からは見えませんが、建物のそばを流れる川に桜の木が並んでいるので春は良い感じです。", rate: 3.5, hot_spring_id: 3, user_id: 1, is_pablished: true},
-    {title: "ザ・地元の温泉", body: "広い市営温泉です。露天やむし湯もあり、コスパが良いです。地元の人が多く、マナーに少し厳しいかもしれません。駐車場に入る道が急カーブかつ傾斜が急なので、気をつけてください。", rate: 4.0, hot_spring_id: 2, user_id: 1, is_pablished: true},
-    {title: "海を眺めながら", body: "気温が低く天気が良い日に行くと最高かと思います。寒い季節は空気が澄んでいるので、おすすめです！", rate:4.0, hot_spring_id: 1, user_id: 1, is_pablished: true}
+    {title: "コスパ最高！", body: "地元の方が多いですが回転が速いので気になりません。この値段でシャワーがあり、露天風呂もあるので最高です！", rate: 5.0, hot_spring_id: 4, user_id: 1, is_pablished: true, report: false},
+    {title: "仕事帰りに！", body: "毎日仕事帰りに寄っています。熱湯とぬる湯があり、子供連れでも安心です。堀田温泉と同じお湯を引いているようですが、温泉を濾しているので浮遊物は少ないです。管理の方が温度を頻繁にチェックされているので快適に入浴できます。", rate: 4.5, hot_spring_id: 3, user_id: 1, is_pablished: true, report: false},
+    {title: "春は桜が咲きます", body: "浴室からは見えませんが、建物のそばを流れる川に桜の木が並んでいるので春は良い感じです。", rate: 3.5, hot_spring_id: 3, user_id: 1, is_pablished: true, report: false},
+    {title: "ザ・地元の温泉", body: "広い市営温泉です。露天やむし湯もあり、コスパが良いです。地元の人が多く、マナーに少し厳しいかもしれません。駐車場に入る道が急カーブかつ傾斜が急なので、気をつけてください。", rate: 4.0, hot_spring_id: 2, user_id: 1, is_pablished: true, report: false},
+    {title: "海を眺めながら", body: "気温が低く天気が良い日に行くと最高かと思います。寒い季節は空気が澄んでいるので、おすすめです！", rate:4.0, hot_spring_id: 1, user_id: 1, is_pablished: true, report: false}
     ])
 # reviews[4].images.attach(io: File.open("#{Rails.root}/db/fixtures/review1.jpg"), filename:"review1.jpg")
 # reviews[4].save!

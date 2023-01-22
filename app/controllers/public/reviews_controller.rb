@@ -47,6 +47,18 @@ class Public::ReviewsController < ApplicationController
       render 'edit'
     end
   end
+  
+  def report
+    @hot_spring = HotSpring.find(params[:hot_spring_id])
+    @review = Review.find(params[:review_id])
+    @review.update(report: true)
+      # if @review.update(report: true)
+      #   @review.report = true
+      #   @review.update
+      #   redirect_to request.referer, notice: "不適切なクチコミとして報告しました。"
+      # else
+      # end
+  end
 
   def destroy
     @review = Review.find(params[:id])
@@ -60,7 +72,7 @@ class Public::ReviewsController < ApplicationController
   private
 
   def review_params
-    params.require(:review).permit(:title,:body, :rate, :user_id, :hot_spring_id, :is_pablished, images: [])
+    params.require(:review).permit(:title,:body, :rate, :user_id, :hot_spring_id, :is_pablished, :report, images: [])
   end
   
   def correct_user

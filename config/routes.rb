@@ -37,6 +37,7 @@ Rails.application.routes.draw do
       resources :reviews, only: [:index, :show, :create, :edit, :update, :destroy] do
         resource :favorites, only: [:create, :destroy]
         resources :comments, only: [:create, :destroy]
+        patch 'reports' => 'reviews#report', as: 'report'
       end
     end
   end
