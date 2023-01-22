@@ -40,6 +40,7 @@ Rails.application.routes.draw do
         patch 'reports' => 'reviews#report', as: 'report'
       end
     end
+    resources :contacts, only: [:new, :create]
   end
 
   namespace :admin do
