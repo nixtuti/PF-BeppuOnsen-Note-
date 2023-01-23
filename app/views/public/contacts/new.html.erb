@@ -13,19 +13,8 @@
       </div>
       <%= form_with model: @contact, local: true do |f| %>
         <div class="correct-msg-box">
-          <% if @contact.errors.any? %>
-            <div id="error_explanation">
-              <ul><% @contact.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-                <% end %>
-              </ul>
-            </div>
-          <% end %>
           <div class="correct-msg-main my-4">
             <div class="contact-form">
-              <div class="correct-text-field">
-                <%= f.hidden_field :user_id %>
-              </div>
               <div class="correct-text-field">
                 <%= f.label "お問合せ内容" %><br>
                 <%= f.text_area :content, placeholder: "お問合せ内容を入力してください", class: "form-control", rows: 5 %>

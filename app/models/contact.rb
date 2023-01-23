@@ -1,3 +1,7 @@
 class Contact < ApplicationRecord
-  validates :content, presence: true
+  
+  belongs_to :user
+  
+  validates :content, presence: true, length: {maximum: 800}
+
 end

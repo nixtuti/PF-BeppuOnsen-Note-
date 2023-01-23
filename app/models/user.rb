@@ -11,6 +11,7 @@ class User < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
   has_many :visited_marks, dependent: :destroy
+  has_many :contacts, dependent: :destroy
 
   validates :sex, presence: true
   validates :birth_date, presence: true
