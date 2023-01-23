@@ -70,6 +70,7 @@ ActiveRecord::Schema.define(version: 2023_01_22_130708) do
   create_table "contacts", force: :cascade do |t|
     t.integer "user_id", null: false
     t.text "content", null: false
+    t.boolean "responded", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

@@ -57,6 +57,7 @@ Rails.application.routes.draw do
     end
     resources :comments, only: [:index]
     resources :hot_springs, only: [:index, :show, :new, :create, :edit, :update]
+    resources :contacts, only: [:index, :update]
   end
 
   # 画像が表示されなくなるため、削除

@@ -3,6 +3,7 @@ class CreateContacts < ActiveRecord::Migration[6.1]
     create_table :contacts do |t|
       t.integer :user_id, null: false
       t.text :content, null: false
+      t.boolean :responded, null:false, default: false
       t.timestamps
     end
   end
