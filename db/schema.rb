@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_11_18_040930) do
+ActiveRecord::Schema.define(version: 2023_01_22_130708) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -67,6 +67,14 @@ ActiveRecord::Schema.define(version: 2022_11_18_040930) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "contacts", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.text "content", null: false
+    t.boolean "responded", default: false, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "effects", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -103,7 +111,7 @@ ActiveRecord::Schema.define(version: 2022_11_18_040930) do
     t.string "hours", null: false
     t.string "holiday", null: false
     t.float "latitude"
-    t.float "longtude"
+    t.float "longitude"
     t.string "parking", null: false
     t.string "contact", null: false
     t.integer "running_status", default: 0, null: false
@@ -134,6 +142,7 @@ ActiveRecord::Schema.define(version: 2022_11_18_040930) do
     t.boolean "is_pablished", default: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "report", default: false, null: false
   end
 
   create_table "tags", force: :cascade do |t|

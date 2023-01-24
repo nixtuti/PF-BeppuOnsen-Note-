@@ -24,3 +24,5 @@ ja:
         is_pablished: 公開ステータス
       comment:
         comment: コメント
+      contact:
+       content: お問い合わせ内容

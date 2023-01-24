@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="col-xl-6 col-md-8 col-sm-10 m-auto">
+    <div class="card text-center p-3 mt-5">
+      <div class='form-wrap'>
+        <div class='form-header'>
+          <h5 class='form-header-text border-bottom mt-3 pb-1'>
+            お問い合わせフォーム
+          </h5>
+          <div class="text-danger">
+            <%= render"layouts/errors", obj: @contact %>
+          </div>
+        </div>
+      </div>
+      <%= form_with model: @contact, local: true do |f| %>
+        <div class="correct-msg-box">
+          <div class="correct-msg-main my-4">
+            <div class="contact-form">
+              <div class="correct-text-field">
+                <%= f.label "お問合せ内容" %><br>
+                <%= f.text_area :content, placeholder: "お問合せ内容を入力してください", class: "form-control", rows: 5 %>
+              </div>
+              <div class="send-btn-contents">
+                <div class="register-btn mt-3">
+                  <%= f.submit "送信", class: "btn btn-secondary btn-sm text-decoration-none" %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

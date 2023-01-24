@@ -37,8 +37,10 @@ Rails.application.routes.draw do
       resources :reviews, only: [:index, :show, :create, :edit, :update, :destroy] do
         resource :favorites, only: [:create, :destroy]
         resources :comments, only: [:create, :destroy]
+        patch 'reports' => 'reviews#report', as: 'report'
       end
     end
+    resources :contacts, only: [:new, :create]
   end
 
   namespace :admin do
@@ -51,9 +53,11 @@ Rails.application.routes.draw do
     end
     resources :reviews, only:[:show, :destroy] do
       resources :comments, only: [:destroy]
+      patch 'reports' => 'reviews#report', as: 'report'
     end
     resources :comments, only: [:index]
     resources :hot_springs, only: [:index, :show, :new, :create, :edit, :update]
+    resources :contacts, only: [:index, :update]
   end
 
   # 画像が表示されなくなるため、削除

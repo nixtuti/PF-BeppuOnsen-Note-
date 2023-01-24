@@ -9,7 +9,7 @@ class CreateHotSprings < ActiveRecord::Migration[6.1]
       t.string :hours,              null:false
       t.string :holiday,            null:false
       t.float :latitude
-      t.float :longtude
+      t.float :longitude
       t.string :parking,            null:false
       t.string :contact,            null:false
       t.integer :running_status,    null:false, default: 0

@@ -16,19 +16,21 @@ class HotSpring < ApplicationRecord
     (hot_spring_image.attached?) ? hot_spring_image : 'noimage.png'
   end
 
-  validates :name, presence: true, uniqueness: true
-  validates :introduction, presence: true, length: {maximum: 200}
-  validates :address, presence: true
-  validates :price, presence: true
-  validates :private_bath_price, presence: true
-  validates :hours, presence: true
-  validates :holiday, presence: true
-  validates :parking, presence: true
-  validates :contact, presence: true
+  validates :name, presence: true, length: {minimum: 2, maximum: 30 }, uniqueness: true
+  validates :introduction, presence: true, length: {maximum: 250}
+  validates :address, presence: true, length: {maximum: 100}
+  validates :price, presence: true, length: {maximum: 100}
+  validates :private_bath_price, presence: true, length: {maximum: 100}
+  validates :hours, presence: true, length: {maximum: 100}
+  validates :holiday, presence: true, length: {maximum: 100}
+  validates :parking, presence: true, length: {maximum: 100}
+  validates :contact, presence: true, length: {maximum: 100}
   validates :running_status, presence: true
   validates :is_pablished, inclusion: { in: [true, false] }
   validates :hot_spring_qualities, presence: true
   
+  geocoded_by :address
+  after_validation :geocode
   
   scope :latest, -> {order(created_at: :desc)}
   scope :oldest, -> {order(created_at: :asc)}

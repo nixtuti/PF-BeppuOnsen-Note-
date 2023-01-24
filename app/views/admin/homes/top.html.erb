@@ -5,6 +5,7 @@
             <div class="col-md-4 mx-2">
                 <%= link_to "新着順", admin_root_path(latest: "true") %>
                 |<%= link_to "更新日時降順", admin_root_path(latest_update: "true") %>
+                |<%= link_to "通報あり", admin_root_path(report: "true") %>
             </div>
         </div>
         <div class="table-responsive">
@@ -18,6 +19,7 @@
                         <th>クチコミ</th>
                         <th>画像数</th>
                         <th>公開ステータス</th>
+                        <th>通報</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -36,6 +38,11 @@
                             </td>
                             <td><%= review.images.count %></td>
                             <td><%= review.is_pablished ? "公開" : "非公開"%></td>
+                            <td class="text-danger">
+                                <% if review.report == true %>
+                                    <i class="fa-solid fa-circle-exclamation"></i>
+                                <% end %>
+                            </td>
                         </tr>
                     <% end %>
                 </tbody>

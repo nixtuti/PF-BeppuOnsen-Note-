@@ -48,14 +48,17 @@
           <!--コメント数表示-->
           <i class="fa-solid fa-comment-dots"></i>
           <div class="comments-count d-inline">
-            コメント：<%= @review.comments.count %>　
+            コメント：<%= @review.comments.count %>
           </div>
           <!--ログイン中のユーザーであれば、編集、削除のリンクを表示-->
           <% if @review.user_id == current_user.id %>
               <%= link_to "編集", edit_hot_spring_review_path(@hot_spring, @review) %>
               |
               <%= link_to "削除", hot_spring_review_path(@hot_spring, @review), data: { confirm: '本当に消しますか？' }, method: :delete %>
-          <% end %>
+          <% end %><br>
+          <div class="report-btn">
+            <%= render 'public/reviews/report-btn', hot_spring: @hot_spring, review: @review %>
+          </div>
         </div>
       </div>
       <div class="content">
